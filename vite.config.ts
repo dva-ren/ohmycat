@@ -1,15 +1,15 @@
 /// <reference types="vitest" />
 
-import path from 'path'
+import path, { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
-
+import fs from 'fs-extra'
+import matter from 'gray-matter'
 import Markdown from 'vite-plugin-vue-markdown'
-import Voie from 'vite-plugin-voie'
 
 export default defineConfig({
   resolve: {
@@ -22,10 +22,21 @@ export default defineConfig({
       reactivityTransform: true,
       include: [/\.vue$/, /\.md$/],
     }),
-
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages(),
+    Pages({
+      extensions: ['vue', 'md'],
+      dirs: ['src/pages/', 'src/posts'],
+      extendRoute(route) {
+        const path = resolve(__dirname, route.component.slice(1))
 
+        if (!path.includes('projects.md')) {
+          const md = fs.readFileSync(path, 'utf-8')
+          const { data } = matter(md)
+          route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+        }
+        return route
+      },
+    }),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
@@ -40,7 +51,6 @@ export default defineConfig({
       ],
       vueTemplate: true,
     }),
-
     // https://github.com/antfu/vite-plugin-components
     Components({
       dts: true,
@@ -50,10 +60,6 @@ export default defineConfig({
     // see unocss.config.ts for config
     Unocss(),
     Markdown(),
-    Voie({
-      extensions: ['vue', 'md'],
-      pagesDir: 'src/posts',
-    }),
   ],
 
   // https://github.com/vitest-dev/vitest

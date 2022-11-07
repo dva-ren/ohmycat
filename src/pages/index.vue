@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Home from '../posts/home.md'
+import Home from './posts/home.md'
 </script>
 
 <template>
