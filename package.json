@@ -11,9 +11,12 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@vueuse/core": "^9.3.0",
+    "@vueuse/head": "^0.9.8",
     "fs-extra": "^10.1.0",
     "github-markdown-css": "^5.1.0",
+    "markdown-it": "^13.0.1",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"
   },

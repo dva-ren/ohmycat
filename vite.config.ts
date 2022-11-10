@@ -37,7 +37,6 @@ export default defineConfig({
         return route
       },
     }),
-    // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
         'vue',
@@ -51,18 +50,15 @@ export default defineConfig({
       ],
       vueTemplate: true,
     }),
-    // https://github.com/antfu/vite-plugin-components
     Components({
       dts: true,
     }),
 
-    // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss(),
     Markdown(),
   ],
 
-  // https://github.com/vitest-dev/vitest
   test: {
     environment: 'jsdom',
   },

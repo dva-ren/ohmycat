@@ -7,6 +7,7 @@ const names = computed(() => {
     return {
       path: r.path,
       name: res && res.length > 1 ? res[1] : null,
+      meta: r.meta.frontmatter,
     }
   }).filter(i => i.name)
 })
@@ -18,9 +19,9 @@ const names = computed(() => {
       posts
     </h2>
     <ul ml-4>
-      <li v-for="r in names" :key="r.path" link>
-        <router-link :to="r.path">
-          {{ r.name }}
+      <li v-for="r in names" :key="r.path">
+        <router-link :to="r.path" link>
+          {{ r.meta.title ?? r.name }}
         </router-link>
       </li>
     </ul>

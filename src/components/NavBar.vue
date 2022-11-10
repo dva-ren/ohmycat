@@ -5,7 +5,7 @@
 <template>
   <header flex justify-between py-6 font-inter px-4 lg:px-10>
     <router-link to="/" title="home">
-      <div>logo</div>
+      <div i-carbon-worship-jewish text-xl />
     </router-link>
     <nav flex items-center gap-5>
       <router-link to="/posts" title="Blog" link>

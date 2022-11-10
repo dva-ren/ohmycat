@@ -11,3 +11,4 @@ const a = 1
 const p = new Promise()
 
 ```
+this is {{frontmatter.title}}
