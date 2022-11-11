@@ -1,5 +1,6 @@
 ---
 title: home
+date: 2022-11-10 12:00
 ---
 # Dvaaa
 

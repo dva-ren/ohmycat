@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { format, parseISO } from 'date-fns'
 const router = useRouter()
 const names = computed(() => {
   const reg = /\/posts\/(.*)/
@@ -7,9 +8,11 @@ const names = computed(() => {
     return {
       path: r.path,
       name: res && res.length > 1 ? res[1] : null,
-      meta: r.meta.frontmatter,
+      meta: r.meta.frontmatter as any,
     }
-  }).filter(i => i.name)
+  }).filter(i => i.name).sort((a, b) => {
+    return parseISO(b.meta.date).getTime() - parseISO(a.meta.date).getTime()
+  })
 })
 </script>
 
@@ -19,9 +22,14 @@ const names = computed(() => {
       posts
     </h2>
     <ul ml-4>
-      <li v-for="r in names" :key="r.path">
-        <router-link :to="r.path" link>
-          {{ r.meta.title ?? r.name }}
+      <li v-for="r in names" :key="r.path" my-2>
+        <router-link :to="r.path" link text-18px>
+          <div block>
+            {{ r.meta.title ?? r.name }}
+          </div>
+          <div text-14px>
+            {{ format(parseISO(r.meta.date), 'MM-dd hh:mm') }}
+          </div>
         </router-link>
       </li>
     </ul>

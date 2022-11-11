@@ -1,5 +1,6 @@
 ---
 title: vite 配置
+date: 2022-11-09 11:00
 ---
 ## {{frontmatter.title}}
 

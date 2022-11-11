@@ -14,6 +14,7 @@
     "@types/fs-extra": "^9.0.13",
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.9.8",
+    "date-fns": "^2.29.3",
     "fs-extra": "^10.1.0",
     "github-markdown-css": "^5.1.0",
     "markdown-it": "^13.0.1",

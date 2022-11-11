@@ -18,7 +18,7 @@
         <span>Tools</span>
       </router-link>
 
-      <a href="https://github.com/iiuzrw" title="Github" target="_blank" link>
+      <a href="https://github.com/dva-ren" title="Github" target="_blank" link>
         <div icon-btn i-carbon-logo-github />
       </a>
       <button icon-btn @click="toggleDark()">
