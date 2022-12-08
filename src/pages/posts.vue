@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-
+import Layout from '../layout/default.vue'
 </script>
 
 <template>
-  <div m-auto max-w-650px px-4 lg:px-10>
+  <Layout>
     <router-view />
-  </div>
+  </Layout>
 </template>

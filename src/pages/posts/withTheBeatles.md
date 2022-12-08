@@ -4,7 +4,7 @@ date: 2022-11-10 16:00
 ---
 # 第一人称单数
 
-<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fn.sinaimg.cn%2Fspider20211221%2F190%2Fw400h590%2F20211221%2Ffa83-b7f39f1a3642904f63fb838ac8dc021f.jpg&refer=http%3A%2F%2Fn.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670677039&t=c0c5660c15c0c9f13ca068b1b8890994" style="width: 160px">
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fn.sinaimg.cn%2Fspider20211221%2F190%2Fw400h590%2F20211221%2Ffa83-b7f39f1a3642904f63fb838ac8dc021f.jpg&refer=http%3A%2F%2Fn.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670677039&t=c0c5660c15c0c9f13ca068b1b8890994" align=right style="width: 160px">
 
 - 作者: [日]村上春树
 - 出版社: 文治图书·花城出版社
