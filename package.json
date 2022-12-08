@@ -18,6 +18,8 @@
     "fs-extra": "^10.1.0",
     "github-markdown-css": "^5.1.0",
     "markdown-it": "^13.0.1",
+    "markdown-it-shiki": "^0.7.2",
+    "markdown-it-task-lists": "^2.1.1",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"
   },

@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <main font-inter p="y-10" text="gray-700 dark:gray-200 max-w-100">
+  <main font-inter p="y-10" text="gray-700 dark:gray-200">
     <!-- <router-view v-slot="{ Component }">
       <transition>
         <component :is="Component" />

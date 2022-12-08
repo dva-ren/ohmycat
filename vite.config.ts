@@ -10,6 +10,8 @@ import Unocss from 'unocss/vite'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
 import Markdown from 'vite-plugin-vue-markdown'
+import Shiki from 'markdown-it-shiki'
+import TaskLists from 'markdown-it-task-lists'
 
 export default defineConfig({
   resolve: {
@@ -56,7 +58,21 @@ export default defineConfig({
 
     // see unocss.config.ts for config
     Unocss(),
-    Markdown(),
+    Markdown({
+      wrapperClasses: 'prose m-auto',
+      markdownItOptions: {
+        quotes: '""\'\'',
+      },
+      markdownItSetup(md) {
+        md.use(Shiki, {
+          theme: {
+            light: 'vitesse-light',
+            dark: 'vitesse-dark',
+          },
+        })
+        md.use(TaskLists)
+      },
+    }),
   ],
 
   test: {
