@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import Layout from '../../layout/default.vue'
 const projects = ref([
-  { name: 'blog', descrption: '一个辣鸡博客', icon: '', url: 'https://github.com/dva-ren/blog-demo-app' },
-  { name: 'work', descrption: '生成电视查询信息', icon: '', url: '/projects/work' },
+  { name: 'blog', descrption: '简陋的博客', icon: '', url: 'https://github.com/dva-ren/blog-demo-app' },
+  { name: 'heart', descrption: 'romantic never die', icon: 'ri:heart-pulse-fill', url: '/projects/heart' },
 ])
 </script>
 
