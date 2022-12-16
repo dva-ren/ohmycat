@@ -14,6 +14,8 @@ const names = computed(() => {
     return parseISO(b.meta.date).getTime() - parseISO(a.meta.date).getTime()
   })
 })
+const getYear = (a: Date | string | number) => new Date(a).getFullYear()
+const isSameYear = (a: Date | string | number, b: Date | string | number) => a && b && getYear(a) === getYear(b)
 </script>
 
 <template>
@@ -22,7 +24,10 @@ const names = computed(() => {
       posts
     </h2>
     <ul ml-4>
-      <li v-for="r in names" :key="r.path" my-2>
+      <li v-for="r, idx in names" :key="r.path" my-2>
+        <div v-if="!isSameYear(r.meta.date, names[idx - 1]?.meta.date)" relative h20 pointer-events-none>
+          <span text-6em op10 absolute left--1rem top--.5rem font-bold>{{ getYear(r.meta.date) }}</span>
+        </div>
         <router-link :to="r.path" link text-18px>
           <div block>
             {{ r.meta.title ?? r.name }}
