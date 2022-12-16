@@ -20,9 +20,9 @@ const isSameYear = (a: Date | string | number, b: Date | string | number) => a &
 
 <template>
   <div>
-    <h2 text-2xl font-bold py-4>
-      posts
-    </h2>
+    <h1 text-2xl font-bold>
+      Posts
+    </h1>
     <ul ml-4>
       <li v-for="r, idx in names" :key="r.path" my-2>
         <div v-if="!isSameYear(r.meta.date, names[idx - 1]?.meta.date)" relative h20 pointer-events-none>

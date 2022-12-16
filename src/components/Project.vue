@@ -6,7 +6,7 @@ const { data } = defineProps<{ data: { name: string; descrption: string; icon: s
   <Link :to="data.url" flex items-center px-1 py-3 hover="bg-gray-100 text-gray-800" transition rounded>
     <div :class="`i-${data.icon ? data.icon : 'ri:emotion-laugh-fill'}`" :style="{ color: data.color }" text-2xl w-10 mx-1 />
     <div flex-1>
-      <div py-1 font-bold>
+      <div py-1>
         {{ data.name }}
       </div>
       <div text="gray-400 12px">
