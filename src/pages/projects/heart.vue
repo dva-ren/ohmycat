@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const canvas = $ref<HTMLCanvasElement>()
 const options = reactive({
-  scalce: 10,
+  scale: 10,
   pointCount: 260,
   pointSize: 2,
   drawSpeed: 1,
@@ -18,7 +18,7 @@ const start = () => {
   canvas.width = document.documentElement.clientWidth
   canvas.height = document.documentElement.clientHeight - 72 - 80
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  const p = generatePoints(options.pointCount, options.scalce, { x: canvas.width / 2, y: canvas.height / 2 })
+  const p = generatePoints(options.pointCount, options.scale, { x: canvas.width / 2, y: canvas.height / 2 })
   delayShow(ctx, p, options.drawSpeed)
 }
 
@@ -85,13 +85,14 @@ const repaint = useDebounceFn(() => {
   start()
 }, 200)
 const reset = () => {
-  options.scalce = 10
+  options.scale = 10
   options.pointCount = 200
   options.pointSize = 2
   options.drawSpeed = -2
 }
 
 const switchDisplay = () => {
+
 }
 
 onMounted(() => {
@@ -113,8 +114,8 @@ onMounted(() => {
       </div>
 
       <div>
-        <span>缩&nbsp&nbsp&nbsp放：</span>
-        <input v-model="options.scalce" type="number">
+        <span>缩 放：</span>
+        <input v-model="options.scale" type="number">
       </div>
       <div>
         <span>绘制速度：</span>
@@ -129,8 +130,8 @@ onMounted(() => {
         </button>
       </div>
     </div>
-    <div fixed right-4 bottom-4 p-2 rounded-full btn select-none @click="showOptions = !showOptions">
-      <div i-ri:settings-4-line text-2xl />
+    <div fixed right-4 bottom-4 p-2 rounded-full cursor-pointer select-none bg="#68b88e" @click="showOptions = !showOptions">
+      <div i-ri:settings-4-line text-2xl text-gray-100 />
     </div>
     <canvas ref="canvas" @click="showOptions = false" />
   </div>
@@ -143,7 +144,10 @@ onMounted(() => {
 .options input{
   width: 4rem;
   background: none;
-
+  padding-left: .2rem;
+}
+.options input:focus{
+  outline: 1px solid gray;
 }
 .zoom-in{
   transform-origin: right bottom;
