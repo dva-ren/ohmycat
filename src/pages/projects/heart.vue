@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { adaptDPR } from '~/composables'
 const canvas = $ref<HTMLCanvasElement>()
 const options = reactive({
   scale: 10,
@@ -20,7 +19,7 @@ const start = () => {
   canvas.height = document.documentElement.clientHeight - 72 - 80
   adaptDPR(canvas, ctx)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  const p = generatePoints(options.pointCount, options.scale, { x: canvas.width / 4, y: canvas.height / 4 })
+  const p = generatePoints(options.pointCount, options.scale, { x: canvas.width / 2 / (window.devicePixelRatio), y: canvas.height / 2 / (window.devicePixelRatio) })
   delayShow(ctx, p, options.drawSpeed)
 }
 
@@ -30,6 +29,7 @@ function getColor() {
 }
 
 function drawPoint(ctx: CanvasRenderingContext2D, point: Point) {
+  // ctx.scale(2, 2)
   // console.log(point)
   // ctx.fillStyle = 'rgba(224,224,224,0.4)'
   ctx.fillStyle = getColor()
