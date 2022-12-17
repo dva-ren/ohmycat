@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const canvas = ref<HTMLCanvasElement>()
+import { adaptDPR } from '~/composables'
+const canvas = $ref<HTMLCanvasElement>()
 
 const numArray = ref<number[]>([])
 const totalX = ref(0)
@@ -19,12 +20,13 @@ function getRandomColor() {
 }
 
 function start() {
-  const ctx = canvas.value!.getContext('2d')!
+  const ctx = canvas.getContext('2d')!
   const gap = 18
-  canvas.value!.width = clientWidth
-  canvas.value!.height = clientHeight
-  totalX.value = Math.floor(clientWidth / gap)
-  totalY.value = Math.floor(clientHeight / gap)
+  canvas.width = clientWidth
+  canvas.height = clientHeight
+  adaptDPR(canvas, ctx)
+  totalX.value = Math.round(clientWidth / gap) + 2
+  totalY.value = Math.round(clientHeight / gap)
   numArray.value = new Array(totalX.value).fill(1)
   timer = setInterval(() => {
     draw(ctx)
@@ -50,7 +52,6 @@ function draw(ctx: CanvasRenderingContext2D) {
       numArray.value[i] = 0
   }
 }
-
 onMounted(() => {
   start()
 })
