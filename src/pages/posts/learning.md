@@ -1,6 +1,7 @@
 ---
 title: words
 date: 2022-11-11 10:51
+label: 单词
 ---
 
 ## describe

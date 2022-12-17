@@ -8,7 +8,7 @@ import projects from './projects.json'
       Projects
     </h1>
     <div text-sm text-gray-400 py-4>
-      All Projects demo and code snapshot
+      一些代码片段和好玩的项目
     </div>
     <div class="project-grid py-2 -mx-3 gap-2">
       <Project v-for="(p, idx) in projects" :key="idx" :data="p" />
