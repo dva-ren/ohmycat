@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const { to } = defineProps<{ to: string }>()
+const { to, target = '' } = defineProps<{ to: string; target: string }>()
 </script>
 
 <template>
   <template v-if="!to.startsWith('http')">
-    <router-link :to="to">
+    <router-link :target="target" :to="to">
       <slot />
     </router-link>
   </template>

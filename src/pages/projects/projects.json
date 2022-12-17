@@ -7,6 +7,13 @@
     "url": "https://github.com/dva-ren/blog-demo-app"
   },
   {
+    "name": "bill",
+    "descrption": "H5 记账网站",
+    "icon": "carbon-align-box-middle-left",
+    "color": "#68b88e",
+    "url": "https://bill.dvaren.xyz"
+  },
+  {
     "name": "heart",
     "descrption": "romantic never die",
     "icon": "ri:heart-pulse-fill",
@@ -14,10 +21,11 @@
     "url": "/projects/heart"
   },
   {
-    "name": "bill",
-    "descrption": "H5 记账网站",
-    "icon": "carbon-align-box-middle-left",
-    "color": "#68b88e",
-    "url": "https://bill.dvaren.xyz"
+    "name": "code rain",
+    "descrption": "代码雨",
+    "target": "_blank",
+    "icon": "ri-code-box-line",
+    "color": "#c8adc4",
+    "url": "/projects/codeRain"
   }
 ]

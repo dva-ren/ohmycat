@@ -167,3 +167,7 @@ onMounted(() => {
 }
 </style>
 
+<route lang="yaml">
+meta:
+  windowFull: true
+</route>

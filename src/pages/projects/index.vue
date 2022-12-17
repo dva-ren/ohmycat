@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import Layout from '../../layout/default.vue'
 import projects from './projects.json'
 </script>
 
 <template>
-  <Layout>
+  <div>
     <h1 text-2xl font-bold>
       Projects
     </h1>
@@ -15,11 +14,12 @@ import projects from './projects.json'
       <Project v-for="(p, idx) in projects" :key="idx" :data="p" />
     </div>
     <div display-none>
-      <div i-ri:emotion-laugh-fill />
-      <div i-ri:heart-pulse-fill />
       <div i-carbon-align-box-middle-left />
+      <div i-ri:heart-pulse-fill />
+      <div i-ri-code-box-line />
+      <div i-ri:emotion-laugh-fill />
     </div>
-  </Layout>
+  </div>
 </template>
 
 <style scoped>
