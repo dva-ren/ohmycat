@@ -20,7 +20,7 @@ const start = () => {
   canvas.height = document.documentElement.clientHeight - 72 - 80
   adaptDPR(canvas, ctx)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  const p = generatePoints(options.pointCount, options.scale, { x: canvas.width / 2, y: canvas.height / 2 })
+  const p = generatePoints(options.pointCount, options.scale, { x: canvas.width / 4, y: canvas.height / 4 })
   delayShow(ctx, p, options.drawSpeed)
 }
 
