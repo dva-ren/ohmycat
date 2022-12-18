@@ -30,7 +30,7 @@ const isSameYear = (a: Date | string | number, b: Date | string | number) => a &
         </div>
         <router-link :to="r.path" link text-18px flex gap-2 items-center>
           <div min-w-2rem>
-            <div v-if="r.meta.label" text-sm border rounded>
+            <div v-if="r.meta.label" px="2px" text-sm border rounded dark:border-gray-600>
               {{ r.meta.label }}
             </div>
           </div>
