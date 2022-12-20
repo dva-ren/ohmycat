@@ -2,9 +2,9 @@
 const canvas = $ref<HTMLCanvasElement>()
 const options = reactive({
   scale: 10,
-  pointCount: 260,
+  pointCount: 520,
   pointSize: 2,
-  drawSpeed: 1,
+  drawSpeed: 2,
 })
 const showOptions = ref(false)
 
@@ -88,9 +88,9 @@ const repaint = useDebounceFn(() => {
 }, 200)
 const reset = () => {
   options.scale = 10
-  options.pointCount = 200
+  options.pointCount = 520
   options.pointSize = 2
-  options.drawSpeed = -2
+  options.drawSpeed = 2
 }
 
 const switchDisplay = () => {
@@ -171,5 +171,5 @@ onMounted(() => {
 
 <route lang="yaml">
 meta:
-  full: true
+  windowFull: true
 </route>
