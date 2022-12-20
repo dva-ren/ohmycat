@@ -29,8 +29,8 @@ const isSameYear = (a: Date | string | number, b: Date | string | number) => a &
           <span text-6em op10 absolute left-1rem top--.5rem font-bold>{{ getYear(r.meta.date) }}</span>
         </div>
         <router-link :to="r.path" link text-18px flex gap-2 items-center>
-          <div min-w-2rem>
-            <div v-if="r.meta.label" text-sm border rounded>
+          <div min-w-9>
+            <div v-if="r.meta.label" text-sm border="~ gray-400" px-1 rounded>
               {{ r.meta.label }}
             </div>
           </div>
