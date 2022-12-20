@@ -27,5 +27,13 @@
     "icon": "ri-code-box-line",
     "color": "#c8adc4",
     "url": "/projects/codeRain"
+  },
+  {
+    "name": "Snow",
+    "descrption": "下雪啦 ^o^y",
+    "target": "_blank",
+    "icon": "ri-snowy-fill",
+    "color": "#c08eaf",
+    "url": "/projects/snow"
   }
 ]

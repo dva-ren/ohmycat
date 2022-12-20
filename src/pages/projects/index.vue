@@ -18,6 +18,7 @@ import projects from './projects.json'
       <div i-ri:heart-pulse-fill />
       <div i-ri-code-box-line />
       <div i-ri:emotion-laugh-fill />
+      <div i-ri-snowy-fill />
     </div>
   </div>
 </template>
