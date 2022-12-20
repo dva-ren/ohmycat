@@ -4,4 +4,5 @@ import Home from './home.md'
 
 <template>
   <Home />
+  <LoadMask />
 </template>
