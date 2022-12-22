@@ -23,7 +23,7 @@ const handleAnimationEnd = (e: AnimationEvent) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: zoom-out 1s .6s ease-out forwards;
+  animation: zoom-out .8s .3s ease-out forwards;
 }
 .icon{
   animation: zoom-in .2s ease-out forwards;

@@ -23,7 +23,7 @@ import FullLayout from './layout/full.vue'
       </FullLayout>
     </router-view>
   </main>
-  <div class="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
+  <div class="inset-0 fixed op-80 bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
     <div class="bg absolute inset-0 transform-gpu" />
   </div>
 </template>
@@ -32,9 +32,9 @@ import FullLayout from './layout/full.vue'
 .bg{
   z-index: -1;
   height: 100%;
-  background-image: url('./assets/background.png');
+  background-image: url('./assets/background2.png');
 }
 .dark .bg{
-  background-image: url('./assets/background-night.png');
+  background-image: url('./assets/background2.png');
 }
 </style>

@@ -1,19 +1,16 @@
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns'
+import type { Article } from '~/types'
+import { getArticles } from '~/api'
+
 const router = useRouter()
-const names = computed(() => {
-  const reg = /\/posts\/(.*)/
-  return router.getRoutes().map((r) => {
-    const res = reg.exec(r.path)
-    return {
-      path: r.path,
-      name: res && res.length > 1 ? res[1] : null,
-      meta: r.meta.frontmatter as any,
-    }
-  }).filter(i => i.name).sort((a, b) => {
-    return parseISO(b.meta.date).getTime() - parseISO(a.meta.date).getTime()
-  })
-})
+const posts = ref<Array<Article>>([])
+
+const getPosts = async () => {
+  const res = await getArticles(1, 50)
+  posts.value = res.data.list
+}
+getPosts()
 const getYear = (a: Date | string | number) => new Date(a).getFullYear()
 const isSameYear = (a: Date | string | number, b: Date | string | number) => a && b && getYear(a) === getYear(b)
 </script>
@@ -24,22 +21,22 @@ const isSameYear = (a: Date | string | number, b: Date | string | number) => a &
       Posts
     </h1>
     <ul>
-      <li v-for="r, idx in names" :key="r.path" my-2>
-        <div v-if="!isSameYear(r.meta.date, names[idx - 1]?.meta.date)" relative h20 pointer-events-none>
-          <span text-6em op10 absolute left-1rem top--.5rem font-bold>{{ getYear(r.meta.date) }}</span>
+      <li v-for="p, idx in posts" :key="p.id" my-2>
+        <div v-if="!isSameYear(p.createTime, posts[idx - 1]?.createTime)" relative h20 pointer-events-none>
+          <span text-6em op10 absolute left-1rem top--.5rem font-bold>{{ getYear(p.createTime) }}</span>
         </div>
-        <router-link :to="r.path" link text-18px flex gap-2 items-center>
+        <router-link :to="`/posts/${p.id}`" link text-18px flex gap-2 items-center>
           <div min-w-2rem>
-            <div v-if="r.meta.label" px="2px" text-sm border rounded dark:border-gray-600>
-              {{ r.meta.label }}
+            <div v-if="p.label" px="2px" text-sm border rounded dark:border-gray-600 text-center>
+              {{ p.label }}
             </div>
           </div>
           <div>
             <div block>
-              {{ r.meta.title ?? r.name }}
+              {{ p.title }}
             </div>
             <div text-14px>
-              {{ format(parseISO(r.meta.date), 'MM-dd HH:mm') }}
+              {{ format(parseISO(p.createTime), 'MM-dd HH:mm') }}
             </div>
           </div>
         </router-link>
