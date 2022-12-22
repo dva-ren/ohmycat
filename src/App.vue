@@ -4,7 +4,7 @@ import FullLayout from './layout/full.vue'
 </script>
 
 <template>
-  <main font-inter text="gray-700 dark:gray-200">
+  <main font-inter text="dark:gray-200" class="main">
     <!-- <router-view v-slot="{ Component }">
       <transition>
         <component :is="Component" />
@@ -23,4 +23,18 @@ import FullLayout from './layout/full.vue'
       </FullLayout>
     </router-view>
   </main>
+  <div class="inset-0 fixed bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
+    <div class="bg absolute inset-0 transform-gpu" />
+  </div>
 </template>
+
+<style scoped>
+.bg{
+  z-index: -1;
+  height: 100%;
+  background-image: url('./assets/background.png');
+}
+.dark .bg{
+  background-image: url('./assets/background-night.png');
+}
+</style>
