@@ -1,11 +1,11 @@
 export interface Article {
-  id: number
+  _id: number
   title: string
   content: string
   label: string
   createTime: string
   updateTime: string
-  isDeleted: number
+  state: 0 | 1
 }
 
 export interface LoginForm {
@@ -14,7 +14,7 @@ export interface LoginForm {
 }
 
 export interface User {
-  id: number
+  _id: string
   username: string
   role: string
   isDeleted: number
@@ -23,16 +23,14 @@ export interface User {
 }
 
 export interface ArticleForm {
-  id: number
+  _id: string
   title: string
   content: string
-  description: string
-  cover: Array<Image>
-  labels: string[]
+  label?: string
 }
 
 export interface Image {
-  id?: string
+  _id?: string
   name: string
   url: string
   articleId?: string
@@ -42,7 +40,7 @@ export interface Image {
 }
 
 export interface Picture {
-  id?: string
+  _id?: string
   nickname: string
   url: string
   labels: string[]
@@ -53,7 +51,7 @@ export interface Picture {
 }
 
 export interface PictureMessage {
-  id?: string
+  _id?: string
   pictureId: string
   nickname: string
   content: string

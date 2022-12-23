@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    Notification: typeof import('./src/components/Notification.vue')['default']
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+const token = useLocalStorage('token', undefined)
 </script>
 
 <template>
@@ -8,6 +8,14 @@
       <Logo width="2rem" />
     </router-link>
     <nav flex items-center gap-5>
+      <!-- <div v-if="token">
+        <router-link to="/admin/user" px-4>
+          用户管理
+        </router-link>
+        <router-link to="/admin/article" px-4>
+          文章管理
+        </router-link>
+      </div> -->
       <router-link to="/posts" title="Blog" link>
         <span>Blog</span>
       </router-link>
