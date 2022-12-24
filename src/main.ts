@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
 import App from './App.vue'
+import './composables/verifyToken'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'

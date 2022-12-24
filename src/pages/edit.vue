@@ -7,7 +7,7 @@ import { success, warning } from '~/components/Toast'
 
 const route = useRoute()
 const router = useRouter()
-const token = useLocalStorage('token', undefined)
+const token = useLocalStorage('token', null)
 const id = $computed(() => route.query.id)
 const windowSize = useWindowSize()
 

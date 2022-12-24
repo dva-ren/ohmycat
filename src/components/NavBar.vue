@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-const token = useLocalStorage('token', undefined)
+import { success } from '~/components/Toast'
+const token = useLocalStorage('token', null)
+const logout = () => {
+  token.value = null
+  success('登出成功')
+}
 </script>
 
 <template>
@@ -31,6 +36,9 @@ const token = useLocalStorage('token', undefined)
       </a>
       <button icon-btn @click="toggleDark()">
         <div dark:i-carbon-moon i-carbon-sun />
+      </button>
+      <button v-if="token" icon-btn @click="logout">
+        <div i-ri-logout-box-r-line />
       </button>
     </nav>
   </header>

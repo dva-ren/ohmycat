@@ -9,7 +9,7 @@ const { id } = defineProps<{ id: number | string }>()
 const showModel = ref(false)
 
 const isDark = useDark()
-const token = useLocalStorage('token', undefined)
+const token = useLocalStorage('token', null)
 
 const articleData = ref<Article>()
 

@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns'
 import type { Article } from '~/types'
 import { cloudApi } from '~/composables'
 
-const token = useLocalStorage('token', undefined)
+const token = useLocalStorage('token', null)
 const posts = ref<Array<Article>>([])
 
 const getPosts = async () => {
