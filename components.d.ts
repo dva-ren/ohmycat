@@ -7,14 +7,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
+    Modal: typeof import('./src/components/Modal.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Notification: typeof import('./src/components/Notification.vue')['default']
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Toast: typeof import('./src/components/Toast/Toast.vue')['default']
   }
 }

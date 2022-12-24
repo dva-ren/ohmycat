@@ -3,6 +3,7 @@ import type { ExposeParam } from 'md-editor-v3'
 import MdEditor from 'md-editor-v3'
 import 'md-editor-v3/lib/style.css'
 import { cloudApi } from '~/composables'
+import { success, warning } from '~/components/Toast'
 
 const route = useRoute()
 const router = useRouter()
@@ -20,20 +21,20 @@ const articleForm = reactive({
 })
 const add = async () => {
   if (!articleForm.title || !articleForm.content) {
-    console.log('标题或内容不能为空')
+    warning('标题或内容不能为空')
     return
   }
   if (id) {
     const res = await cloudApi.invokeFunction('update-article', articleForm)
     if (res.code === 200) {
-      console.log('更新成功')
+      success('更新成功')
       router.push({ name: 'posts', params: { id: articleForm.id } })
     }
   }
   else {
     const res = await cloudApi.invokeFunction('add-article', articleForm)
     if (res.code === 200) {
-      console.log('添加成功')
+      success('添加成功')
       router.push({ name: 'posts', params: { id: articleForm.id } })
     }
   }
@@ -50,7 +51,7 @@ const getArticle = async () => {
 }
 getArticle()
 onMounted(() => {
-  if (windowSize.width.value < 400)
+  if (windowSize.width.value < 600)
     editorRef.value?.togglePreview(false)
 })
 const preview = () => {

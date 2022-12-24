@@ -4,7 +4,7 @@ import FullLayout from './layout/full.vue'
 </script>
 
 <template>
-  <main font-inter text="dark:gray-200" class="main">
+  <main font-inter text="dark:gray-200" class="main" h-full>
     <!-- <router-view v-slot="{ Component }">
       <transition>
         <component :is="Component" />
