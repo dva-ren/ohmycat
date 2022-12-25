@@ -11,8 +11,10 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@types/ali-oss": "^6.16.7",
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.9.8",
+    "ali-oss": "^6.17.1",
     "axios": "^1.2.1",
     "date-fns": "^2.29.3",
     "laf-client-sdk": "^0.8.13",

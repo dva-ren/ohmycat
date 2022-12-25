@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import MdEditor from 'md-editor-v3'
 import type { Article } from '~/types'
 import { cloudApi, formatTime } from '~/composables'
 import { success } from '~/components/Toast'
-
 const { id } = defineProps<{ id: number | string }>()
+const MdCatalog = MdEditor.MdCatalog
+const scrollElement = document.documentElement
+
 const showModel = ref(false)
 
 const token = useLocalStorage('token', null)
@@ -76,7 +79,17 @@ getArticle()
     <div text="gray sm">
       {{ formatTime(articleData?.createTime) }}
     </div>
-    <MyEditor v-model="articleData.content" mt-4 />
+    <!-- <MdCatalog
+      editor-id="my-editor"
+      :scroll-element="scrollElement"
+      theme="light"
+      sticky
+      top-10
+      style="transform: translateX(600px);"
+    /> -->
+    <div mt-6>
+      <MyEditor v-model="articleData.content" />
+    </div>
     <Modal v-model="showModel">
       <div w-80 h-30 bg-white p-4 rounded>
         <div>

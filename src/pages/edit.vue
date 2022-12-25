@@ -3,6 +3,8 @@ import type { ExposeParam } from 'md-editor-v3'
 import MdEditor from 'md-editor-v3'
 import { cloudApi, isDark } from '~/composables'
 import { success, warning } from '~/components/Toast'
+import { upload } from '~/utils/upload'
+
 import 'md-editor-v3/lib/style.css'
 
 const route = useRoute()
@@ -57,6 +59,17 @@ onMounted(() => {
 const preview = () => {
 
 }
+const handleUploadImg = (files: Array<File>, callback: Function) => {
+  const uploadList: Array<Promise<any>> = []
+
+  files.forEach((f) => {
+    uploadList.push(upload('/ohmycat/pictures', f))
+  })
+  Promise.all(uploadList).then((result) => {
+    success('上传成功')
+    callback(result.map(r => `${r.url}?x-oss-process=image/resize,w_1080`))
+  })
+}
 </script>
 
 <template>
@@ -64,7 +77,7 @@ const preview = () => {
     <div py-2>
       <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" bg-transparent type="text" border-b focus:outline-none>
     </div>
-    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" />
+    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" @on-upload-img="handleUploadImg" />
     <div py-4>
       标签(可选):<input v-model="articleForm.label" bg-transparent type="text" border-b focus:outline-none>
     </div>

@@ -2,12 +2,11 @@
 import MdEditor from 'md-editor-v3'
 import 'md-editor-v3/lib/style.css'
 import { isDark } from '~/composables'
-
 const { modelValue } = defineProps<{ modelValue: string }>()
 </script>
 
 <template>
-  <MdEditor preview-only style="--md-bk-color: transparent;" :model-value="modelValue" :theme="isDark ? 'dark' : 'light'" />
+  <MdEditor editor-id="my-editor" preview-only style="--md-bk-color: transparent;" :model-value="modelValue" :theme="isDark ? 'dark' : 'light'" />
 </template>
 
 <style scoped>
