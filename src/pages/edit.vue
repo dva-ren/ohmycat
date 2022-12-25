@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { ExposeParam } from 'md-editor-v3'
 import MdEditor from 'md-editor-v3'
-import 'md-editor-v3/lib/style.css'
-import { cloudApi } from '~/composables'
+import { cloudApi, isDark } from '~/composables'
 import { success, warning } from '~/components/Toast'
+import 'md-editor-v3/lib/style.css'
 
 const route = useRoute()
 const router = useRouter()
@@ -62,11 +62,11 @@ const preview = () => {
 <template>
   <div v-show="!id || articleForm.id" max-w-400 p-4>
     <div py-2>
-      <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" type="text" border-b focus:outline-none>
+      <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" bg-transparent type="text" border-b focus:outline-none>
     </div>
-    <MdEditor ref="editorRef" v-model="articleForm.content" />
+    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" />
     <div py-4>
-      标签(可选):<input v-model="articleForm.label" type="text" border-b focus:outline-none>
+      标签(可选):<input v-model="articleForm.label" bg-transparent type="text" border-b focus:outline-none>
     </div>
     <div>
       <button btn bg-gray @click="preview">
@@ -86,3 +86,12 @@ const preview = () => {
 meta:
   windowFull: true
 </route>
+
+<style scoped>
+:deep(.md-editor-dark) {
+  --md-bk-color: transparent;
+}
+:deep(.md-editor-dark blockquote) {
+  background-color: rgba(224,224,224,0.1) !important;
+}
+</style>

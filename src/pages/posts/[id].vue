@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import MdEditor from 'md-editor-v3'
-import 'md-editor-v3/lib/style.css'
 import type { Article } from '~/types'
 import { cloudApi, formatTime } from '~/composables'
 import { success } from '~/components/Toast'
@@ -8,7 +6,6 @@ import { success } from '~/components/Toast'
 const { id } = defineProps<{ id: number | string }>()
 const showModel = ref(false)
 
-const isDark = useDark()
 const token = useLocalStorage('token', null)
 
 const articleData = ref<Article>()
@@ -34,6 +31,7 @@ const handleOk = () => {
   showModel.value = false
   changeState(1)
 }
+
 getArticle()
 </script>
 
@@ -78,7 +76,7 @@ getArticle()
     <div text="gray sm">
       {{ formatTime(articleData?.createTime) }}
     </div>
-    <MdEditor v-model="articleData.content" preview-only mt-4 :theme="isDark ? 'dark' : 'light'" bg-op-0 />
+    <MyEditor v-model="articleData.content" mt-4 />
     <Modal v-model="showModel">
       <div w-80 h-30 bg-white p-4 rounded>
         <div>
@@ -94,10 +92,20 @@ getArticle()
         </div>
       </div>
     </Modal>
-    <div my-10 text-gray>
+    <div my-10 text-gray-5>
       <button @click="$router.go(-1)">
-        <div i-ri-arrow-left-circle-line inline-block vertical-top text-xl /> 返回..
+        <div i-ri-arrow-left-line inline-block vertical-top text-xl />返回..
       </button>
     </div>
   </div>
 </template>
+
+<style scoped>
+:deep(.md-editor-dark) {
+  --md-bk-color: transparent;
+}
+:deep(.md-editor-dark blockquote) {
+  background-color: rgba(224,224,224,0.1) !important;
+}
+</style>
+

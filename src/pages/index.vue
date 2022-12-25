@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import MdEditor from 'md-editor-v3'
-import 'md-editor-v3/lib/style.css'
 import { cloudApi } from '~/composables'
 
 const text = ref('')
@@ -12,6 +10,15 @@ getHomeInfo()
 </script>
 
 <template>
-  <MdEditor v-model="text" preview-only />
+  <MyEditor v-model="text" mt-4 />
   <LoadMask />
 </template>
+
+<style scoped>
+:deep(.md-editor-dark) {
+  --md-bk-color: transparent;
+}
+:deep(.md-editor-dark .default-theme blockquote) {
+  background-color: rgba(224,224,224,0.1);
+}
+</style>
