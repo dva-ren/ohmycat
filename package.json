@@ -11,6 +11,7 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "@types/ali-oss": "^6.16.7",
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.9.8",

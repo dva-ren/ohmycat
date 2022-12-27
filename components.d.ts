@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     MyEditor: typeof import('./src/components/MyEditor.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Notification: typeof import('./src/components/Notification.vue')['default']
+    Popper: typeof import('./src/components/Popper.vue')['default']
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

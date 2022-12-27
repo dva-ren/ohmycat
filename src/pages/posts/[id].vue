@@ -49,7 +49,7 @@ getArticle()
           {{ articleData?.label }}
         </div>
       </div>
-      <Dropdown v-if="token" text-sm>
+      <Popper v-if="token">
         <button px-4>
           操作
           <div i-ri-arrow-drop-down-line inline-block vertical-top />
@@ -74,7 +74,7 @@ getArticle()
             </div>
           </div>
         </template>
-      </Dropdown>
+      </Popper>
     </div>
     <div text="gray sm">
       {{ formatTime(articleData?.createTime) }}
