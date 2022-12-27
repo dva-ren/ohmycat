@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import MdEditor from 'md-editor-v3'
 import type { Article } from '~/types'
-import { cloudApi, formatTime } from '~/composables'
+import { cloudApi, formateToLocale } from '~/composables'
 import Message from '~/components/Message'
 const { id } = defineProps<{ id: number | string }>()
 const MdCatalog = MdEditor.MdCatalog
@@ -39,78 +39,94 @@ getArticle()
 </script>
 
 <template>
-  <div v-if="articleData" w-full class="_fadeInUp">
-    <div flex items-center justify-between>
-      <div flex items-center gap-2>
-        <div text-2xl>
-          {{ articleData?.title }}
+  <Layout v-if="articleData" class="_fadeInUp">
+    <template #pre>
+      1111
+    </template>
+    <div w-full>
+      <div flex items-center justify-between mb-4>
+        <div flex items-center gap-2>
+          <div text-2xl>
+            {{ articleData?.title }}
+          </div>
+          <div text-sm border rounded dark:border-gray-600 text-center>
+            {{ articleData?.label }}
+          </div>
         </div>
-        <div text-sm border rounded dark:border-gray-600 text-center>
-          {{ articleData?.label }}
-        </div>
-      </div>
-      <Popper v-if="token" :offset="8" trigger="hover">
-        <button px-4>
-          操作
-          <div i-ri-arrow-drop-down-line inline-block vertical-top />
-        </button>
-        <template #content>
-          <div hover:bg-gray-100 w-20>
-            <router-link :to="{ name: 'edit', query: { id: articleData._id } }" w-full>
-              <div p="x2 y1">
-                <div text-sm i-ri:edit-2-fill text-gray inline-block vertical-top />
-                编辑
+        <Popper v-if="token" :offset="8" trigger="hover">
+          <button px-4>
+            操作
+            <div i-ri-arrow-drop-down-line inline-block vertical-top />
+          </button>
+          <template #content>
+            <div hover:bg-gray-100 w-20>
+              <router-link :to="{ name: 'edit', query: { id: articleData._id } }" w-full>
+                <div p="x2 y1">
+                  <div text-sm i-ri:edit-2-fill text-gray inline-block vertical-top />
+                  编辑
+                </div>
+              </router-link>
+            </div>
+            <div hover:bg-gray-100 cursor-pointer>
+              <div v-if="articleData.state === 0" p-1 p="x2 y1" @click="showModel = true">
+                <div vertical-top text-sm inline-block i-ri:delete-bin-line text-red />
+                删除
               </div>
-            </router-link>
-          </div>
-          <div hover:bg-gray-100 cursor-pointer>
-            <div v-if="articleData.state === 0" p-1 p="x2 y1" @click="showModel = true">
-              <div vertical-top text-sm inline-block i-ri:delete-bin-line text-red />
-              删除
+              <div v-else p-1 p="x2 y1" @click="changeState(0)">
+                <div vertical-top text-sm inline-block i-ri:restart-line text-pink />
+                恢复
+              </div>
             </div>
-            <div v-else p-1 p="x2 y1" @click="changeState(0)">
-              <div vertical-top text-sm inline-block i-ri:restart-line text-pink />
-              恢复
-            </div>
-          </div>
-        </template>
-      </Popper>
-    </div>
-    <div text="gray sm">
-      {{ formatTime(articleData?.createTime) }}
-    </div>
-    <!-- <MdCatalog
-      editor-id="my-editor"
-      :scroll-element="scrollElement"
-      theme="light"
-      sticky
-      top-10
-      style="transform: translateX(600px);"
-    /> -->
-    <div mt-6>
-      <MyEditor v-model="articleData.content" />
-    </div>
-    <Modal v-model="showModel">
-      <div w-80 h-30 bg-white p-4 rounded>
-        <div>
-          确定删除吗
-        </div>
-        <div mt-8 flex justify-end gap-4>
-          <button btn bg-gray @click="handleOk">
-            确定
-          </button>
-          <button btn @click="showModel = false">
-            取消
-          </button>
-        </div>
+          </template>
+        </Popper>
       </div>
-    </Modal>
-    <div my-10 text-gray-5>
-      <button @click="$router.go(-1)">
-        <div i-ri-arrow-left-line inline-block vertical-top text-xl />返回..
-      </button>
+      <div>
+        <MyEditor v-model="articleData.content" />
+      </div>
+      <div mt-10 text="sm gray">
+        <p>文章标题：{{ articleData.title }}</p>
+        <p>文章作者：x-bbi</p>
+        <p>最后修改时间：{{ formateToLocale(articleData.updateTime) || formateToLocale(articleData.createTime) }}</p>
+      </div>
+      <p w-full my-4 h-1px bg-gray-2 />
+      <div flex text="sm gray" items-center select-none>
+        <i i-ri:calendar-todo-line mr-1 />
+        <span>{{ formateToLocale(articleData.createTime) }}</span>
+        <i ml-4 i-ri:hashtag />
+        <span>{{ articleData.label }}</span>
+      </div>
+      <Modal v-model="showModel">
+        <div w-80 h-30 bg-white p-4 rounded>
+          <div>
+            确定删除吗
+          </div>
+          <div mt-8 flex justify-end gap-4>
+            <button btn bg-gray @click="handleOk">
+              确定
+            </button>
+            <button btn @click="showModel = false">
+              取消
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <div my-10 text-gray-5>
+        <button @click="$router.go(-1)">
+          <div i-ri-arrow-left-line inline-block vertical-top text-xl />返回..
+        </button>
+      </div>
     </div>
-  </div>
+
+    <template #sidebar>
+      <div sticky top-10 mt-20>
+        <MdCatalog
+          editor-id="my-editor"
+          :scroll-element="scrollElement"
+          theme="light"
+        />
+      </div>
+    </template>
+  </Layout>
 </template>
 
 <style scoped>

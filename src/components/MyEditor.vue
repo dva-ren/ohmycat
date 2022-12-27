@@ -6,7 +6,7 @@ const { modelValue } = defineProps<{ modelValue: string }>()
 </script>
 
 <template>
-  <MdEditor editor-id="my-editor" preview-only style="--md-bk-color: transparent;" :model-value="modelValue" :theme="isDark ? 'dark' : 'light'" />
+  <MdEditor preview-theme="cyanosis" editor-id="my-editor" preview-only style="--md-bk-color: transparent;" :model-value="modelValue" :theme="isDark ? 'dark' : 'light'" w-full />
 </template>
 
 <style scoped>

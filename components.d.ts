@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Full: typeof import('./src/layout/full.vue')['default']
+    Layout: typeof import('./src/layout/layout.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
     Loadding: typeof import('./src/components/Loadding.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']

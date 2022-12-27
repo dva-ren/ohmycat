@@ -14,7 +14,8 @@ const handleAnimationEnd = (e: AnimationEvent) => {
 
 <style scoped>
 .load-mask{
-  background-color: white;
+  background-image: url('../assets/texture.png');
+  background-color: #a7a8bd;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -24,6 +25,7 @@ const handleAnimationEnd = (e: AnimationEvent) => {
   justify-content: center;
   align-items: center;
   animation: zoom-out .8s .3s ease-out forwards;
+  z-index: 100;
 }
 .icon{
   animation: zoom-in .2s ease-out forwards;

@@ -45,6 +45,10 @@ export default defineConfig({
     }),
     Components({
       dts: true,
+      dirs: [
+        './src/layout',
+        './src/components',
+      ],
     }),
 
     // see unocss.config.ts for config
