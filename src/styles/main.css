@@ -23,3 +23,20 @@ html.dark {
     padding: 15px;
   }
 }
+
+._fadeInUp{
+  animation: fade-in .3s;
+}
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  20%{
+    opacity: 0.8;
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

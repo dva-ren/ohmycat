@@ -7,7 +7,7 @@ type TriggerType = 'click' | 'focus' | 'hover' | 'contextmenu'
 const props = defineProps({
   trigger: {
     type: String as PropType<TriggerType>,
-    default: 'hover',
+    default: 'click',
   },
   placement: {
     type: String as PropType<Placement>,
@@ -22,13 +22,14 @@ const props = defineProps({
 const inTooltip = ref(false)
 
 const visible = ref(false)
-const popcorn = ref<HTMLElement>()
-const tooltip = ref<HTMLElement>()
+const popcorn = ref<HTMLDivElement>()
+const tooltip = ref<HTMLDivElement>()
 const instance = ref<Instance>()
 type stringKey = Record<string, any>
 
 const handler: stringKey = {
-  click: () => {
+  click: (e: MouseEvent) => {
+    e.stopPropagation()
     visible.value = !visible.value
   },
   mouseenter: () => {
@@ -46,10 +47,7 @@ const handler: stringKey = {
 } as const
 
 function handleWindowClick(e: MouseEvent) {
-  if (visible.value)
-    return
-  if (e.target !== tooltip.value)
-    visible.value = false
+  visible.value = false
 }
 
 const trigger: stringKey = {
@@ -67,11 +65,15 @@ const trigger: stringKey = {
   contextmenu: () => {
 
   },
+  stop: (e: MouseEvent) => {
+    e.stopPropagation()
+  },
 }
 onBeforeMount(() => {
   for (const eventName in handler)
     popcorn.value?.removeEventListener(eventName, (handler[eventName]))
   window.document.removeEventListener('click', handleWindowClick)
+  window.document.removeEventListener('click', trigger.stop)
 })
 
 onMounted(() => {
@@ -87,8 +89,11 @@ onMounted(() => {
     ],
   })
   trigger[props.trigger]()
+  tooltip.value?.addEventListener('click', trigger.stop)
 })
 function handleMouseLeave() {
+  if (props.trigger === 'click')
+    return
   inTooltip.value = false
   visible.value = false
 }
@@ -100,7 +105,7 @@ watch(visible, () => {
 </script>
 
 <template>
-  <div ref="popcorn">
+  <div ref="popcorn" v-bind="$attrs">
     <slot />
   </div>
   <Transition>

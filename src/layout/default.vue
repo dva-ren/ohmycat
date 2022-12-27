@@ -12,7 +12,7 @@ const { full } = defineProps({
   <div v-if="full">
     <slot />
   </div>
-  <div v-else m-auto max-w-800px p-4 lg:px-10>
+  <div v-else m-auto max-w-860px p-4 sm:p="5em 2em" lg:px-10>
     <slot />
   </div>
 </template>

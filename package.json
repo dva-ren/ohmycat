@@ -16,10 +16,13 @@
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.9.8",
     "ali-oss": "^6.17.1",
+    "animate.css": "^4.1.1",
     "axios": "^1.2.1",
     "date-fns": "^2.29.3",
+    "install": "^0.13.0",
     "laf-client-sdk": "^0.8.13",
     "md-editor-v3": "^2.6.0",
+    "nprogress": "^0.2.0",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"
   },

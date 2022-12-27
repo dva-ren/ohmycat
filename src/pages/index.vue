@@ -10,7 +10,7 @@ getHomeInfo()
 </script>
 
 <template>
-  <MyEditor v-model="text" mt-4 />
+  <MyEditor v-if="text" v-model="text" mt-4 class="_fadeInUp" />
 </template>
 
 <style scoped>

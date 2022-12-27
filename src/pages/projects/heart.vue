@@ -105,36 +105,40 @@ onMounted(() => {
 
 <template>
   <div>
-    <div v-show="showOptions" class="options" :class="showOptions ? 'zoom-in' : 'zoom-out'" absolute right-4 bottom-18 border flex="~ col" gap-1 px-2 py-4 select-none rounded>
-      <div>
-        <span>点数量：</span>
-        <input v-model="options.pointCount" type="number">
+    <Popper placement="top" class="fixed bottom-10 right-10" :offset="10">
+      <div p-2 rounded-full cursor-pointer select-none bg="#68b88e">
+        <div i-ri:settings-4-line text-2xl text-gray-100 />
       </div>
-      <div>
-        <span>点大小：</span>
-        <input v-model="options.pointSize" type="number">
-      </div>
+      <template #content>
+        <div class="options" flex="~ col" gap-1 px-2 py-4 select-none rounded>
+          <div>
+            <span>点数量：</span>
+            <input v-model="options.pointCount" type="number">
+          </div>
+          <div>
+            <span>点大小：</span>
+            <input v-model="options.pointSize" type="number">
+          </div>
 
-      <div>
-        <span>缩 放：</span>
-        <input v-model="options.scale" type="number">
-      </div>
-      <div>
-        <span>绘制速度：</span>
-        <input v-model="options.drawSpeed" type="number">
-      </div>
-      <div flex justify-center gap-4>
-        <button btn @click="reset">
-          重置
-        </button>
-        <button btn @click="repaint">
-          生成
-        </button>
-      </div>
-    </div>
-    <div fixed right-4 bottom-4 p-2 rounded-full cursor-pointer select-none bg="#68b88e" @click="showOptions = !showOptions">
-      <div i-ri:settings-4-line text-2xl text-gray-100 />
-    </div>
+          <div>
+            <span>缩 放：</span>
+            <input v-model="options.scale" type="number">
+          </div>
+          <div>
+            <span>绘制速度：</span>
+            <input v-model="options.drawSpeed" type="number">
+          </div>
+          <div flex justify-center gap-4>
+            <button btn @click="reset">
+              重置
+            </button>
+            <button btn @click="repaint">
+              生成
+            </button>
+          </div>
+        </div>
+      </template>
+    </Popper>
     <canvas ref="canvas" @click="showOptions = false" />
   </div>
 </template>
@@ -150,22 +154,6 @@ onMounted(() => {
 }
 .options input:focus{
   outline: 1px solid gray;
-}
-.zoom-in{
-  transform-origin: right bottom;
-  animation: animation-zoom-in 0.1s ease-in;
-}
-.zoom-out{
-  transform-origin: right bottom;
-  animation: animation-zoom-in 0.1s ease-in reverse;
-}
-@keyframes animation-zoom-in{
-  0%{
-    scale: 0;
-  }
-  100%{
-    scale: 1;
-  }
 }
 </style>
 

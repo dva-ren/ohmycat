@@ -12,12 +12,15 @@ specifiers:
   '@vueuse/core': ^9.3.0
   '@vueuse/head': ^0.9.8
   ali-oss: ^6.17.1
+  animate.css: ^4.1.1
   axios: ^1.2.1
   date-fns: ^2.29.3
   eslint: ^8.24.0
+  install: ^0.13.0
   jsdom: ^20.0.0
   laf-client-sdk: ^0.8.13
   md-editor-v3: ^2.6.0
+  nprogress: ^0.2.0
   pnpm: ^7.12.2
   taze: ^0.8.2
   typescript: ^4.8.3
@@ -37,10 +40,13 @@ dependencies:
   '@vueuse/core': 9.3.0_vue@3.2.39
   '@vueuse/head': registry.npmmirror.com/@vueuse/head/0.9.8_vue@3.2.39
   ali-oss: registry.npmmirror.com/ali-oss/6.17.1
+  animate.css: 4.1.1
   axios: registry.npmmirror.com/axios/1.2.1
   date-fns: registry.npmmirror.com/date-fns/2.29.3
+  install: 0.13.0
   laf-client-sdk: registry.npmmirror.com/laf-client-sdk/0.8.13
   md-editor-v3: registry.npmmirror.com/md-editor-v3/2.7.1
+  nprogress: 0.2.0
   vue: 3.2.39
   vue-router: 4.1.5_vue@3.2.39
 
@@ -738,6 +744,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /animate.css/4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
+    dev: false
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -2113,6 +2123,11 @@ packages:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
     dev: true
 
+  /install/0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /internal-slot/1.0.3:
     resolution: {integrity: sha512-O0DB1JC/sPyZl7cIo78n5dR7eUSwwpYPiXRhTzNxZVAMUuB8vlnRFyLxdrVToks6XPLVnFfbzaVd5WLjhgg+vA==}
     engines: {node: '>= 0.4'}
@@ -2735,6 +2750,10 @@ packages:
       gauge: 4.0.4
       set-blocking: 2.0.0
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check/2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}

@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
+    Loadding: typeof import('./src/components/Loadding.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     Message: typeof import('./src/components/Message/message.vue')['default']

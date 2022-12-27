@@ -39,7 +39,7 @@ getArticle()
 </script>
 
 <template>
-  <div v-if="articleData" w-full>
+  <div v-if="articleData" w-full class="_fadeInUp">
     <div flex items-center justify-between>
       <div flex items-center gap-2>
         <div text-2xl>
@@ -49,7 +49,7 @@ getArticle()
           {{ articleData?.label }}
         </div>
       </div>
-      <Popper v-if="token">
+      <Popper v-if="token" :offset="8" trigger="hover">
         <button px-4>
           操作
           <div i-ri-arrow-drop-down-line inline-block vertical-top />
