@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { success } from '~/components/Toast'
+import Message from '~/components/Message'
+
 const token = useLocalStorage('token', null)
 const logout = () => {
   token.value = null
-  success('登出成功')
+  Message.success('登出成功')
 }
 </script>
 

@@ -2,7 +2,7 @@
 import type { ExposeParam } from 'md-editor-v3'
 import MdEditor from 'md-editor-v3'
 import { cloudApi, isDark } from '~/composables'
-import { success, warning } from '~/components/Toast'
+import Message from '~/components/Message'
 import { upload } from '~/utils/upload'
 
 import 'md-editor-v3/lib/style.css'
@@ -23,20 +23,20 @@ const articleForm = reactive({
 })
 const add = async () => {
   if (!articleForm.title || !articleForm.content) {
-    warning('标题或内容不能为空')
+    Message.warning('标题或内容不能为空')
     return
   }
   if (id) {
     const res = await cloudApi.invokeFunction('update-article', articleForm)
     if (res.code === 200) {
-      success('更新成功')
+      Message.success('更新成功')
       router.push({ name: 'posts', params: { id: articleForm.id } })
     }
   }
   else {
     const res = await cloudApi.invokeFunction('add-article', articleForm)
     if (res.code === 200) {
-      success('添加成功')
+      Message.success('添加成功')
       router.push({ name: 'posts', params: { id: articleForm.id } })
     }
   }
@@ -66,7 +66,7 @@ const handleUploadImg = (files: Array<File>, callback: Function) => {
     uploadList.push(upload('/ohmycat/pictures', f))
   })
   Promise.all(uploadList).then((result) => {
-    success('上传成功')
+    Message.success('上传成功')
     callback(result.map(r => `${r.url}?x-oss-process=image/resize,w_1080`))
   })
 }

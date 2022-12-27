@@ -11,7 +11,6 @@ getHomeInfo()
 
 <template>
   <MyEditor v-model="text" mt-4 />
-  <LoadMask />
 </template>
 
 <style scoped>

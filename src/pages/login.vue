@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { cloudApi } from '~/composables'
-import { error, success, warning } from '~/components/Toast'
+import Message from '~/components/Message'
 const router = useRouter()
 
 const loginForm = reactive({
@@ -10,16 +10,16 @@ const loginForm = reactive({
 
 const login = async () => {
   if (!loginForm.username || !loginForm.password) {
-    warning('请输入用户名或密码')
+    Message.warning('请输入用户名或密码')
     return
   }
   const res = await cloudApi.invokeFunction('app-login', loginForm)
   if (res.code === 200) {
     localStorage.setItem('token', res.data.access_token)
-    success('登录成功')
+    Message.success('登录成功')
     router.replace('/')
   }
-  else { error(res.error) }
+  else { Message.error(res.error) }
 }
 </script>
 

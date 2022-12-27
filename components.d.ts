@@ -12,7 +12,7 @@ declare module '@vue/runtime-core' {
     Link: typeof import('./src/components/Link.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
-    MdEditor: typeof import('./src/components/MdEditor.vue')['default']
+    Message: typeof import('./src/components/Message/message.vue')['default']
     Modal: typeof import('./src/components/Modal.vue')['default']
     MyEditor: typeof import('./src/components/MyEditor.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
@@ -20,6 +20,6 @@ declare module '@vue/runtime-core' {
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Toast: typeof import('./src/components/Toast/Toast.vue')['default']
+    Toast: typeof import('./src/components/Message/Toast.vue')['default']
   }
 }

@@ -2,7 +2,7 @@
 import MdEditor from 'md-editor-v3'
 import type { Article } from '~/types'
 import { cloudApi, formatTime } from '~/composables'
-import { success } from '~/components/Toast'
+import Message from '~/components/Message'
 const { id } = defineProps<{ id: number | string }>()
 const MdCatalog = MdEditor.MdCatalog
 const scrollElement = document.documentElement
@@ -25,9 +25,9 @@ const changeState = async (state: 0 | 1) => {
   if (res.code === 200) {
     articleData.value && (articleData.value.state = state)
     if (state === 0)
-      success('已恢复显示')
+      Message.success('已恢复显示')
     if (state === 1)
-      success('已删除')
+      Message.success('已删除')
   }
 }
 const handleOk = () => {
