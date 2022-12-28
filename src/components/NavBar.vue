@@ -1,42 +1,56 @@
 <script lang="ts" setup>
 import Message from '~/components/Message'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { NavItem } from '~/types'
 
 const token = useLocalStorage('token', null)
 const logout = () => {
   token.value = null
   Message.success('登出成功')
 }
+
+const menus = ref<NavItem[]>([
+  {
+    name: '文',
+    url: '/posts',
+    icon: 'i-ri:book-read-line',
+    children: [
+      {
+        name: '编程',
+        url: '/posts',
+      },
+      {
+        name: '笔记',
+        url: '#',
+      },
+      {
+        name: '读书',
+        url: '#',
+      },
+    ],
+  },
+  {
+    name: '记',
+    icon: 'i-ri:book-read-lin',
+    url: '#',
+  },
+  {
+    name: '项',
+    icon: 'i-ri:book-read-lin',
+    url: '/projects',
+  },
+])
 </script>
 
 <template>
   <div h-20>
     <div fixed top-0 w-full z-20>
-      <header flex justify-between py-6 font-inter px-4 lg:px-10>
-        <router-link to="/" title="home">
-          <Logo width="2rem" />
+      <header flex justify-between h-14 font-inter px-4 lg:px-10>
+        <router-link to="/" title="home" py-1>
+          <Logo width="2.5rem" />
         </router-link>
-        <nav flex items-center gap-5>
-          <!-- <div v-if="token">
-        <router-link to="/admin/user" px-4>
-          用户管理
-        </router-link>
-        <router-link to="/admin/article" px-4>
-          文章管理
-        </router-link>
-      </div> -->
-          <router-link to="/posts" title="Blog" link>
-            <span>Blog</span>
-          </router-link>
-          <router-link to="/projects" title="Projects" link>
-            <span>Projects</span>
-          </router-link>
-          <router-link to="/tools" title="Tools" link>
-            <span>Tools</span>
-          </router-link>
-
-          <a href="https://github.com/dva-ren" title="Github" target="_blank" link>
-            <div icon-btn i-carbon-logo-github />
-          </a>
+        <nav flex items-center>
+          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
           <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
           </button>
@@ -51,3 +65,9 @@ const logout = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.nav-item{
+
+}
+</style>

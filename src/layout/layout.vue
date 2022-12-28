@@ -12,15 +12,15 @@ const { full } = defineProps({
   <div v-if="full" v-bind="$attrs">
     <slot />
   </div>
-  <div v-else v-bind="$attrs">
-    <!-- <div w-60 display-none lg:display-block>
+  <div v-else v-bind="$attrs" flex justify-center>
+    <div w-60 display-none lg:display-block>
       <slot name="pre" />
-    </div> -->
-    <div p-4 max-w-850px m-auto>
+    </div>
+    <div p-4 max-w-750px min-w-0 sm:min-w-750px flex-1>
       <slot />
     </div>
-    <!-- <div w-60 display-none lg:display-block>
+    <div w-60 display-none lg:display-block>
       <slot name="sidebar" />
-    </div> -->
+    </div>
   </div>
 </template>

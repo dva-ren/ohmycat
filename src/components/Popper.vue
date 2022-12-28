@@ -105,7 +105,7 @@ watch(visible, () => {
 </script>
 
 <template>
-  <div ref="popcorn" v-bind="$attrs">
+  <div ref="popcorn" v-bind="$attrs" h-full>
     <slot />
   </div>
   <Transition>

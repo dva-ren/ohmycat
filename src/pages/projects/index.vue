@@ -3,7 +3,7 @@ import projects from './projects.json'
 </script>
 
 <template>
-  <div>
+  <Layout>
     <h1 text-2xl font-bold>
       Projects
     </h1>
@@ -19,8 +19,9 @@ import projects from './projects.json'
       <div i-ri-code-box-line />
       <div i-ri:emotion-laugh-fill />
       <div i-ri-snowy-fill />
+      <div i-carbon:button-centered />
     </div>
-  </div>
+  </Layout>
 </template>
 
 <style scoped>

@@ -40,9 +40,6 @@ getArticle()
 
 <template>
   <Layout v-if="articleData" class="_fadeInUp">
-    <template #pre>
-      1111
-    </template>
     <div w-full>
       <div flex items-center justify-between mb-4>
         <div flex items-center gap-2>
@@ -118,7 +115,7 @@ getArticle()
     </div>
 
     <template #sidebar>
-      <div sticky top-10 mt-20>
+      <div sticky top-20 mt-20>
         <MdCatalog
           editor-id="my-editor"
           :scroll-element="scrollElement"

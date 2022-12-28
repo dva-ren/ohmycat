@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <svg id="图层_1" class="icon" :style="{ width: props.width }" xml:space="preserve" style="enable-background:new 0 0 1024 1024;" viewBox="0 0 1024 1024" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <svg v-bind="$attrs" id="图层_1" class="icon" :style="{ width: props.width }" xml:space="preserve" style="enable-background:new 0 0 1024 1024;" viewBox="0 0 1024 1024" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
     <g>
       <g>
         <path

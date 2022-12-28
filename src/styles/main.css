@@ -46,3 +46,17 @@ html.dark {
   height: 1em;
   vertical-align: -0.15em;
 }
+.v-icon{
+  vertical-align: -0.25em;
+}
+
+.circle-icon{
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  width: 2.5rem;
+}

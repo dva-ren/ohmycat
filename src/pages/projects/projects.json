@@ -35,5 +35,13 @@
     "icon": "ri-snowy-fill",
     "color": "#c08eaf",
     "url": "/projects/snow"
+  },
+  {
+    "name": "Fun button",
+    "descrption": "一个有趣的按钮",
+    "target": "_blank",
+    "icon": "carbon:button-centered",
+    "color": "#c08eaf",
+    "url": "/projects/boardButton"
   }
 ]

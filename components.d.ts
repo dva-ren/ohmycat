@@ -7,7 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Dropdown: typeof import('./src/components/Dropdown.vue')['default']
+    Card: typeof import('./src/components/Card.vue')['default']
+    CardList: typeof import('./src/components/CardList.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Full: typeof import('./src/layout/full.vue')['default']
     Layout: typeof import('./src/layout/layout.vue')['default']
@@ -19,11 +20,11 @@ declare module '@vue/runtime-core' {
     Modal: typeof import('./src/components/Modal.vue')['default']
     MyEditor: typeof import('./src/components/MyEditor.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    NavItem: typeof import('./src/components/NavItem.vue')['default']
     Notification: typeof import('./src/components/Notification.vue')['default']
     Popper: typeof import('./src/components/Popper.vue')['default']
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Toast: typeof import('./src/components/Message/Toast.vue')['default']
   }
 }
