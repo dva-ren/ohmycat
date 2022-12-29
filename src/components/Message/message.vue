@@ -59,21 +59,22 @@ defineExpose({
 
 <style scoped>
 .message{
-    /* border: 1px solid red; */
-    position: fixed;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-    padding: 6px 12px;
-    border-radius: 0.25rem;
-    user-select: none;
-    transition: top .2s;
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  user-select: none;
+  transition: top .2s;
+  z-index: 50;
 }
 .icon{
   display: inline-block;
   font-size: 1.25rem;
-  vertical-align: -0.45rem;
+  vertical-align: -0.25rem;
   margin-right: .4rem;
 }
 .v-enter-active,

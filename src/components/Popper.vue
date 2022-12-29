@@ -42,7 +42,7 @@ const handler: stringKey = {
         visible.value = true
       else if (!inTooltip.value)
         visible.value = false
-    }, 100)
+    }, 0)
   },
 } as const
 

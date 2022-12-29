@@ -1,12 +1,7 @@
 <template>
   <main font-inter text="dark:gray-200" class="main" h-full w-full>
-    <!-- <router-view v-slot="{ Component }">
-      <transition>
-        <component :is="Component" />
-      </transition>
-    </router-view> -->
-    <!-- <router-view /> -->
-    <router-view v-slot="{ Component }">
+    <router-view v-slot="{ Component, route }">
+      <NavBar v-if="!route.meta.full" />
       <component :is="Component" />
     </router-view>
   </main>

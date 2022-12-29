@@ -18,6 +18,13 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       warn: true,
+      extraProperties: {
+        'vertical-align': '-0.15em',
+        'height': '1em',
+        'width': '1em',
+        'fill': 'currentColor',
+        'overflow': 'hidden',
+      },
     }),
     presetWebFonts({
       fonts: {

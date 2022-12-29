@@ -12,12 +12,12 @@ const logout = () => {
 const menus = ref<NavItem[]>([
   {
     name: '文',
-    url: '/posts',
-    icon: 'i-ri:book-read-line',
+    url: '/',
+    icon: 'i-ri:mastodon-line',
     children: [
       {
         name: '编程',
-        url: '/posts',
+        url: '/',
       },
       {
         name: '笔记',
@@ -31,12 +31,12 @@ const menus = ref<NavItem[]>([
   },
   {
     name: '记',
-    icon: 'i-ri:book-read-lin',
+    icon: 'i-ri:quill-pen-line',
     url: '#',
   },
   {
     name: '项',
-    icon: 'i-ri:book-read-lin',
+    icon: 'i-ri:attachment-line',
     url: '/projects',
   },
 ])
@@ -46,7 +46,7 @@ const menus = ref<NavItem[]>([
   <div h-20>
     <div fixed top-0 w-full z-20>
       <header flex justify-between h-14 font-inter px-4 lg:px-10>
-        <router-link to="/" title="home" py-1>
+        <router-link to="/" title="home" py-2>
           <Logo width="2.5rem" />
         </router-link>
         <nav flex items-center>
@@ -54,7 +54,7 @@ const menus = ref<NavItem[]>([
           <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
           </button>
-          <button v-if="token" icon-btn @click="logout">
+          <button v-if="token" icon-btn pl-2 @click="logout">
             <div i-ri-logout-box-r-line />
           </button>
         </nav>
@@ -62,6 +62,11 @@ const menus = ref<NavItem[]>([
       <!-- <div max-w-700px m-auto>
         1111
       </div> -->
+      <div display-none>
+        <div i-ri:mastodon-line />
+        <div i-ri:quill-pen-line />
+        <div i-ri:attachment-line />
+      </div>
     </div>
   </div>
 </template>

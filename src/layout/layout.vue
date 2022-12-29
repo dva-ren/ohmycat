@@ -8,7 +8,6 @@ const { full } = defineProps({
 </script>
 
 <template>
-  <NavBar />
   <div v-if="full" v-bind="$attrs">
     <slot />
   </div>

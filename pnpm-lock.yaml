@@ -31,6 +31,7 @@ specifiers:
   vite-plugin-pages: ^0.26.0
   vitest: ^0.23.4
   vue: ^3.2.39
+  vue-lazyload: 3.0.0-rc.2
   vue-router: ^4.1.5
   vue-tsc: ^0.40.13
 
@@ -48,6 +49,7 @@ dependencies:
   md-editor-v3: registry.npmmirror.com/md-editor-v3/2.7.1
   nprogress: 0.2.0
   vue: 3.2.39
+  vue-lazyload: 3.0.0-rc.2
   vue-router: 4.1.5_vue@3.2.39
 
 devDependencies:
@@ -3623,6 +3625,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-lazyload/3.0.0-rc.2:
+    resolution: {integrity: sha512-Cg7Gqb7jAoiImMPH3EMfAwJ8gZuFoBJCEtA7+TGRljrtktDtV7JAHIyKvuTgQR8DFAd7MhKi1Ys8QHdSrnGdZQ==}
+    dev: false
 
   /vue-router/4.1.5_vue@3.2.39:
     resolution: {integrity: sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==}

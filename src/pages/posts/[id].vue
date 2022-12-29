@@ -42,13 +42,8 @@ getArticle()
   <Layout v-if="articleData" class="_fadeInUp">
     <div w-full>
       <div flex items-center justify-between mb-4>
-        <div flex items-center gap-2>
-          <div text-2xl>
-            {{ articleData?.title }}
-          </div>
-          <div text-sm border rounded dark:border-gray-600 text-center>
-            {{ articleData?.label }}
-          </div>
+        <div text-2xl>
+          {{ articleData?.title }}
         </div>
         <Popper v-if="token" :offset="8" trigger="hover">
           <button px-4>

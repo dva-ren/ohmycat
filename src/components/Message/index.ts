@@ -31,7 +31,6 @@ function createMessage(type: MessageType, msg: string) {
     },
     onDestroy: () => {
       render(null, container)
-      console.log('destroy')
     },
   }
 
@@ -54,7 +53,6 @@ function closeMessage(instance: MessageContext) {
   if (idx === -1)
     return
   instances.splice(idx, 1)
-  console.log('closeMessage', idx)
   instances.forEach((i) => {
     i.props.top -= offset
   })

@@ -10,3 +10,9 @@ export function formatTime(time: string | undefined, fms = 'yyyy-MM-dd HH:mm') {
 export function formateToLocale(time: string) {
   return formatTime(time, 'yyyy 年 MM 月 dd 日 HH:mm')
 }
+export const useUnionNumber = (function () {
+  let idx = 1
+  return () => {
+    return idx++
+  }
+})()
