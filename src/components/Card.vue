@@ -5,18 +5,28 @@ const props = defineProps<{
   bg?: string
   text?: string
 }>()
-
-const img = 'https://api.yimian.xyz/img?type=wallpaper'
-function getImageUrl() {
-  return `${img}&time=${useUnionNumber()}`
+const imgApis = ref([
+  // girl
+  'https://api.tjit.net/api/img/rand',
+  'https://cdn.seovx.com/?mom=302',
+  'https://cdn.seovx.com/ha/?mom=302',
+  'https://api.isoyu.com/beibei_images.php',
+  'https://imgapi.cn/cos.php',
+  // bing
+  'https://api.yimian.xyz/img?type=wallpaper',
+  // 2次元
+  'https://img.xjh.me/random_img.php?return=302',
+])
+function getImageUrl(api: string) {
+  return `${api}${api.includes('?') ? '&' : '?'}time=${useUnionNumber()}`
 }
 </script>
 
 <template>
   <div class="card" h-30 rounded-xl>
-    <img v-lazy="props.bg ? props.bg : getImageUrl()" rounded-xl w-full alt="" class="bg-img">
+    <img v-lazy="props.bg ? props.bg : getImageUrl(imgApis[6])" w-full alt="" class="bg-img">
     <div class="card-title">
-      <span>{{ props.title }}</span>
+      <span rounded-xl>{{ props.title }}</span>
     </div>
     <div class="mask" h-full w-full absolute top-0>
       {{ props.text }}
@@ -55,6 +65,7 @@ function getImageUrl() {
   background: linear-gradient(rgba(38,69,61,.333),#26453da8);
   backdrop-filter: saturate(180%) blur(15px);
   transition: color .2s;
+  border-radius:0 0 0.75rem 0.75rem;
 }
 .mask{
   user-select: none;

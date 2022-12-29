@@ -98,4 +98,7 @@ header::before{
   opacity: var(--opacity);
   border-bottom: 1px solid #bbb3;
 }
+.dark header::before{
+  background-color: rgba(0, 0, 0, 0.464);
+}
 </style>
