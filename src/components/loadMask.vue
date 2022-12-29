@@ -32,24 +32,24 @@ const handleAnimationEnd = (e: AnimationEvent) => {
 }
 @keyframes zoom-in{
   0%{
-    scale: 2;
+    transform:scale(2);
     opacity: 0;
   }
   100%{
-    scale: 1;
+    transform:scale(1);
     opacity: 1;
   }
 }
 @keyframes zoom-out{
   0%{
-    scale: 1;
+    transform:scale(1);
   }
   70%{
-    scale: 1.2;
+    transform:scale(1.2);
     opacity: 1;
   }
   100%{
-    scale: 6;
+    transform:scale(6);
     opacity: 0;
     display: none;
   }
