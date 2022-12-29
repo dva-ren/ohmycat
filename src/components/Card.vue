@@ -6,15 +6,15 @@ const props = defineProps<{
   text?: string
 }>()
 
-const img = 'https://api.yimian.xyz/img'
+const img = 'https://api.yimian.xyz/img?type=wallpaper'
 function getImageUrl() {
-  return `${img}?&time=${useUnionNumber()}`
+  return `${img}&time=${useUnionNumber()}`
 }
 </script>
 
 <template>
   <div class="card" h-30 rounded-xl>
-    <img v-lazy="props.bg ? props.bg : getImageUrl()" w-full alt="" class="bg-img">
+    <img v-lazy="props.bg ? props.bg : getImageUrl()" rounded-xl w-full alt="" class="bg-img">
     <div class="card-title">
       <span>{{ props.title }}</span>
     </div>

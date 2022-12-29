@@ -69,7 +69,11 @@ defineExpose({
   border-radius: 9999px;
   user-select: none;
   transition: top .2s;
-  z-index: 50;
+  z-index: 100;
+  background-color: white;
+}
+.dark .message{
+  background-color: gray;
 }
 .icon{
   display: inline-block;
