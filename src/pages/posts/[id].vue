@@ -8,7 +8,7 @@ const MdCatalog = MdEditor.MdCatalog
 const scrollElement = document.documentElement
 
 const showModel = ref(false)
-
+const loading = ref(true)
 const token = useLocalStorage('token', null)
 
 const articleData = ref<Article>()
@@ -16,6 +16,7 @@ const articleData = ref<Article>()
 const getArticle = async () => {
   const res = await cloudApi.invokeFunction('query-article', { id })
   articleData.value = res.data
+  loading.value = false
 }
 const changeState = async (state: 0 | 1) => {
   const res = await cloudApi.invokeFunction('update-article-state', {
@@ -39,7 +40,8 @@ getArticle()
 </script>
 
 <template>
-  <Layout v-if="articleData" class="_fadeInUp">
+  <Loadding v-model="loading" />
+  <Layout v-if="articleData" class="fade_in_up">
     <div w-full>
       <div flex items-center justify-between mb-4>
         <div text-2xl>

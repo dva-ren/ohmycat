@@ -1,14 +1,18 @@
+<script setup lang="ts">
+const loadding = ref(true)
+</script>
+
 <template>
   <main font-inter text="dark:gray-200" class="main" h-full w-full>
     <router-view v-slot="{ Component, route }">
       <NavBar v-if="!route.meta.full" />
-      <component :is="Component" />
+      <component :is="Component" v-show="!loadding" />
     </router-view>
   </main>
   <div class="z--1 inset-0 fixed op-80 bg-fixed pointer-events-none transition-opacity duration-500 ease transform-gpu">
     <div class="bg absolute inset-0 transform-gpu" />
   </div>
-  <LoadMask />
+  <LoadMask v-model="loadding" @end="loadding = false" />
 </template>
 
 <style scoped>

@@ -15,7 +15,8 @@ getPosts()
 
 <template>
   <Layout>
-    <div v-for="p in posts" :key="p._id" class="post-item _fadeInUp" pb-8>
+    <Loadding v-model="loading" />
+    <div v-for="p in posts" :key="p._id" class="post-item fade_in_up" pb-8>
       <div>
         <div class="left-label" display-none sm:display-block>
           {{ formatTime(p.createTime, 'yyyy-MM-dd') }}

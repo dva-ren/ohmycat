@@ -37,8 +37,12 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const formatTime: typeof import('./src/composables/time')['formatTime']
   const formateToLocale: typeof import('./src/composables/time')['formateToLocale']
+  const formateToLocaleHasWeek: typeof import('./src/composables/time')['formateToLocaleHasWeek']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getOutOfDate: typeof import('./src/composables/time')['getOutOfDate']
+  const getOutOfMouth: typeof import('./src/composables/time')['getOutOfMouth']
+  const getOutOfYear: typeof import('./src/composables/time')['getOutOfYear']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -314,8 +318,12 @@ declare module '@vue/runtime-core' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatTime: UnwrapRef<typeof import('./src/composables/time')['formatTime']>
     readonly formateToLocale: UnwrapRef<typeof import('./src/composables/time')['formateToLocale']>
+    readonly formateToLocaleHasWeek: UnwrapRef<typeof import('./src/composables/time')['formateToLocaleHasWeek']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getOutOfDate: UnwrapRef<typeof import('./src/composables/time')['getOutOfDate']>
+    readonly getOutOfMouth: UnwrapRef<typeof import('./src/composables/time')['getOutOfMouth']>
+    readonly getOutOfYear: UnwrapRef<typeof import('./src/composables/time')['getOutOfYear']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

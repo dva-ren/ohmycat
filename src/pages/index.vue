@@ -27,8 +27,7 @@ getPosts()
 
 <template>
   <Layout full max-w-1050px m-auto p-4 gap-4>
-    <!-- <Loadding v-model="loading" /> -->
-    <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="_fadeInUp">
+    <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="fade_in_up">
       <img src="http://iiu.oss-cn-chengdu.aliyuncs.com/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_1080" alt="t-bbi" h-30 w-30 rounded-full object-cover>
       <div text-center sm:text-left>
         <p text-xl font-bold>
@@ -51,8 +50,9 @@ getPosts()
       </div>
     </div>
     <TextAnimation :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
-    <div v-if="!loading" class="_fadeInUp">
-      <div text-white text-sm>
+    <Loadding v-model="loading" />
+    <div v-if="!loading">
+      <div text-white text-sm class="fade_in_up" style="--delay: 0.1s">
         <div flex justify-between items-end class="label">
           <div class="title" flex bg="#74759b">
             <div class="icon" bg="#2e317c">
@@ -66,7 +66,7 @@ getPosts()
         </div>
         <CardList :data="posts" />
       </div>
-      <div text-white mt-10 text-sm>
+      <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.2s">
         <div flex justify-between items-end class="label">
           <div class="title" flex bg="#f17666">
             <div class="icon" bg="#ed3321">
@@ -80,7 +80,7 @@ getPosts()
         </div>
         <CardList :data="notes" type="notes" />
       </div>
-      <div text-white mt-10 text-sm>
+      <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.3s">
         <div flex justify-between items-end class="label">
           <div class="title" flex bg="#2376b7">
             <div class="icon" bg="#144a74">
@@ -96,6 +96,7 @@ getPosts()
           <router-link to="/about">
             <Card text="关于我" title="这里有我的小秘密" />
           </router-link>
+          <Card title="记录美好瞬间" text="相册" @click="handleClick" />
           <Card title="你的话对我很重要" text="留言" @click="handleClick" />
         </div>
       </div>

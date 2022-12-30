@@ -1,13 +1,16 @@
 <script lang="ts" setup>
+const emits = defineEmits(['end'])
 const showMask = ref(true)
 const handleAnimationEnd = (e: AnimationEvent) => {
-  if (e.animationName.startsWith('zoom-out'))
+  if (e.animationName.startsWith('zoom-out')) {
     showMask.value = false
+    emits('end')
+  }
 }
 </script>
 
 <template>
-  <div v-show="showMask" dark:bg-black class="load-mask" @animationend="handleAnimationEnd">
+  <div v-if="showMask" dark:bg-black class="load-mask" @animationend="handleAnimationEnd">
     <Logo width="6rem" />
   </div>
 </template>

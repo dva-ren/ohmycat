@@ -11,7 +11,7 @@ const handleClick = (e: MouseEvent) => {
 
 <template>
   <Transition>
-    <div v-show="modelValue" ref="srcElement" z-20 bg-gray-400 bg-op-80 fixed inset-0 flex items-center justify-center @click="handleClick">
+    <div v-show="modelValue" ref="srcElement" z-20 bg-gray-400 bg-op-80 fixed inset-0 flex items-center justify-center dark:bg-black @click="handleClick">
       <div class="content">
         <slot />
       </div>

@@ -11,7 +11,7 @@ getHomeInfo()
 
 <template>
   <Layout>
-    <MyEditor v-if="text" v-model="text" mt-4 class="_fadeInUp" />
+    <MyEditor v-if="text" v-model="text" mt-4 class="fade_in_up" />
   </Layout>
 </template>
 

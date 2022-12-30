@@ -109,7 +109,7 @@ watch(visible, () => {
     <slot />
   </div>
   <Transition>
-    <div v-show="visible" ref="tooltip" z-10 class="content" bg-white @mouseenter="inTooltip = true" @mouseleave="handleMouseLeave">
+    <div v-show="visible" ref="tooltip" z-10 class="content" bg-white dark:bg-gray-800 @mouseenter="inTooltip = true" @mouseleave="handleMouseLeave">
       <slot name="content" />
     </div>
   </Transition>

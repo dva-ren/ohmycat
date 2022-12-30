@@ -9,13 +9,19 @@ body,
 html.dark {
   background: #121212;
 }
+:root{
+  --yellow:#ffc107;
+  --border-color: white;
+  --light-brown: #67492e;
+  --dark-brown: #b4b4b4;
+  --delay: 0;
+}
 
 .markdown-body {
   box-sizing: border-box;
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  /* padding: 45px; */
 }
 
 @media (max-width: 767px) {
@@ -24,8 +30,11 @@ html.dark {
   }
 }
 
-._fadeInUp{
-  animation: fade-in .3s;
+.fade_in_up{
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fade-in .3s forwards ;
+  animation-delay: var(--delay);
 }
 @keyframes fade-in {
   0%{
@@ -65,12 +74,7 @@ html.dark {
   /* background: ; */
 }
 
-:root{
-  --yellow:#ffc107;
-  --border-color: white;
-  --light-brown: #67492e;
-  --dark-brown: #b4b4b4;
-}
+
 
 ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thum:hover {
   background-color: var(--yellow);

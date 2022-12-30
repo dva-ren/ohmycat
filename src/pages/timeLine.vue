@@ -28,7 +28,7 @@ getPosts()
 </script>
 
 <template>
-  <Layout class="_fadeInUp">
+  <Layout class="fade_in_up">
     <p text-xl>
       时间线 · 记录生活
     </p>
@@ -38,13 +38,14 @@ getPosts()
         <p py-1>
           本月已过: {{ getOutOfMouth(new Date()) }}%
         </p>
-        <p>今天已过: {{ outOfTime }}%</p>
+        <p>今日已过: {{ outOfTime }}%</p>
         <p py-1>
-          珍惜时间 享受当下
+          珍惜时间,享受当下
         </p>
       </div>
     </div>
-    <div v-if="!loading" px-10 class="_fadeInUp">
+    <Loadding v-model="loading" />
+    <div v-if="!loading" px-10 class="fade_in_up">
       <p class="left-label" pl-4 py-2>
         2022
       </p>

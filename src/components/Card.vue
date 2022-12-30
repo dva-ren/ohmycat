@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { useUnionNumber } from '~/composables'
+import imgs from '../utils/images.json'
+import { randomNumber, useUnionNumber } from '~/composables'
+
 const props = defineProps<{
   title: string
   bg?: string
   text?: string
 }>()
 const imgApis = ref([
+  'http://127.0.0.1:3000/img',
   // girl
   'https://api.tjit.net/api/img/rand',
   'https://cdn.seovx.com/?mom=302',
@@ -17,19 +20,21 @@ const imgApis = ref([
   // 2次元
   'https://img.xjh.me/random_img.php?return=302',
 ])
+
 function getImageUrl(api: string) {
-  return `${api}${api.includes('?') ? '&' : '?'}time=${useUnionNumber()}`
+  // return `${api}${api.includes('?') ? '&' : '?'}time=${useUnionNumber()}`
+  return imgs[randomNumber(0, imgs.length)]
 }
 </script>
 
 <template>
   <div class="card" h-30 rounded-xl>
-    <img v-lazy="props.bg ? props.bg : getImageUrl(imgApis[6])" w-full alt="" class="bg-img">
+    <img v-lazy="props.bg ? props.bg : getImageUrl(imgApis[0])" loading="../assets/img-bg.webp" w-full alt="" class="bg-img">
     <div class="card-title">
       <span rounded-xl>{{ props.title }}</span>
     </div>
     <div class="mask" h-full w-full absolute top-0>
-      {{ props.text }}
+      <span>{{ props.text }}</span>
     </div>
   </div>
 </template>
