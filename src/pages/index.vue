@@ -4,14 +4,14 @@ import { cloudApi } from '~/composables'
 import Message from '~/components/Message'
 
 const posts = ref<Array<Article>>([])
-const posts2 = ref<Array<Article>>([])
+const notes = ref<Array<Article>>([])
 const loading = ref(true)
 const words = ref('')
 
 const getPosts = async () => {
   const res = await cloudApi.invokeFunction('get-article', {})
   posts.value = res.data.slice(0, 4)
-  posts2.value = res.data.slice(4)
+  notes.value = res.data.slice(4)
   loading.value = false
 }
 fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
@@ -28,7 +28,7 @@ getPosts()
 <template>
   <Layout full max-w-1050px m-auto p-4 gap-4>
     <!-- <Loadding v-model="loading" /> -->
-    <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6>
+    <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="_fadeInUp">
       <img src="http://iiu.oss-cn-chengdu.aliyuncs.com/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_1080" alt="t-bbi" h-30 w-30 rounded-full object-cover>
       <div text-center sm:text-left>
         <p text-xl font-bold>
@@ -50,10 +50,7 @@ getPosts()
         </div>
       </div>
     </div>
-    <div text="sm gray-400" px-4 pt-4 pb-8>
-      {{ words }}
-    </div>
-
+    <TextAnimation :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
     <div v-if="!loading" class="_fadeInUp">
       <div text-white text-sm>
         <div flex justify-between items-end class="label">
@@ -63,9 +60,9 @@ getPosts()
             </div>
             <span px-3>近期博文</span>
           </div>
-          <button to="/" class="icon" bg="#74759b" p-4 @click="handleClick">
+          <router-link to="/posts" class="icon" bg="#74759b" p-4>
             <div i-carbon:chevron-right text-lg />
-          </button>
+          </router-link>
         </div>
         <CardList :data="posts" />
       </div>
@@ -77,11 +74,11 @@ getPosts()
             </div>
             <span px-3>记录生活</span>
           </div>
-          <button to="/" class="icon" bg="#f17666" p-4 @click="handleClick">
+          <router-link :to="`/notes/${notes[0]._id}`" class="icon" bg="#f17666" p-4>
             <div i-carbon:chevron-right text-lg />
-          </button>
+          </router-link>
         </div>
-        <CardList :data="posts2" />
+        <CardList :data="notes" type="notes" />
       </div>
       <div text-white mt-10 text-sm>
         <div flex justify-between items-end class="label">
@@ -91,7 +88,7 @@ getPosts()
             </div>
             <span px-3>了解更多</span>
           </div>
-          <button class="icon" bg="#2376b7" p-4 @click="handleClick">
+          <button class="icon" bg="#2376b7" p-4 @click="Message.warning('没有更多了')">
             <div i-carbon:chevron-right text-lg />
           </button>
         </div>

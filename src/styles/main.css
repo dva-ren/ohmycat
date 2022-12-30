@@ -68,6 +68,8 @@ html.dark {
 :root{
   --yellow:#ffc107;
   --border-color: white;
+  --light-brown: #67492e;
+  --dark-brown: #b4b4b4;
 }
 
 ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thum:hover {
@@ -79,4 +81,16 @@ html.dark {
 
 .dark:root{
   --border-color: black;
+}
+
+/* 去除移动端点击背景 */
+*{
+  -webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+.left-label::before{
+  content: '';
+  height: 1em;
+  padding-right: 2px;
+  margin-right: .5rem;
+  background-color: var(--yellow);
 }

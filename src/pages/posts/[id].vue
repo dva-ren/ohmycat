@@ -75,18 +75,21 @@ getArticle()
       <div>
         <MyEditor v-model="articleData.content" />
       </div>
-      <div mt-10 text="sm gray">
+      <div mt-10 text="xs gray" md:text-sm>
         <p>文章标题：{{ articleData.title }}</p>
-        <p>文章作者：x-bbi</p>
+        <p py-2>
+          文章作者：x-bbi
+        </p>
         <p>最后修改时间：{{ formateToLocale(articleData.updateTime) || formateToLocale(articleData.createTime) }}</p>
+        <p w-full my-4 h-1px bg-gray-2 />
+        <div flex items-center select-none>
+          <i i-ri:calendar-todo-line mr-1 />
+          <span>{{ formateToLocale(articleData.createTime) }}</span>
+          <i ml-4 i-ri:hashtag />
+          <span>{{ articleData.label }}</span>
+        </div>
       </div>
-      <p w-full my-4 h-1px bg-gray-2 />
-      <div flex text="sm gray" items-center select-none>
-        <i i-ri:calendar-todo-line mr-1 />
-        <span>{{ formateToLocale(articleData.createTime) }}</span>
-        <i ml-4 i-ri:hashtag />
-        <span>{{ articleData.label }}</span>
-      </div>
+
       <Modal v-model="showModel">
         <div w-80 h-30 bg-white p-4 rounded>
           <div>

@@ -33,7 +33,7 @@ const menus = ref<NavItem[]>([
   {
     name: '记',
     icon: 'i-ri:quill-pen-line',
-    url: '#',
+    url: '/notes/new',
   },
   {
     name: '项',
