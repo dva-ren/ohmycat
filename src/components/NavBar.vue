@@ -3,6 +3,7 @@ import Message from '~/components/Message'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NavItem } from '~/types'
 
+const route = useRoute()
 const token = useLocalStorage('token', null)
 const logout = () => {
   token.value = null
@@ -10,10 +11,12 @@ const logout = () => {
 }
 const bgOpacity = ref(0)
 
+const navIdx = ref(-1)
+
 const menus = ref<NavItem[]>([
   {
     name: '文',
-    url: '/',
+    url: '/posts',
     icon: 'i-ri:mastodon-line',
     children: [
       {
@@ -45,10 +48,13 @@ onMounted(() => {
   document.addEventListener('scroll', (e: Event) => {
     if (document.documentElement.scrollTop > 40)
       bgOpacity.value = 1
-
     else
       bgOpacity.value = 0
   })
+})
+watch(route, () => {
+  if (route.path === '/')
+    navIdx.value = -1
 })
 </script>
 
@@ -59,8 +65,8 @@ onMounted(() => {
         <router-link to="/" title="home" py-2>
           <Logo width="2.5rem" />
         </router-link>
-        <nav flex items-center>
-          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
+        <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
+          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" @click="navIdx = idx" />
           <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
           </button>
@@ -98,7 +104,31 @@ header::before{
   opacity: var(--opacity);
   border-bottom: 1px solid #bbb3;
 }
+
+.nav{
+  position: relative;
+}
+.nav::before{
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(0,0,0,0.4);
+  bottom: .5rem;
+  transform: translateX(-50%);
+  left: calc(34px + 68px * var(--idx));
+  transition: all .1s;
+}
+.nav:hover::before{
+  width: 2.25rem;
+  height: 2px;
+  background-color: var(--yellow) !important;
+}
 .dark header::before{
   background-color: rgba(0, 0, 0, 0.464);
+}
+.dark .nav::before{
+  background-color: rgba(255, 255, 255, 0.54);
 }
 </style>

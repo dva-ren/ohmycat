@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import type { NavItem } from '~/types'
 
-const { data } = defineProps<{ data: NavItem }>()
+const { data, active } = defineProps<{ data: NavItem; active?: boolean }>()
 </script>
 
 <template>
-  <div text-sm h-full flex px-4>
+  <div text-sm h-full flex px-4 class="nav-item" :class="active ? 'active' : ''">
     <router-link v-if="!data.children" :to="data.url" flex items-center>
       <div :class="data.icon" inline-block />
       <span p-l-2>{{ data.name }}</span>
     </router-link>
     <Popper v-else trigger="hover" flex>
-      <router-link :to="data.url" flex items-center>
+      <router-link :to="data.url" flex items-center w-full>
         <div :class="data.icon" inline-block />
         <span p-l-2>{{ data.name }}</span>
       </router-link>
@@ -25,3 +25,12 @@ const { data } = defineProps<{ data: NavItem }>()
     </Popper>
   </div>
 </template>
+
+<style scoped>
+.nav-item{
+
+}
+.active{
+
+}
+</style>

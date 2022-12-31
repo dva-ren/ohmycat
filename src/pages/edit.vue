@@ -6,6 +6,7 @@ import Message from '~/components/Message'
 import { upload } from '~/utils/upload'
 
 import 'md-editor-v3/lib/style.css'
+const ModalToolbar = MdEditor.ModalToolbar
 
 const route = useRoute()
 const router = useRouter()
@@ -20,6 +21,11 @@ const articleForm = reactive({
   title: '',
   content: '',
   label: '',
+})
+const data = reactive({
+  text: '',
+  modalVisible: false,
+  modalFullscreen: false,
 })
 const add = async () => {
   if (!articleForm.title || !articleForm.content) {
@@ -57,7 +63,8 @@ onMounted(() => {
     editorRef.value?.togglePreview(false)
 })
 const preview = () => {
-
+  console.log('view')
+  data.modalVisible = true
 }
 const handleUploadImg = (files: Array<File>, callback: Function) => {
   const uploadList: Array<Promise<any>> = []
@@ -77,7 +84,29 @@ const handleUploadImg = (files: Array<File>, callback: Function) => {
     <div py-2>
       <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" bg-transparent type="text" border-b focus:outline-none>
     </div>
-    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" @on-upload-img="handleUploadImg" />
+    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" @on-upload-img="handleUploadImg">
+      <template #defToolbars>
+        <ModalToolbar
+          :visible="data.modalVisible"
+          :is-fullscreen="data.modalFullscreen"
+          show-adjust
+          title="帮助"
+          modal-title="编辑预览"
+          width="870px"
+          height="600px"
+          @on-click="data.modalVisible = true"
+          @on-close="data.modalVisible = false"
+          @on-adjust="data.modalFullscreen = !data.modalFullscreen"
+        >
+          <span>内容</span>
+          <template #trigger>
+            <svg class="md-editor-icon" aria-hidden="true">
+              <use xlink:href="#icon-read" />
+            </svg>
+          </template>
+        </ModalToolbar>
+      </template>
+    </MdEditor>
     <div py-4>
       标签(可选):<input v-model="articleForm.label" bg-transparent type="text" border-b focus:outline-none>
     </div>
