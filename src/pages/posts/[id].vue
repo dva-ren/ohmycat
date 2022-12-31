@@ -40,8 +40,8 @@ getArticle()
 </script>
 
 <template>
-  <Loadding v-model="loading" />
   <Layout v-if="articleData" class="fade_in_up">
+    <Loadding v-model="loading" />
     <div w-full>
       <div flex items-center justify-between mb-4>
         <div text-2xl>

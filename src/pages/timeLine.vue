@@ -3,14 +3,14 @@ import type { Article } from '~/types'
 import { cloudApi, formatTime, getOutOfDate, getOutOfMouth, getOutOfYear } from '~/composables'
 
 const loading = ref(true)
-const posts = ref<Array<Article>>([])
+const notes = ref<Array<Article>>([])
 const route = useRoute()
 
 const type = computed(() => route.query.type || 'posts')
 
-const getPosts = async () => {
-  const res = await cloudApi.invokeFunction('get-article', {})
-  posts.value = res.data
+const getNotes = async () => {
+  const res = await cloudApi.invokeFunction('get-notes', {})
+  notes.value = res.data.slice(0, 4)
   loading.value = false
 }
 const outOfTime = ref<string | number>()
@@ -24,7 +24,7 @@ onMounted(() => {
 onBeforeMount(() => {
   clearInterval(timer)
 })
-getPosts()
+getNotes()
 </script>
 
 <template>
@@ -45,12 +45,12 @@ getPosts()
       </div>
     </div>
     <Loadding v-model="loading" />
-    <div v-if="!loading" px-10 class="fade_in_up">
+    <div v-if="!loading" px-10>
       <p class="left-label" pl-4 py-2>
         2022
       </p>
       <ul class="posts" text-gray-500>
-        <li v-for="item in posts" :key="item._id" class="item" flex items-center>
+        <li v-for="item, idx in notes" :key="item._id" class="item fade_in_up" :style="`--delay:${idx * 0.1}s`" flex items-center>
           <span text-sm>{{ formatTime(item.createTime, 'MM/dd') }}</span>
           <router-link :to="`/${type}/${item._id}`" class="link" px-2 text-gray-800>
             {{ item.title }}

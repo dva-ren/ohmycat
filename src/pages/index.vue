@@ -11,7 +11,11 @@ const words = ref('')
 const getPosts = async () => {
   const res = await cloudApi.invokeFunction('get-article', {})
   posts.value = res.data.slice(0, 4)
-  notes.value = res.data.slice(4)
+  loading.value = false
+}
+const getNotes = async () => {
+  const res = await cloudApi.invokeFunction('get-notes', {})
+  notes.value = res.data.slice(0, 4)
   loading.value = false
 }
 fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
@@ -22,7 +26,12 @@ fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
 function handleClick() {
   Message.warning('开发中~')
 }
-getPosts()
+Promise.all([getPosts(), getNotes()]).catch((e) => {
+  console.error('服务器出错=>', e)
+  setTimeout(() => {
+    Message.error('服务器出错了~')
+  }, 1000)
+})
 </script>
 
 <template>
@@ -74,7 +83,7 @@ getPosts()
             </div>
             <span px-3>记录生活</span>
           </div>
-          <router-link :to="`/notes/${notes[0]._id}`" class="icon" bg="#f17666" p-4>
+          <router-link :to="`/notes/${notes[0]?._id}`" class="icon" bg="#f17666" p-4>
             <div i-carbon:chevron-right text-lg />
           </router-link>
         </div>

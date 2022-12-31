@@ -21,7 +21,8 @@ const imgApis = ref([
   'https://img.xjh.me/random_img.php?return=302',
 ])
 
-function getImageUrl(api: string) {
+function getImageUrl() {
+  // const api = imgApis.value[0]
   // return `${api}${api.includes('?') ? '&' : '?'}time=${useUnionNumber()}`
   return imgs[randomNumber(0, imgs.length)]
 }
@@ -29,7 +30,7 @@ function getImageUrl(api: string) {
 
 <template>
   <div class="card" h-30 rounded-xl>
-    <img v-lazy="props.bg ? props.bg : getImageUrl(imgApis[0])" loading="../assets/img-bg.webp" w-full alt="" class="bg-img">
+    <img v-lazy="props.bg ? props.bg : getImageUrl()" loading="../assets/img-bg.webp" w-full alt="" class="bg-img">
     <div class="card-title">
       <span rounded-xl>{{ props.title }}</span>
     </div>
@@ -68,6 +69,7 @@ function getImageUrl(api: string) {
   width: 100%;
   padding: .4rem 1rem;
   background: linear-gradient(rgba(38,69,61,.333),#26453da8);
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
   backdrop-filter: saturate(180%) blur(15px);
   transition: color .2s;
   border-radius:0 0 0.75rem 0.75rem;
