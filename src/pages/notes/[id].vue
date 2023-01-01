@@ -13,7 +13,7 @@ const getArticle = async (id: string) => {
   loading.value = false
 }
 const getPosts = async () => {
-  const res = await cloudApi.invokeFunction('get-article', {})
+  const res = await cloudApi.invokeFunction('get-notes', {})
   posts.value = res.data
 }
 
