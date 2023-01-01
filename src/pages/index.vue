@@ -37,7 +37,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
 <template>
   <Layout full max-w-1050px m-auto p-4 gap-4>
     <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="fade_in_up">
-      <img src="http://iiu.oss-cn-chengdu.aliyuncs.com/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_1080" alt="t-bbi" h-30 w-30 rounded-full object-cover>
+      <img src="https://image.dvaren.xyz/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_240" alt="t-bbi" h-30 w-30 rounded-full object-cover>
       <div text-center sm:text-left>
         <p text-xl font-bold>
           T-BBI
@@ -46,11 +46,14 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           这是我的小屋
         </p>
         <div text-gray-1>
-          <a href="https://github.com/dva-ren" target="_blank" class="circle-icon" bg-pink-400>
+          <a href="https://github.com/dva-ren" target="_blank" class="circle-icon" bg-blue-400>
             <div i-carbon:logo-github class="v-icon" inline-block />
           </a>
-          <a ml-4 href="#" class="circle-icon" bg-blue-400>
-            <div i-ri:qq-line class="v-icon" inline-block />
+          <a ml-4 href="https://y.music.163.com/m/user?id=136604471" target="_blank" class="circle-icon" bg="#ff3a3a">
+            <div i-ri-netease-cloud-music-line class="v-icon" inline-block />
+          </a>
+          <a ml-4 href="https://space.bilibili.com/60385716" target="_blank" class="circle-icon" bg="#f25d8e">
+            <div i-ri-bilibili-fill class="v-icon" inline-block />
           </a>
           <a ml-4 href="mailto:473029463@qq.com" class="circle-icon" bg-teal-400>
             <div i-ri:at-line class="v-icon" inline-block />

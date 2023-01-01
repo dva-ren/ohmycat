@@ -19,7 +19,7 @@ const getPosts = async () => {
 
 const fetchData = async () => {
   const id = route.params.id as string
-  if (id && id !== 'new') { getArticle(id) }
+  if (id && id !== 'latest') { getArticle(id) }
   else {
     await getPosts()
     getArticle(posts.value[0]._id)

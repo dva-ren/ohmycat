@@ -36,7 +36,12 @@ const menus = ref<NavItem[]>([
   {
     name: '记',
     icon: 'i-ri:quill-pen-line',
-    url: '/notes/new',
+    url: '/notes/latest',
+  },
+  {
+    name: '言',
+    icon: 'i-ri-bear-smile-line',
+    url: '/says',
   },
   {
     name: '项',

@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     Project: typeof import('./src/components/Project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Says: typeof import('./src/components/says.vue')['default']
     TextAnimation: typeof import('./src/components/TextAnimation.vue')['default']
   }
 }

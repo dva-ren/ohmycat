@@ -44,8 +44,8 @@ function getImageUrl() {
 .card{
   position: relative;
   overflow: hidden;
-  background-attachment:fixed;
   cursor: pointer;
+  background-color: rgba(224,224,224,0.3);
 }
 .card:hover .card-title{
   color: #f6cec1;
@@ -59,6 +59,7 @@ function getImageUrl() {
   transform: rotateZ(4deg) scale(1.1);
 }
 .card-title{
+  /* z-index: 10; */
   position: absolute;
   bottom: 0;
   color: rgba(255, 255, 255, 0.9);
