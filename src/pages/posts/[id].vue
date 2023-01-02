@@ -116,7 +116,7 @@ getArticle()
       </div>
     </div>
     <template #sidebar>
-      <div sticky top-20 mt-20>
+      <div sticky top-20 mt-20 text-sm>
         <MdCatalog
           editor-id="my-editor"
           :scroll-element="scrollElement"

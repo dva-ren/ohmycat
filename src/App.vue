@@ -13,6 +13,7 @@ const loadding = ref(true)
     <div class="bg absolute inset-0 transform-gpu" />
   </div>
   <LoadMask v-model="loadding" @end="loadding = false" />
+  <ToolsBar />
 </template>
 
 <style scoped>
