@@ -60,6 +60,10 @@ onMounted(() => {
 watch(route, () => {
   if (route.path === '/')
     navIdx.value = -1
+  menus.value.forEach((m, idx) => {
+    if (route.path.includes(m.url))
+      navIdx.value = idx
+  })
 })
 </script>
 
@@ -71,7 +75,7 @@ watch(route, () => {
           <Logo width="2.5rem" />
         </router-link>
         <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
-          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" @click="navIdx = idx" />
+          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
           <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
           </button>

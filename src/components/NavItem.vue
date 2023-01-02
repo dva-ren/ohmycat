@@ -2,16 +2,18 @@
 import type { NavItem } from '~/types'
 
 const { data, active } = defineProps<{ data: NavItem; active?: boolean }>()
+
+const emits = defineEmits(['onSelect'])
 </script>
 
 <template>
   <div text-sm h-full flex px-4 class="nav-item" :class="active ? 'active' : ''">
-    <router-link v-if="!data.children" :to="data.url" flex items-center>
+    <router-link v-if="!data.children" :to="data.url" flex items-center @click="emits('onSelect')">
       <div :class="data.icon" inline-block />
       <span p-l-2>{{ data.name }}</span>
     </router-link>
-    <Popper v-else trigger="hover" flex>
-      <router-link :to="data.url" flex items-center w-full>
+    <Popper v-else trigger="hover" flex h-full>
+      <router-link :to="data.url" flex items-center w-full @click="emits('onSelect')">
         <div :class="data.icon" inline-block />
         <span p-l-2>{{ data.name }}</span>
       </router-link>

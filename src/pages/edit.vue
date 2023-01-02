@@ -1,26 +1,35 @@
 <script lang="ts" setup>
 import type { ExposeParam } from 'md-editor-v3'
 import MdEditor from 'md-editor-v3'
+import { onBeforeRouteLeave } from 'vue-router'
 import { cloudApi, isDark } from '~/composables'
 import Message from '~/components/Message'
 import { upload } from '~/utils/upload'
+import type { ArticleForm, Category } from '~/types'
 
 import 'md-editor-v3/lib/style.css'
 const ModalToolbar = MdEditor.ModalToolbar
 
 const route = useRoute()
 const router = useRouter()
-const token = useLocalStorage('token', null)
 const id = $computed(() => route.query.id)
 const windowSize = useWindowSize()
-
+const draft = useLocalStorage('draft', null)
 const editorRef = ref<ExposeParam>()
+const modified = ref(true)
 
-const articleForm = reactive({
-  id: '',
+const categories = ref<Category[]>([])
+
+const articleForm = ref<ArticleForm>({
+  _id: '',
   title: '',
   content: '',
-  label: '',
+  label: [],
+  category: {
+    _id: '',
+    name: '',
+    category: '',
+  },
 })
 const data = reactive({
   text: '',
@@ -28,7 +37,7 @@ const data = reactive({
   modalFullscreen: false,
 })
 const add = async () => {
-  if (!articleForm.title || !articleForm.content) {
+  if (!articleForm.value.title || !articleForm.value.content) {
     Message.warning('标题或内容不能为空')
     return
   }
@@ -36,34 +45,41 @@ const add = async () => {
     const res = await cloudApi.invokeFunction('update-article', articleForm)
     if (res.code === 200) {
       Message.success('更新成功')
-      router.push({ name: 'posts', params: { id: articleForm.id } })
+      draft.value = undefined
+      modified.value = false
+      router.push({ name: 'posts', params: { id: articleForm.value._id } })
     }
   }
   else {
     const res = await cloudApi.invokeFunction('add-article', articleForm)
     if (res.code === 200) {
       Message.success('添加成功')
-      router.push({ name: 'posts', params: { id: articleForm.id } })
+      draft.value = undefined
+      modified.value = false
+      router.push({ name: 'posts', params: { id: articleForm.value._id } })
     }
   }
 }
 const getArticle = async () => {
-  if (!token || !id)
+  if (!id) {
+    if (draft.value && draft.value !== 'null')
+      articleForm.value = JSON.parse(draft.value)
     return
+  }
   const res = await cloudApi.invokeFunction('query-article', { id })
-  const { _id, title, content, label } = res.data
-  articleForm.id = _id
-  articleForm.title = title
-  articleForm.content = content
-  articleForm.label = label
+  articleForm.value = res.data
 }
-getArticle()
+const getCategories = async () => {
+  const res = await cloudApi.invokeFunction('get-categories', {})
+  categories.value = res.data
+}
+Promise.all([getCategories(), getArticle()])
 onMounted(() => {
   if (windowSize.width.value < 600)
     editorRef.value?.togglePreview(false)
 })
 const preview = () => {
-  console.log('view')
+  Message.warning('preview')
   data.modalVisible = true
 }
 const handleUploadImg = (files: Array<File>, callback: Function) => {
@@ -74,17 +90,50 @@ const handleUploadImg = (files: Array<File>, callback: Function) => {
   })
   Promise.all(uploadList).then((result) => {
     Message.success('上传成功')
-    callback(result.map(r => `${r.url}?x-oss-process=image/resize,w_1080`))
+    callback(result.map(r => `${r.url}?x-oss-process=image/resize,w_800`))
   })
 }
+
+const handleSave = () => {
+  draft.value = JSON.stringify(draft.value)
+  modified.value = false
+  Message.success('保存成功')
+}
+onMounted(() => {
+  window.onbeforeunload = (e) => {
+    if (modified.value) {
+      const message = '当前内容还未保存，是否离开'
+      e = e || window.event
+      if (e)
+        e.returnValue = message
+    }
+  }
+})
+onBeforeRouteLeave((to, from, next) => {
+  if (modified.value) {
+    if (!window.confirm('当前内容还未保存，是否离开'))
+      return
+  }
+  next()
+})
+onBeforeUnmount(() => {
+  window.onbeforeunload = null
+})
 </script>
 
 <template>
-  <div v-show="!id || articleForm.id" max-w-400 p-4>
+  <div v-show="!id || articleForm._id" max-w-400 p-4 m-auto>
     <div py-2>
       <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" bg-transparent type="text" border-b focus:outline-none>
     </div>
-    <MdEditor ref="editorRef" v-model="articleForm.content" mt-4 :theme="isDark ? 'dark' : 'light'" @on-upload-img="handleUploadImg">
+    <MdEditor
+      ref="editorRef"
+      v-model="articleForm.content"
+      :theme="isDark ? 'dark' : 'light'"
+      class="mt-4"
+      @on-upload-img="handleUploadImg"
+      @save="handleSave"
+    >
       <template #defToolbars>
         <ModalToolbar
           :visible="data.modalVisible"
@@ -114,7 +163,7 @@ const handleUploadImg = (files: Array<File>, callback: Function) => {
       <button btn bg-gray @click="preview">
         预览
       </button>
-      <button btn bg-gray ml-4>
+      <button btn bg-gray ml-4 @click="handleSave">
         保存
       </button>
       <button btn ml-4 mt-6 @click="add">

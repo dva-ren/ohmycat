@@ -1,15 +1,18 @@
 <template>
-  <nav text-xl mt-6 inline-flex gap-2>
-    <button icon-btn @click="toggleDark()">
-      <div dark:i-carbon-moon i-carbon-sun />
-    </button>
-
-    <a
-      icon-btn i-carbon-logo-github
-      rel="noreferrer"
-      href="https://github.com/antfu/vitesse-lite"
-      target="_blank"
-      title="GitHub"
-    />
-  </nav>
+  <footer text-sm inline-flex justify-center gap-2 w-full p-10 relative>
+    <span>Powered by <a href="https://github.com/dva-ren">dvaren</a>.ohmycat</span>
+  </footer>
 </template>
+
+<style scoped>
+footer::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  width:100%;
+  height:2px;
+  background-image:linear-gradient(to right,rgb(207, 203, 203) 0%, rgb(214, 207, 207) 50%, transparent 75%);
+  background-size:20px 10px;
+  background-repeat:repeat-x;
+}
+</style>

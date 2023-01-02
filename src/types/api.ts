@@ -1,8 +1,18 @@
-export interface Article {
-  _id: string
+export interface ArticleForm {
+  _id?: string
   title: string
   content: string
-  label: string
+  category: Category
+  label?: string[]
+  cover?: string
+}
+export interface Category {
+  _id?: string
+  name: string
+  category: string
+}
+
+export interface Article extends ArticleForm {
   createTime: string
   updateTime: string
   state: 0 | 1
@@ -21,13 +31,6 @@ export interface User {
   isDeleted: number
   createTime: string
   updateTime: string
-}
-
-export interface ArticleForm {
-  _id: string
-  title: string
-  content: string
-  label?: string
 }
 
 export interface Image {
@@ -59,4 +62,13 @@ export interface PictureMessage {
   createTime?: string
   updateTime?: string
   state?: number
+}
+
+export interface Say {
+  _id: string
+  content: string
+  from?: string
+  author?: string
+  createTime: string
+  color?: string
 }

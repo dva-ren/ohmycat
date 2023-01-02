@@ -3,7 +3,7 @@ const { modelValue } = defineProps<{ modelValue: boolean }>()
 </script>
 
 <template>
-  <div v-if="modelValue" h-20 w-full flex justify-center items-center>
+  <div v-if="modelValue" h-20 w-full flex justify-center items-center h-full>
     <div class="loading">
       <div />
       <div />

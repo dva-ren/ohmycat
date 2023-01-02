@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
+    Default: typeof import('./src/layout/default.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Full: typeof import('./src/layout/full.vue')['default']
     Layout: typeof import('./src/layout/layout.vue')['default']
@@ -28,5 +29,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Says: typeof import('./src/components/says.vue')['default']
     TextAnimation: typeof import('./src/components/TextAnimation.vue')['default']
+    ToolsBar: typeof import('./src/components/ToolsBar.vue')['default']
+    ToolsButton: typeof import('./src/components/ToolsButton.vue')['default']
   }
 }

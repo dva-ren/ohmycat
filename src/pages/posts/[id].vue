@@ -81,7 +81,7 @@ getArticle()
         <div mt-10 text="xs gray" md:text-sm>
           <p>文章标题：{{ articleData.title }}</p>
           <p py-2>
-            文章作者：x-bbi
+            文章作者：T-BBI
           </p>
           <p>最后修改时间：{{ formateToLocale(articleData.updateTime) || formateToLocale(articleData.createTime) }}</p>
           <p w-full my-4 h-1px bg-gray-2 />

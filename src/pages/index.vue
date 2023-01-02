@@ -35,7 +35,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
 </script>
 
 <template>
-  <Layout full max-w-1050px m-auto p-4 gap-4>
+  <div max-w-1050px m-auto p-4 gap-4>
     <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="fade_in_up">
       <img src="https://image.dvaren.xyz/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_240" alt="t-bbi" h-30 w-30 rounded-full object-cover>
       <div text-center sm:text-left>
@@ -113,7 +113,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
         </div>
       </div>
     </div>
-  </Layout>
+  </div>
 </template>
 
 <style scoped>
