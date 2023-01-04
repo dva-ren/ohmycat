@@ -15,8 +15,7 @@ export interface Category {
 export interface Article extends ArticleForm {
   createTime: string
   updateTime: string
-  state: 0 | 1
-  cover?: string
+  state: 0 | 1 | 2
 }
 
 export interface LoginForm {
@@ -70,5 +69,4 @@ export interface Say {
   from?: string
   author?: string
   createTime: string
-  color?: string
 }

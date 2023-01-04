@@ -7,13 +7,14 @@ const showFlags = reactive({
 function toTop() {
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
 }
-const watchMain = useDebounceFn((curr, pre) => {
+const watchMain = useThrottleFn((curr, pre) => {
   if (curr > pre)
     showFlags.main = false
   else
     showFlags.main = true
-}, 1000)
-watch(scroll.y, (curr, pre) => {
+}, 200)
+
+watch(useThrottle(scroll.y, 100), (curr, pre) => {
   if (curr > 500)
     showFlags.scroll = true
   else
@@ -31,7 +32,7 @@ watch(scroll.y, (curr, pre) => {
             <div i-carbon-up-to-top />
           </button>
         </Transition>
-        <button icon-btn class="button" @click="toggleDark()">
+        <button class="button" @click="toggleDark()">
           <div dark:i-carbon-moon i-carbon-sun />
         </button>
       </div>

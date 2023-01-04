@@ -3,44 +3,51 @@ import type { Article } from '~/types'
 import { cloudApi, formateToLocaleHasWeek } from '~/composables'
 
 const loading = ref(true)
-const post = ref<Article>()
-const posts = ref<Array<Article>>([])
+const note = ref<Article>()
+const notes = ref<Array<Article>>([])
 const route = useRoute()
+const id = computed(() => route.params.id as string)
+const index = computed(() => {
+  const idx = notes.value.findIndex(n => n._id === id.value)
+  return idx > 0 ? idx : 0
+})
 
-const getArticle = async (id: string) => {
-  const res = await cloudApi.invokeFunction('query-article', { id })
-  post.value = res.data
+const getNote = async (id: string) => {
+  loading.value = true
+  const res = await cloudApi.invokeFunction('get-note', { id })
+  note.value = res.data
   loading.value = false
 }
-const getPosts = async () => {
+const getNotes = async () => {
   const res = await cloudApi.invokeFunction('get-notes', {})
-  posts.value = res.data
+  notes.value = res.data
 }
 
 const fetchData = async () => {
-  const id = route.params.id as string
-  if (id && id !== 'latest') { getArticle(id) }
-  else {
-    await getPosts()
-    getArticle(posts.value[0]._id)
-  }
+  await getNotes()
+  if (id.value && id.value === 'latest')
+    getNote(notes.value[0]._id!)
+  else
+    getNote(id.value)
 }
-
+watch(id, () => {
+  getNote(id.value)
+})
 fetchData()
 </script>
 
 <template>
   <Layout>
     <Loadding v-model="loading" />
-    <div v-if="post" class="fade_in_up">
+    <div v-if="!loading && note" class="fade_in_up">
       <div class="info" border p-4>
         <p class="left-label">
-          {{ formateToLocaleHasWeek(post.createTime) }}
+          {{ formateToLocaleHasWeek(note.createTime) }}
         </p>
         <p text-center pt-4 text="16.8px">
-          {{ post.title }}
+          {{ note.title }}
         </p>
-        <MyEditor v-model="post.content" />
+        <MyEditor v-model="note.content" />
       </div>
       <div py-10>
         <p text-center py-4>
@@ -49,12 +56,16 @@ fetchData()
           </router-link>
         </p>
         <div flex justify-between>
-          <button btn>
-            上一篇
-          </button>
-          <button btn>
-            下一篇
-          </button>
+          <div>
+            <router-link v-if="index > 0" :to="`/notes/${notes[index - 1]?._id}`" btn>
+              上一篇
+            </router-link>
+          </div>
+          <div>
+            <router-link v-if="index < notes.length - 1" :to="`/notes/${notes[index + 1]?._id}`" btn>
+              下一篇
+            </router-link>
+          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const logout = () => {
   Message.success('登出成功')
 }
 const bgOpacity = ref(0)
-
+const scroll = useWindowScroll()
 const navIdx = ref(-1)
 
 const menus = ref<NavItem[]>([
@@ -21,15 +21,15 @@ const menus = ref<NavItem[]>([
     children: [
       {
         name: '编程',
-        url: '/',
+        url: '/timeLine?type=posts&category=code',
       },
       {
         name: '笔记',
-        url: '#',
+        url: '/timeLine?type=posts&category=note',
       },
       {
         name: '读书',
-        url: '#',
+        url: '/timeLine?type=posts&category=reading',
       },
     ],
   },
@@ -49,13 +49,11 @@ const menus = ref<NavItem[]>([
     url: '/projects',
   },
 ])
-onMounted(() => {
-  document.addEventListener('scroll', (e: Event) => {
-    if (document.documentElement.scrollTop > 40)
-      bgOpacity.value = 1
-    else
-      bgOpacity.value = 0
-  })
+watch(useThrottle(scroll.y, 100), () => {
+  if (scroll.y.value > 60)
+    bgOpacity.value = 1
+  else
+    bgOpacity.value = 0
 })
 watch(route, () => {
   if (route.path === '/')
@@ -76,9 +74,9 @@ watch(route, () => {
         </router-link>
         <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
           <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
-          <button icon-btn @click="toggleDark()">
+          <!-- <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
-          </button>
+          </button> -->
           <button v-if="token" icon-btn pl-2 @click="logout">
             <div i-ri-logout-box-r-line />
           </button>
