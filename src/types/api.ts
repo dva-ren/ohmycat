@@ -1,72 +1,96 @@
-export interface ArticleForm {
-  _id?: string
+export interface Response<T> {
+  code: number
+  msg: string
+  data: T
+}
+
+export interface PageParams {
+  pageSize: number
+  pageNum: string
+}
+
+export interface PageInfo<T> {
+  total: number
+  list: T[]
+  pageNum: number
+  pageSize: number
+  size: number
+  startRow: number
+  endRow: number
+  pages: number
+  prePage: number
+  nextPage: number
+  isFirstPage: boolean
+  isLastPage: boolean
+  hasPreviousPage: boolean
+  hasNextPage: boolean
+  navigatePages: number
+  navigatepageNums: number[]
+  navigateFirstPage: number
+  navigateLastPage: number
+}
+
+export interface Article {
+  id: string
+  summary: string
   title: string
   content: string
-  category: Category
-  label?: string[]
-  cover?: string
-}
-export interface Category {
-  _id?: string
-  name: string
-  category: string
-}
-
-export interface Article extends ArticleForm {
+  categoryId: string
+  categoryName: string
+  label: string
+  cover: string
+  isTop: number
+  status: number
+  commentCount: number
+  viewCount: number
+  allowComment: number
+  createBy: string
   createTime: string
   updateTime: string
-  state: 0 | 1 | 2
+  isDelete: number
 }
 
-export interface LoginForm {
-  username: string
-  password: string
-}
-
-export interface User {
-  _id: string
-  username: string
-  role: string
-  isDeleted: number
-  createTime: string
-  updateTime: string
-}
-
-export interface Image {
-  _id?: string
-  name: string
-  url: string
-  articleId?: string
-  description?: string
-  createTime?: string
-  state?: number
-}
-
-export interface Picture {
-  _id?: string
-  nickname: string
-  url: string
-  labels: string[]
-  description?: string
-  createTime?: string
-  updateTime?: string
-  state?: number
-}
-
-export interface PictureMessage {
-  _id?: string
-  pictureId: string
-  nickname: string
+export interface Note {
+  id: string
+  title: string
+  summary: string
+  categoryId: string
   content: string
-  createTime?: string
-  updateTime?: string
-  state?: number
+  mood: string
+  weather: string
+  position: string
+  cover: string
+  musicId: string
+  isTop: number
+  status: number
+  commentCount: number
+  viewCount: number
+  allowComment: number
+  createTime: string
+  updateTime: string
+  isDelete: number
+  publishTime: string
+}
+
+export interface Category {
+  id: string
+  name: string
+  description: string
+  pid: string
+  status: number
+  createTime: string
+  updateTime: string
+  isDelete: number
 }
 
 export interface Say {
-  _id: string
+  id: string
   content: string
-  from?: string
-  author?: string
+  author: string
+  origin: string
+  isTop: number
+  status: number
   createTime: string
+  updateTime: string
+  isDelete: number
 }

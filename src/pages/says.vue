@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Say } from '../types'
-import { cloudApi } from '~/composables'
+import { querySayList } from '~/api'
 
 interface SayInfo extends Say {
   color?: string
@@ -43,8 +43,8 @@ const initList = (data: Say[]) => {
 }
 
 const getSays = async () => {
-  const res = await cloudApi.invokeFunction('get-says', {})
-  initList(res.data)
+  const res = await querySayList()
+  initList(res.data.list)
   loadding.value = false
 }
 watch(useDebounce(windowSize.width, 500), () => {
@@ -58,18 +58,18 @@ getSays()
 
 <template>
   <div max-w-1000px p-4 m-auto>
-    <Loadding v-model="loadding" />
+    <Loadding :loadding="loadding" />
     <div v-if="!loadding">
       <div v-if="!isMini" flex gap-4>
         <div flex-1>
-          <SayCard v-for="s in list1" :key="s._id" :data="s" :delay="s.delay" />
+          <SayCard v-for="s in list1" :key="s.id" :data="s" :delay="s.delay" />
         </div>
         <div flex-1>
-          <SayCard v-for="s in list2" :key="s._id" :data="s" :delay="s.delay" />
+          <SayCard v-for="s in list2" :key="s.id" :data="s" :delay="s.delay" />
         </div>
       </div>
       <div v-else>
-        <SayCard v-for="s in says" :key="s._id" :data="s" :delay="s.delay" />
+        <SayCard v-for="s in says" :key="s.id" :data="s" :delay="s.delay" />
       </div>
     </div>
   </div>

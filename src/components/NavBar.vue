@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { queryCategoryList } from '~/api'
 import Message from '~/components/Message'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NavItem } from '~/types'
@@ -18,20 +19,7 @@ const menus = ref<NavItem[]>([
     name: '文',
     url: '/posts',
     icon: 'i-ri:mastodon-line',
-    children: [
-      {
-        name: '编程',
-        url: '/timeLine?type=posts&category=code',
-      },
-      {
-        name: '笔记',
-        url: '/timeLine?type=posts&category=note',
-      },
-      {
-        name: '读书',
-        url: '/timeLine?type=posts&category=reading',
-      },
-    ],
+    children: [],
   },
   {
     name: '记',
@@ -49,6 +37,17 @@ const menus = ref<NavItem[]>([
     url: '/projects',
   },
 ])
+
+const getCategories = async () => {
+  const res = await queryCategoryList()
+  if (res.code !== 200)
+    return
+  menus.value[0].children = res.data.map(item => ({
+    name: item.name,
+    url: `/category?id=${item.id}`,
+  }))
+}
+getCategories()
 watch(useThrottle(scroll.y, 100), () => {
   if (scroll.y.value > 60)
     bgOpacity.value = 1

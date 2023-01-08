@@ -1,32 +1,38 @@
 <script lang="ts" setup>
-import type { Article } from '~/types'
-import { cloudApi, formateToLocaleHasWeek } from '~/composables'
+import type { Note } from '~/types'
+import { formateToLocaleHasWeek } from '~/composables'
+import { queryNote, queryNoteList } from '~/api'
+import Message from '~/components/Message'
 
 const loading = ref(true)
-const note = ref<Article>()
-const notes = ref<Array<Article>>([])
+const note = ref<Note>()
+const notes = ref<Array<Note>>([])
 const route = useRoute()
 const id = computed(() => route.params.id as string)
 const index = computed(() => {
-  const idx = notes.value.findIndex(n => n._id === id.value)
+  const idx = notes.value.findIndex(n => n.id === id.value)
   return idx > 0 ? idx : 0
 })
 
 const getNote = async (id: string) => {
   loading.value = true
-  const res = await cloudApi.invokeFunction('get-note', { id })
+  const res = await queryNote(id)
   note.value = res.data
   loading.value = false
 }
 const getNotes = async () => {
-  const res = await cloudApi.invokeFunction('get-notes', {})
-  notes.value = res.data
+  const res = await queryNoteList()
+  notes.value = res.data.list
 }
 
 const fetchData = async () => {
   await getNotes()
+  if (notes.value.length === 0) {
+    Message.error('内容为空')
+    return
+  }
   if (id.value && id.value === 'latest')
-    getNote(notes.value[0]._id!)
+    getNote(notes.value[0].id!)
   else
     getNote(id.value)
 }
@@ -37,9 +43,9 @@ fetchData()
 </script>
 
 <template>
-  <Layout>
-    <Loadding v-model="loading" />
-    <div v-if="!loading && note" class="fade_in_up">
+  <Layout :loadding="loading">
+    <!-- <Loadding :loadding="loading" /> -->
+    <div v-if="note" class="fade_in_up">
       <div class="info" border p-4>
         <p class="left-label">
           {{ formateToLocaleHasWeek(note.createTime) }}
@@ -57,12 +63,12 @@ fetchData()
         </p>
         <div flex justify-between>
           <div>
-            <router-link v-if="index > 0" :to="`/notes/${notes[index - 1]?._id}`" btn>
+            <router-link v-if="index > 0" :to="`/notes/${notes[index - 1]?.id}`" btn>
               上一篇
             </router-link>
           </div>
           <div>
-            <router-link v-if="index < notes.length - 1" :to="`/notes/${notes[index + 1]?._id}`" btn>
+            <router-link v-if="index < notes.length - 1" :to="`/notes/${notes[index + 1]?.id}`" btn>
               下一篇
             </router-link>
           </div>

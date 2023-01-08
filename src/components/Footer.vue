@@ -1,18 +1,33 @@
+<script lang="ts" setup>
+const route = useRoute()
+
+const showFooter = computed(() => !route.path.includes('projects'))
+</script>
+
 <template>
-  <footer text-sm inline-flex justify-center gap-2 w-full p-10 relative>
-    <span>Powered by <a href="https://github.com/dva-ren">dvaren</a>.ohmycat</span>
+  <footer v-if="showFooter" text-sm w-full text-white>
+    <img class="footer-img" src="../assets/footer.png" alt="">
+    <div class="content" inline-flex justify-center gap-2 w-full bg="#67ACA0" py-10>
+      <p>
+        <span px-2>Powered by</span>
+        <a href="https://github.com/dva-ren">dvaren</a>
+        <span px-1>•</span>
+        <a href="https://github.com/dva-ren/ohmycat">ohmycat</a>
+      </p>
+    </div>
   </footer>
 </template>
 
 <style scoped>
-footer::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  width:100%;
-  height:2px;
-  background-image:linear-gradient(to right,rgb(207, 203, 203) 0%, rgb(214, 207, 207) 50%, transparent 75%);
-  background-size:20px 10px;
-  background-repeat:repeat-x;
+.footer-img{
+  width: 100%;
+  vertical-align: bottom;
+  transform: translateY(2px);
+}
+a{
+  transition: color .2s;
+}
+a:hover{
+  color: var(--yellow)
 }
 </style>

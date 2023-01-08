@@ -19,7 +19,7 @@ const emits = defineEmits(['onSelect'])
       </router-link>
       <template #content>
         <div v-for="child in data.children" :key="child.name">
-          <router-link :to="child.url" p-x-10 py-2 block hover:text-orange-400 transition>
+          <router-link :to="child.url" min-w-22 text-center py-2 block hover:text-orange-400 transition>
             {{ child.name }}
           </router-link>
         </div>

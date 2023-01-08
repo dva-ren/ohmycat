@@ -14,6 +14,7 @@ const loadding = ref(true)
   </div>
   <LoadMask v-model="loadding" @end="loadding = false" />
   <ToolsBar />
+  <Footer />
 </template>
 
 <style scoped>

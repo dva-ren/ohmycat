@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import type { Article } from '~/types'
-import { cloudApi, formatTime, getOutOfDate, getOutOfMouth, getOutOfYear } from '~/composables'
-
+import type { Note } from '~/types'
+import { formatTime, getOutOfDate, getOutOfMouth, getOutOfYear } from '~/composables'
+import { queryNoteList } from '~/api'
 const loading = ref(true)
-const list = ref<Array<Article>>([])
-const route = useRoute()
+const notes = ref<Array<Note>>([])
 
-const type = computed(() => route.query.type || 'posts')
-const category = computed(() => route.query.category)
 const outOfTime = ref<string | number>()
+const total = ref(0)
 
 const getNotes = async () => {
   let timer: any
@@ -20,38 +18,32 @@ const getNotes = async () => {
   onBeforeMount(() => {
     clearInterval(timer)
   })
-  const res = await cloudApi.invokeFunction('get-notes', {})
-  list.value = res.data.slice(0, 4)
+  const res = await queryNoteList()
+  notes.value = res.data.list
+  total.value = res.data.total
   loading.value = false
 }
-
-const getPosts = async () => {
-  loading.value = true
-  const res = await cloudApi.invokeFunction('get-article', { category: category.value })
-  list.value = res.data
-  loading.value = false
+const isNewYear = (date: string | Date, idx: number) => {
+  if (idx === 0)
+    return true
+  return (new Date(notes.value[idx - 1].createTime).getFullYear() !== new Date(date).getFullYear())
 }
-
-const fetchData = async () => {
-  if (type.value === 'posts')
-    getPosts()
-  else
-    getNotes()
-}
-watch(category, () => {
-  getPosts()
-})
-fetchData()
+getNotes()
 </script>
 
 <template>
-  <Layout class="fade_in_up">
-    <p text-xl>
-      时间线 · 记录生活
+  <Layout :loadding="loading">
+    <p text-2xl>
+      <TextAnimation text="时间线" />
     </p>
-    <div v-if="type === 'notes'" px-8>
+    <p text-gray py-1>
+      <TextAnimation :text="`共有${notes.length}篇文章,继续加油`" />
+    </p>
+    <div>
       <div text-sm text-gray-600 pt-4>
-        <p>今天是：{{ formateToLocaleHasWeek(new Date().toDateString()) }}</p>
+        <p py-1>
+          今天是：{{ formateToLocaleHasWeek(new Date().toDateString()) }}
+        </p>
         <p>今年已过: {{ getOutOfYear(new Date()) }}%</p>
         <p py-1>
           本月已过: {{ getOutOfMouth(new Date()) }}%
@@ -62,23 +54,22 @@ fetchData()
         </p>
       </div>
     </div>
-    <p v-else text-gray text="15px" py-1>
-      <span>该分类下共有</span>
-      <span px-2 text-gray-6>{{ list.length }}</span>
-      <span>篇文章</span>
-    </p>
-    <Loadding v-model="loading" />
-    <div v-if="!loading" px-10 py-4>
-      <p class="left-label" pl-4 py-2>
-        2022
-      </p>
+    <!-- <Loadding :loadding="loading" /> -->
+    <div v-if="!loading" px-2 py-4>
       <ul class="posts" text-gray-500>
-        <li v-for="item, idx in list" :key="item._id" class="item fade_in_up" :style="`--delay:${idx * 0.1}s`" flex items-center>
-          <span text-sm>{{ formatTime(item.createTime, 'MM/dd') }}</span>
-          <router-link :to="`/${type}/${item._id}`" class="link" px-2 text-gray-800>
-            {{ item.title }}
-          </router-link>
-        </li>
+        <template v-for="item, idx in notes" :key="item.id">
+          <div class="fade_in_up" :style="`--delay:${idx * 0.1}s`">
+            <p v-if="isNewYear(item.createTime, idx)" class="left-label" pl-4 py-2>
+              {{ new Date(item.createTime).getFullYear() }}
+            </p>
+            <li class="item" flex items-center>
+              <span text-sm>{{ formatTime(item.createTime, 'MM/dd') }}</span>
+              <router-link :to="`/notes/${item.id}`" class="link" px-2 text-gray-800>
+                {{ item.title }}
+              </router-link>
+            </li>
+          </div>
+        </template>
       </ul>
     </div>
   </Layout>
@@ -118,11 +109,10 @@ fetchData()
   transform: translateY(-90%);
 }
 .link{
-
 }
 .link:hover{
   /* outline: 1px solid orange; */
-  border-bottom: 1px orange solid;
-  /* text-decoration: underline orange; */
+  /* border-bottom: 1px orange solid; */
+  text-decoration: underline orange;
 }
 </style>

@@ -21,12 +21,12 @@ const modified = ref(true)
 const categories = ref<Category[]>([])
 
 const articleForm = ref<ArticleForm>({
-  _id: '',
+  id: '',
   title: '',
   content: '',
   label: [],
   category: {
-    _id: '',
+    id: '',
     name: '',
     category: '',
   },
@@ -47,7 +47,7 @@ const add = async () => {
       Message.success('更新成功')
       draft.value = undefined
       modified.value = false
-      router.push({ name: 'posts', params: { id: articleForm.value._id } })
+      router.push({ name: 'posts', params: { id: articleForm.value.id } })
     }
   }
   else {
@@ -56,7 +56,7 @@ const add = async () => {
       Message.success('添加成功')
       draft.value = undefined
       modified.value = false
-      router.push({ name: 'posts', params: { id: articleForm.value._id } })
+      router.push({ name: 'posts', params: { id: articleForm.value.id } })
     }
   }
 }
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-show="!id || articleForm._id" max-w-400 p-4 m-auto>
+  <div v-show="!id || articleForm.id" max-w-400 p-4 m-auto>
     <div py-2>
       <span style="color: red;">*</span>标题：<input v-model.trim="articleForm.title" bg-transparent type="text" border-b focus:outline-none>
     </div>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const { modelValue } = defineProps<{ modelValue: boolean }>()
+const { loadding } = defineProps<{ loadding: boolean }>()
 </script>
 
 <template>
-  <div v-if="modelValue" h-20 w-full flex justify-center items-center h-full>
+  <div v-if="loadding" h-20 w-full flex justify-center items-center h-full>
     <div class="loading">
       <div />
       <div />

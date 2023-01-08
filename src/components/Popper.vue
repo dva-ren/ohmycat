@@ -46,7 +46,10 @@ const handler: stringKey = {
   },
 } as const
 
-function handleWindowClick(e: MouseEvent) {
+function handleWindowClick(e: Event) {
+  visible.value = false
+}
+function handleWindowTouchMove(e: Event) {
   visible.value = false
 }
 
@@ -58,6 +61,7 @@ const trigger: stringKey = {
   hover: () => {
     popcorn.value!.addEventListener('mouseenter', handler.mouseenter)
     popcorn.value!.addEventListener('mouseleave', handler.mouseleave)
+    window.document.addEventListener('touchmove', handleWindowTouchMove)
   },
   focus: () => {
 
