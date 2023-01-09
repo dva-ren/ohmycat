@@ -37,9 +37,8 @@ const fetchData = async () => {
     getNote(id.value)
 }
 watch(id, () => {
-  getNote(id.value)
-})
-fetchData()
+  fetchData()
+}, { immediate: true })
 </script>
 
 <template>

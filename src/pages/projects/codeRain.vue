@@ -66,5 +66,6 @@ onMounted(() => {
 
 <route lang="yaml">
 meta:
-  full: true
+  hideFooter: true
 </route>
+

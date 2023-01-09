@@ -101,15 +101,14 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
               </div>
               <span px-3>朋友们</span>
             </div>
-            <router-link to="/notes/latest" class="icon" bg="#55bb8a" p-4>
+            <router-link to="/friends" class="icon" bg="#55bb8a" p-4>
               <div i-carbon:chevron-right text-lg />
             </router-link>
           </div>
-          <!-- <CardList :data="notes" type="notes" /> -->
-          <div flex gap-10 px-10>
-            <img shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-veloradio-FGCtVVph7PU.jpg" alt="">
-            <img shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-filipp_roman_photography-lUq5LSBaYtU.jpg" alt="">
-            <img shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
+          <div class="friends" flex gap-10 px-10 overflow-x-auto w-full>
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-veloradio-FGCtVVph7PU.jpg" alt="">
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-filipp_roman_photography-lUq5LSBaYtU.jpg" alt="">
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
           </div>
         </div>
         <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.3s">
@@ -150,5 +149,8 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
   padding: 0 .5em;
   height: 100%;
   color: white;
+}
+.friends::-webkit-scrollbar-thumb, .friends::-webkit-scrollbar-thum:hover {
+  background-color: rgba(0,0,0,0);
 }
 </style>

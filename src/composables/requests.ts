@@ -6,9 +6,9 @@ import type { Response } from '~/types'
 class HttpRequest {
   private readonly baseUrl: string
   constructor() {
-    this.baseUrl = 'http://localhost:4001/'
+    this.baseUrl = 'http://localhost:4000/'
     if (import.meta.env.MODE === 'production')
-      this.baseUrl = 'http://144.202.3.186:4001/'
+      this.baseUrl = 'http://192.3.59.150:4001/'
     // // this.baseUrl = 'https://v2.dvaren.xyz/api/api'
   }
 

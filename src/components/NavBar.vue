@@ -65,7 +65,7 @@ watch(route, () => {
 </script>
 
 <template>
-  <div h-20>
+  <header h-20>
     <div fixed top-0 w-full z-20>
       <header flex justify-between h-14 font-inter px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
         <router-link to="/" title="home" py-2>
@@ -90,7 +90,7 @@ watch(route, () => {
         <div i-ri:attachment-line />
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <style scoped>
