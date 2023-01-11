@@ -8,7 +8,7 @@ class HttpRequest {
   constructor() {
     this.baseUrl = 'http://localhost:4000/'
     if (import.meta.env.MODE === 'production')
-      this.baseUrl = 'https://api.dvaren.xyz/admin/'
+      this.baseUrl = 'https://api.dvaren.xyz/blog/'
   }
 
   getInsideConfig() {
@@ -58,7 +58,7 @@ class HttpRequest {
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
     this.interceptors(instance, options.url)
-    return instance(options) as unknown as Response<any>
+    return instance(options) as unknown as Promise<Response<any>>
   }
 }
 

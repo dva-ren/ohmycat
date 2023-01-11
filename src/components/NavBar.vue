@@ -67,7 +67,7 @@ watch(route, () => {
 <template>
   <header h-20>
     <div fixed top-0 w-full z-20>
-      <header flex justify-between h-14 font-inter px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
+      <div class="header" flex justify-between h-14 font-inter px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
         <router-link to="/" title="home" py-2>
           <Logo width="2.5rem" />
         </router-link>
@@ -80,7 +80,7 @@ watch(route, () => {
             <div i-ri-logout-box-r-line />
           </button>
         </nav>
-      </header>
+      </div>
       <!-- <div max-w-700px m-auto>
         1111
       </div> -->
@@ -94,8 +94,9 @@ watch(route, () => {
 </template>
 
 <style scoped>
-header::before{
+.header::before{
   opacity: 0;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;

@@ -55,7 +55,7 @@ getNotes()
       </div>
     </div>
     <!-- <Loadding :loadding="loading" /> -->
-    <div v-if="!loading" px-2 py-4>
+    <div v-if="!loading" pl-8 py-4>
       <ul class="posts" text-gray-500>
         <template v-for="item, idx in notes" :key="item.id">
           <div class="fade_in_up" :style="`--delay:${idx * 0.1}s`">

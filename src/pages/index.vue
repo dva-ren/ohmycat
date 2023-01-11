@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import type { Article, Note } from '~/types'
-import { queryArticleList, queryNoteList } from '~/api'
+import type { Article, Master, Note } from '~/types'
+import { queryArticleList, queryMaster, queryNoteList } from '~/api'
 import Message from '~/components/Message'
 
 const posts = ref<Array<Article>>([])
 const notes = ref<Array<Note>>([])
+const master = ref<Master>()
 const loading = ref(true)
 const words = ref('')
 
@@ -18,6 +19,10 @@ const getNotes = async () => {
   notes.value = res.data.list.slice(0, 4)
   loading.value = false
 }
+const getMaster = async () => {
+  const res = await queryMaster()
+  master.value = res.data
+}
 fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
   response.json().then((res) => {
     words.value = words.value = `「 ${res.hitokoto} 」 ——${res.from}`
@@ -26,7 +31,7 @@ fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
 function handleClick() {
   Message.warning('开发中~')
 }
-Promise.all([getPosts(), getNotes()]).catch((e) => {
+Promise.all([getPosts(), getNotes(), getMaster()]).catch((e) => {
   console.error('服务器出错=>', e)
   setTimeout(() => {
     Message.error('服务器出错了~')
@@ -38,13 +43,13 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
   <div>
     <div max-w-1050px m-auto gap-4 px-4 py-20>
       <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="fade_in_up">
-        <img src="https://image.dvaren.xyz/ohmycat/pictures/C2Nsbn_1672275786815.jpg?x-oss-process=image/resize,w_240" alt="t-bbi" h-30 w-30 rounded-full object-cover>
+        <img :src="master?.avatar" alt="t-bbi" h-30 w-30 rounded-full object-cover>
         <div text-center sm:text-left>
           <p text-xl font-bold>
-            T-BBI
+            {{ master?.nickname }}
           </p>
           <p text="sm gray-6" py-4>
-            这是我的小屋
+            {{ master?.introduce }}
           </p>
           <div text-gray-1>
             <a href="https://github.com/dva-ren" target="_blank" class="circle-icon" bg-blue-400>
@@ -106,9 +111,9 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
             </router-link>
           </div>
           <div class="friends" flex gap-10 px-10 overflow-x-auto w-full>
-            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-veloradio-FGCtVVph7PU.jpg" alt="">
-            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-filipp_roman_photography-lUq5LSBaYtU.jpg" alt="">
-            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="1https://image.dvaren.xyz/images/unsplash/bulksplash-veloradio-FGCtVVph7PU.jpg" alt="">
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="1https://image.dvaren.xyz/images/unsplash/bulksplash-filipp_roman_photography-lUq5LSBaYtU.jpg" alt="">
+            <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="1https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
           </div>
         </div>
         <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.3s">

@@ -56,7 +56,7 @@ watch(id, () => {
       </div>
       <div py-10>
         <p text-center py-4>
-          <router-link to="/timeLine?type=notes" border>
+          <router-link to="/timeLine?type=notes">
             时间线
           </router-link>
         </p>

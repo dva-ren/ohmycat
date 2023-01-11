@@ -1,8 +1,10 @@
 export interface Response<T> {
   code: number
   msg: string
+  token?: string
   data: T
 }
+export type AsyncResponse<T> = Promise<Response<T>>
 
 export interface PageParams {
   pageSize: number
@@ -93,4 +95,19 @@ export interface Say {
   createTime: string
   updateTime: string
   isDelete: number
+}
+
+export interface Master {
+  id: string
+  introduce: string
+  mail: string
+  url: string
+  username: string
+  nickname: string
+  avatar: string
+  socialIds: Array<{ key: string; value: string }>
+  lastLoginIp: string
+  lastLoginTime: string
+  createTime: string
+  updateTime: string
 }
