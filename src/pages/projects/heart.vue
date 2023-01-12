@@ -105,7 +105,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <Popper placement="top" class="fixed bottom-10 right-10" :offset="10">
+    <Popper placement="top" class="fixed bottom-20 right-4" :offset="10">
       <button p-2 rounded-full cursor-pointer select-none bg="#68b88e">
         <div i-ri:settings-4-line text-2xl text-gray-100 />
       </button>

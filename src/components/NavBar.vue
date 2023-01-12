@@ -67,9 +67,15 @@ watch(route, () => {
 <template>
   <header h-20>
     <div fixed top-0 w-full z-20>
-      <div class="header" flex justify-between h-14 font-inter px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
-        <router-link to="/" title="home" py-2>
-          <Logo width="2.5rem" />
+      <div class="header" flex justify-between h-14 px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
+        <router-link to="/" title="home" py-2 flex items-center gap-2>
+          <Logo inline-block />
+          <div display-none sm:display-block>
+            <p>灰色と青</p>
+            <p text="~ 12px gray-5">
+              不虚光阴
+            </p>
+          </div>
         </router-link>
         <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
           <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />

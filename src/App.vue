@@ -6,7 +6,7 @@ const meta = computed(() => route.meta)
 
 <template>
   <NavBar v-if="!meta.hideHeader" />
-  <main font-inter text="dark:gray-200" class="main" w-full>
+  <main font-sans text="dark:gray-200" class="main" w-full>
     <router-view v-slot="{ Component }">
       <component :is="Component" />
     </router-view>

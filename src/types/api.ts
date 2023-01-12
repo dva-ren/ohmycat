@@ -96,7 +96,9 @@ export interface Say {
   updateTime: string
   isDelete: number
 }
-
+/**
+ * 用户信息
+ */
 export interface Master {
   id: string
   introduce: string
@@ -108,6 +110,31 @@ export interface Master {
   socialIds: Array<{ key: string; value: string }>
   lastLoginIp: string
   lastLoginTime: string
+  createTime: string
+  updateTime: string
+}
+
+/**
+ * 评论
+ */
+export interface CommentForm {
+  ref: string
+  refType: string
+  author: string
+  mail: string
+  url: string
+  content: string
+  parent: string
+  commentsIndex: number
+  key: string
+  location: string
+  isWhispers: boolean
+  avatar: string
+}
+export interface Comment extends CommentForm {
+  id: string
+  children: Comment[]
+  status: number
   createTime: string
   updateTime: string
 }

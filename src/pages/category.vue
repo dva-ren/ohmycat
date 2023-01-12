@@ -31,7 +31,7 @@ watch(categoryId, () => {
       <TextAnimation :text="`该分类下共有${list.length}篇文章,加油!`" />
     </p>
     <!-- <Loadding :loadding="loading" /> -->
-    <div v-if="!loading" py-4 text-sm>
+    <div v-if="!loading" pl-8 py-4 text-sm>
       <ul class="posts" text-gray-500>
         <template v-for="item, idx in list" :key="item.id">
           <li class="item fade_in_up" :style="`--delay:${idx * 0.1}s`" flex items-center tracking-wider>

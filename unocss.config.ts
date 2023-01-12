@@ -29,7 +29,7 @@ export default defineConfig({
     }),
     presetWebFonts({
       fonts: {
-        sans: 'DM Sans',
+        sans: 'Noto Sans SC',
         inter: 'Inter:400,600,800',
         serif: 'DM Serif Display',
         mono: 'DM Mono',

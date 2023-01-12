@@ -51,7 +51,7 @@ function getImageUrl() {
   color: #f6cec1;
 }
 .card .bg-img{
-  transition: transform .2s;
+  transition: transform .4s;
   /* object-fit: cover; */
 }
 .card:hover .bg-img{
