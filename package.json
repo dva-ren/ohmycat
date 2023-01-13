@@ -22,10 +22,12 @@
     "animate.css": "^4.1.1",
     "axios": "^1.2.2",
     "date-fns": "^2.29.3",
+    "dayjs": "^1.11.7",
     "install": "^0.13.0",
     "laf-client-sdk": "^0.8.13",
     "md-editor-v3": "^2.7.2",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-lazyload": "3.0.0-rc.2",
     "vue-router": "^4.1.6"

@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import type { Article, Master, Note } from '~/types'
-import { queryArticleList, queryMaster, queryNoteList } from '~/api'
+import type { Article, Note } from '~/types'
+import { queryArticleList, queryNoteList } from '~/api'
 import Message from '~/components/Message'
+import { useMainStore } from '~/store'
 
 const posts = ref<Array<Article>>([])
 const notes = ref<Array<Note>>([])
-const master = ref<Master>()
+const mainStore = useMainStore()
+const master = computed(() => mainStore.master)
+
 const loading = ref(true)
 const words = ref('')
 
@@ -19,10 +22,7 @@ const getNotes = async () => {
   notes.value = res.data.list.slice(0, 4)
   loading.value = false
 }
-const getMaster = async () => {
-  const res = await queryMaster()
-  master.value = res.data
-}
+
 fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
   response.json().then((res) => {
     words.value = words.value = `「 ${res.hitokoto} 」 ——${res.from}`
@@ -31,7 +31,7 @@ fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
 function handleClick() {
   Message.warning('开发中~')
 }
-Promise.all([getPosts(), getNotes(), getMaster()]).catch((e) => {
+Promise.all([getPosts(), getNotes()]).catch((e) => {
   console.error('服务器出错=>', e)
   setTimeout(() => {
     Message.error('服务器出错了~')

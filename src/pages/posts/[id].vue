@@ -4,11 +4,12 @@ import type { Article } from '~/types'
 import { formateToLocale } from '~/composables'
 import Message from '~/components/Message'
 import { queryArticle } from '~/api'
+import { useMainStore } from '~/store'
 
 const { id } = defineProps<{ id: string }>()
 const MdCatalog = MdEditor.MdCatalog
 const scrollElement = document.documentElement
-
+const mainStore = useMainStore()
 const loading = ref(true)
 
 const articleData = ref<Article>()
@@ -26,8 +27,8 @@ getArticle()
 </script>
 
 <template>
-  <Layout v-if="articleData" :loadding="loading">
-    <div class="fade_in_up">
+  <Layout :loadding="loading">
+    <div v-if="articleData">
       <div w-full>
         <div flex items-center justify-between mb-4>
           <div text-2xl>
@@ -40,7 +41,7 @@ getArticle()
         <div mt-10 text="xs gray" md:text-sm>
           <p>文章标题：{{ articleData.title }}</p>
           <p py-2>
-            文章作者：T-BBI
+            文章作者：{{ mainStore.master?.nickname }}
           </p>
           <p>最后修改时间：{{ formateToLocale(articleData.updateTime) || formateToLocale(articleData.createTime) }}</p>
           <p w-full my-4 h-1px bg-gray-2 />
@@ -52,8 +53,11 @@ getArticle()
           </div>
         </div>
         <div my-10 text-gray-5>
-          <button @click="$router.go(-1)">
-            <div i-ri-arrow-left-line inline-block vertical-top text-xl />返回..
+          <button flex items-center style="color: var(--light-brown);" @click="$router.go(-1)">
+            <div i-ri-arrow-left-line inline-block />
+            <div text-sm>
+              返回..
+            </div>
           </button>
         </div>
       </div>
@@ -78,4 +82,3 @@ getArticle()
   background-color: rgba(224,224,224,0.1) !important;
 }
 </style>
-

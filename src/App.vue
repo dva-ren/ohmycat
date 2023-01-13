@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useMainStore } from './store'
+
 const loadding = ref(true)
 const route = useRoute()
 const meta = computed(() => route.meta)
+useMainStore().getMaster()
 </script>
 
 <template>

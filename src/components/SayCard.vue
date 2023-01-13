@@ -11,7 +11,7 @@ const { data, delay = 0 } = defineProps<{ data: SayInfo; delay?: number }>()
 const sayItem = ref<HTMLDivElement>()
 const transition = {
   type: 'spring',
-  stiffness: 400,
+  stiffness: 200,
   damping: 20,
   mass: 1,
 }
@@ -42,8 +42,9 @@ onMounted(() => {
       <em flex-1>
         发布于：{{ relativeTime(data.createTime) }}
       </em>
-      <em>{{ data.author }}</em>-
-      <em>{{ data.origin }}</em>
+      <em>{{ data.author }}</em>
+      <span v-if="data.origin">-</span>
+      <span>{{ data.origin }}</span>
     </div>
   </div>
 </template>
@@ -64,6 +65,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
+  gap: 4px;
 }
 
 @keyframes bounceInUp {

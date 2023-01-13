@@ -32,7 +32,7 @@ const initList = (data: Say[]) => {
     const s = {
       ...say,
       color: colors[idx % colors.length],
-      delay: idx * 0.1,
+      delay: idx * 0.2,
     }
     says.value.push(s)
     if (idx % 2 === 0)

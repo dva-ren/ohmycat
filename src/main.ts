@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
 import './composables/verifyToken'
-
+import { createPinia } from 'pinia'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import '@unocss/reset/tailwind.css'
@@ -12,6 +12,7 @@ import './styles/prose.css'
 import './styles/markdown.css'
 import 'animate.css'
 import VueLazyload from 'vue-lazyload'
+import spring from './composables/spring'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -30,8 +31,10 @@ router.afterEach(() => {
   // document.body.scrollTop = 0
   NProgress.done()
 })
+app.directive('spring', spring)
 app.use(VueLazyload, {
   observer: true,
 })
+app.use(createPinia())
 app.use(router)
 app.mount('#app')

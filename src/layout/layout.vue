@@ -17,7 +17,7 @@ const { full, loadding } = defineProps({
       <slot />
     </div>
     <Loadding :loadding="loadding" />
-    <div v-if="!full && !loadding" v-bind="$attrs" flex justify-center class="fade_in_up">
+    <div v-if="!full && !loadding" v-spring v-bind="$attrs" flex justify-center>
       <div w-60 display-none lg:display-block>
         <slot name="pre" />
       </div>
