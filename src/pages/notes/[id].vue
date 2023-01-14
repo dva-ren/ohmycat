@@ -124,6 +124,7 @@ watch(id, () => {
         </div>
       </div>
       <div py-10 style="color: var(--light-brown)" />
+      <Comment v-if="note.allowComment" :ref-id="id" type="note" />
     </div>
   </Layout>
 </template>

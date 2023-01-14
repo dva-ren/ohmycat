@@ -1,13 +1,13 @@
 import http from '~/composables/requests'
-import type { Category, Response } from '~/types'
+import type { AsyncResponse, Category } from '~/types'
 
-export const queryCategoryList = (): Response<Array<Category>> => {
+export const queryCategoryList = (): AsyncResponse<Array<Category>> => {
   return http.request({
     url: '/category',
     method: 'GET',
   })
 }
-export const queryCategory = (id: string): Response<Category> => {
+export const queryCategory = (id: string): AsyncResponse<Category> => {
   return http.request({
     url: `/category/${id}`,
     method: 'GET',

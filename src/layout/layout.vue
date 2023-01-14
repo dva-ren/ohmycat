@@ -21,7 +21,7 @@ const { full, loadding } = defineProps({
       <div w-60 display-none lg:display-block>
         <slot name="pre" />
       </div>
-      <div p-4 max-w-750px min-w-0 sm:min-w-750px flex-1>
+      <div p-4 max-w-750px min-w-0 sm:max-w-750px flex-1>
         <slot />
       </div>
       <div w-60 display-none lg:display-block>

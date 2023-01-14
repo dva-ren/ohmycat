@@ -128,7 +128,7 @@ export interface CommentForm {
   commentsIndex: number
   key: string
   location: string
-  isWhispers: boolean
+  isWhispers: number
   avatar: string
 }
 export interface Comment extends CommentForm {

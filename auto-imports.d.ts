@@ -28,6 +28,7 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
+  const dateFns: typeof import('./src/composables/date')['dateFns']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -36,6 +37,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const formatTime: typeof import('./src/composables/time')['formatTime']
+  const formateDate: typeof import('./src/composables/date')['formateDate']
   const formateToLocale: typeof import('./src/composables/time')['formateToLocale']
   const formateToLocaleHasWeek: typeof import('./src/composables/time')['formateToLocaleHasWeek']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -318,6 +320,7 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dateFns: UnwrapRef<typeof import('./src/composables/date')['dateFns']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -326,6 +329,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatTime: UnwrapRef<typeof import('./src/composables/time')['formatTime']>
+    readonly formateDate: UnwrapRef<typeof import('./src/composables/date')['formateDate']>
     readonly formateToLocale: UnwrapRef<typeof import('./src/composables/time')['formateToLocale']>
     readonly formateToLocaleHasWeek: UnwrapRef<typeof import('./src/composables/time')['formateToLocaleHasWeek']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>

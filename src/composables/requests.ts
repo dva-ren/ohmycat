@@ -49,7 +49,7 @@ class HttpRequest {
       if (error.response.status === 500)
         Message.error('服务器错误')
       else
-        Message.error(error.msg)
+        Message.error(`未知错误->${error}`)
       return Promise.reject(error)
     })
   }

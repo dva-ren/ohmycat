@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
+    Comment: typeof import('./src/components/Comment.vue')['default']
+    CommentItem: typeof import('./src/components/CommentItem.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Full: typeof import('./src/layout/full.vue')['default']
     Layout: typeof import('./src/layout/layout.vue')['default']
