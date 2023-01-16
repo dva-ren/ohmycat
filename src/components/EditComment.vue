@@ -79,15 +79,15 @@ onMounted(() => {
   <div>
     <div flex gap-4 flex-col sm:flex-row>
       <div class="input-area">
-        <span i-ri-user-heart-line />
+        <span class="icon" i-ri-user-heart-line />
         <input v-model="commentForm.author" type="text" placeholder="昵称 *">
       </div>
       <div class="input-area">
-        <div i-ri-mail-send-line inline-block />
+        <div class="icon" i-ri-mail-send-line inline-block />
         <input v-model="commentForm.mail" type="text" placeholder="邮箱 *">
       </div>
       <div class="input-area">
-        <div i-ri-earth-line />
+        <div class="icon" i-ri-earth-line />
         <input v-model="commentForm.url" type="text" placeholder="网站(可留空)">
       </div>
     </div>
@@ -172,5 +172,8 @@ textarea{
 }
 .checked{
   border:none;
+}
+.icon{
+  color: var(--light-color);
 }
 </style>

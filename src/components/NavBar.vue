@@ -117,7 +117,9 @@ watch(route, () => {
   opacity: var(--opacity);
   border-bottom: 1px solid #bbb3;
 }
-
+.dark .header::before{
+  background-color: rgba(255, 255, 255, 0.08);
+}
 .nav{
   position: relative;
 }
