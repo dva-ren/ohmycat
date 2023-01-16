@@ -42,7 +42,7 @@ watch(useThrottle(scroll.y, 100), (curr, pre) => {
 
 <style scoped>
 .button{
-  color: var(--light-brown);
+  color: var(--light-color);
   padding: .74rem;
   background-color: white;
   border-radius: 9999px;

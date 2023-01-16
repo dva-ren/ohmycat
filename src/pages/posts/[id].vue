@@ -53,7 +53,7 @@ getArticle()
           </div>
         </div>
         <div my-10 text-gray-5>
-          <button flex items-center style="color: var(--light-brown);" @click="$router.go(-1)">
+          <button flex items-center style="color: var(--light-color);" @click="$router.go(-1)">
             <div i-ri-arrow-left-line inline-block />
             <div text-sm>
               返回..

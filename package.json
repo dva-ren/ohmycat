@@ -24,6 +24,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "install": "^0.13.0",
+    "js-md5": "^0.7.3",
     "laf-client-sdk": "^0.8.13",
     "md-editor-v3": "^2.7.2",
     "nprogress": "^0.2.0",

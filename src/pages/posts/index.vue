@@ -46,7 +46,7 @@ getPosts()
 
 <style scoped>
 .post-item{
-  color: var(--light-brown);
+  color: var(--light-color);
 }
 .dark .post-item{
   color: var(--dark-brown);

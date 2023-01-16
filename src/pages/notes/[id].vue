@@ -60,14 +60,14 @@ watch(id, () => {
   <Layout :loadding="loading">
     <!-- <Loadding :loadding="loading" /> -->
     <div v-if="note">
-      <div class="info" border p-4>
+      <div class="info" border p-4 mb-8>
         <p class="left-label">
           {{ formateToLocaleHasWeek(note.createTime) }}
         </p>
         <p text-center p-4 text="16.8px">
           {{ note.title }}
         </p>
-        <MyEditor v-model="note.content" min-h-60vh />
+        <MyEditor v-model="note.content" min-h-100 />
         <div class="line" />
         <div text="center sm">
           <router-link to="/timeLine?type=notes">
@@ -123,7 +123,6 @@ watch(id, () => {
           </div>
         </div>
       </div>
-      <div py-10 style="color: var(--light-brown)" />
       <Comment v-if="note.allowComment" :ref-id="id" type="note" />
     </div>
   </Layout>
@@ -131,7 +130,7 @@ watch(id, () => {
 
 <style scoped>
 .info{
-  color: var(--light-brown);
+  color: var(--light-color);
   position: relative;
 }
 .dark .info{
