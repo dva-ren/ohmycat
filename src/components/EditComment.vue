@@ -3,7 +3,7 @@ import Message from './Message'
 import type { CommentForm } from '~/types'
 import { addComment } from '~/api'
 
-const { refId, type, index, parentId = '' } = defineProps<{ refId: string; type: string; index: number; parentId?: string }>()
+const { refId, type, index, parentId = '', root = false } = defineProps<{ refId: string; type: string; index: number; parentId?: string; root?: boolean }>()
 
 const emits = defineEmits(['onSend'])
 
@@ -48,7 +48,10 @@ const handleAddComment = useThrottleFn(async () => {
   processing.value = true
   const res = await addComment(commentForm)
   if (res.code === 200) {
-    Message.success('评论成功')
+    if (commentForm.isWhispers)
+      Message.success('收到你的悄悄话啦')
+    else
+      Message.success('感谢评论')
     emits('onSend')
     commentForm.content = ''
     localStorage.setItem('user', JSON.stringify({
@@ -88,7 +91,7 @@ onMounted(() => {
       </div>
       <div class="input-area">
         <div class="icon" i-ri-earth-line />
-        <input v-model="commentForm.url" type="text" placeholder="网站(可留空)">
+        <input v-model="commentForm.url" type="text" placeholder="网站(可留空)http?s">
       </div>
     </div>
     <div mt-8>
@@ -134,6 +137,7 @@ textarea{
   transition: background-color .2s;
 }
 .input-area{
+  flex-grow: 1;
   display: flex;
   align-items: center;
   padding: 0.1rem 0.5rem;

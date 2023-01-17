@@ -35,7 +35,7 @@ getArticle()
             {{ articleData?.title }}
           </div>
         </div>
-        <div>
+        <div min-h-100>
           <MyEditor v-model="articleData.content" />
         </div>
         <div mt-10 text="xs gray" md:text-sm>

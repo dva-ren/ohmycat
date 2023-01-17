@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Comment: typeof import('./src/components/Comment.vue')['default']
     CommentItem: typeof import('./src/components/CommentItem.vue')['default']
     EditComment: typeof import('./src/components/EditComment.vue')['default']
+    Empty: typeof import('./src/components/Empty.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Full: typeof import('./src/layout/full.vue')['default']
     Layout: typeof import('./src/layout/layout.vue')['default']
