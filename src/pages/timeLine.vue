@@ -64,9 +64,13 @@ getNotes()
             </p>
             <li class="item" flex items-center>
               <span text-sm>{{ formatTime(item.createTime, 'MM/dd') }}</span>
-              <router-link :to="`/notes/${item.id}`" class="link" px-2 text-gray-800>
+              <router-link :to="`/notes/${item.id}`" class="link" mx-2 text-gray-800 text-sm>
                 {{ item.title }}
               </router-link>
+              <span text="12px">
+                <span>这天的心情：{{ item.mood }}/</span>
+                <span>这天的天气：{{ item.weather }}</span>
+              </span>
             </li>
           </div>
         </template>
@@ -111,8 +115,7 @@ getNotes()
 .link{
 }
 .link:hover{
-  /* outline: 1px solid orange; */
-  /* border-bottom: 1px orange solid; */
-  text-decoration: underline orange;
+  border-bottom: 1px orange solid;
+  /* text-decoration: underline orange; */
 }
 </style>

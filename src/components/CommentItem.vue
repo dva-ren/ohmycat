@@ -22,7 +22,7 @@ const onReplayed = () => {
         <span text="gray-500">
           <span pl-2>{{ dateFns(data.createTime).fromNow() }}</span>
           <span mx-2>#{{ data.commentsIndex }}</span>
-          <span v-if="data.location">来自：{{ data.location }}xxx</span>
+          <span v-if="data.location">来自：{{ data.location }}</span>
         </span>
       </div>
       <div py-4 text="sm" text-black dark:text-gray-4>
@@ -31,7 +31,7 @@ const onReplayed = () => {
       <button mb-2 text="gray-500" @click="visible = !visible">
         回复
       </button>
-      <EditComment v-if="visible" text-base :index="index" :ref-id="data.ref" :type="data.refType" :parent-id="data.ref" @on-send="onReplayed" />
+      <EditComment v-if="visible" text-base :index="index" :ref-id="data.ref" :type="data.refType" :parent-id="data.id" @on-send="onReplayed" />
       <CommentItem v-for="child in data.children" :key="child.id" :data="child" :index="data.children.length" />
     </div>
   </div>

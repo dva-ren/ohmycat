@@ -23,7 +23,7 @@ const getNotes = async () => {
   loading.value = false
 }
 
-fetch('https://v1.hitokoto.cn/?encode=json&lang=cn').then((response) => {
+fetch('https://v1.hitokoto.cn').then((response) => {
   response.json().then((res) => {
     words.value = words.value = `「 ${res.hitokoto} 」 ——${res.from}`
   })
@@ -124,9 +124,9 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
               </div>
               <span px-3>了解更多</span>
             </div>
-            <button class="icon" bg="#2376b7" p-4 @click="Message.warning('没有更多了')">
+            <!-- <button class="icon" bg="#2376b7" p-4 @click="Message.warning('没有更多了')">
               <div i-carbon:chevron-right text-lg />
-            </button>
+            </button> -->
           </div>
           <div grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-8 text-sm>
             <router-link to="/about">

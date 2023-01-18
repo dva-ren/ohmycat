@@ -5,21 +5,21 @@ const instances: Fires[] = []
 let ctx: CanvasRenderingContext2D
 const options = reactive({
   random: true,
-  randomSpeed: 20,
-  speed: 2,
+  randomSpeed: 35,
+  speed: 10,
   size: 2,
   color: 60,
   count: 60,
 })
 const handleClick = (e: MouseEvent) => {
-  const f = new Fires(canvas!, ctx, e.x, e.y, options.count, options.size)
+  const f = new Fires(canvas!, ctx, e.x, e.y, options.count, options.size, options.speed)
   instances.push(f)
 }
 const reset = () => {
   Object.assign(options, {
     random: true,
-    randomSpeed: 20,
-    speed: 2,
+    randomSpeed: 35,
+    speed: 10,
     size: 2,
     color: 60,
     count: 60,
@@ -36,7 +36,7 @@ onMounted(() => {
   function start() {
     requestAnimationFrame(() => {
       if (options.random && idx % options.randomSpeed === 0) {
-        const f = new Fires(canvas!, ctx, Math.random() * canvas!.width, Math.random() * canvas!.height, options.count, options.size)
+        const f = new Fires(canvas!, ctx, Math.random() * canvas!.width, Math.random() * canvas!.height, options.count, options.size, options.speed)
         instances.push(f)
       }
       idx++

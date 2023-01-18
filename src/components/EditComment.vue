@@ -62,6 +62,12 @@ const handleAddComment = useThrottleFn(async () => {
   }
   processing.value = false
 }, 1000)
+
+const handleEmoji = (e: MouseEvent) => {
+  if (e.target === e.currentTarget)
+    return
+  commentForm.content += e.target.innerText
+}
 onMounted(() => {
   const user = localStorage.getItem('user')
   if (user) {
@@ -91,7 +97,7 @@ onMounted(() => {
       </div>
       <div class="input-area">
         <div class="icon" i-ri-earth-line />
-        <input v-model="commentForm.url" type="text" placeholder="网站(可留空)http?s">
+        <input v-model="commentForm.url" type="text" placeholder="网站(可留空)http(s)">
       </div>
     </div>
     <div mt-8>
@@ -104,10 +110,10 @@ onMounted(() => {
             (≧∇≦)ﾉ
           </button>
           <template #content>
-            <div p-4 text-sm flex gap-2>
-              <span hover:text-orange>( •̀ ω •́ )✧</span>
-              <span hover:text-orange>(～￣▽￣)～</span>
-              <span hover:text-orange>(*^▽^*)</span>
+            <div p-4 text-sm flex gap-2 class="emoji" @click="handleEmoji">
+              <span>( •̀ ω •́ )✧</span>
+              <span>(～￣▽￣)～</span>
+              <span>(*^▽^*)</span>
             </div>
           </template>
         </Popper>
@@ -179,5 +185,12 @@ textarea{
 }
 .icon{
   color: var(--light-color);
+}
+.emoji span{
+  cursor: pointer;
+  transition: color 0.1s;
+}
+.emoji span:hover{
+  color: rgba(251, 146, 60,1)
 }
 </style>
