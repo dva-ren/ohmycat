@@ -6,6 +6,8 @@ export const useMainStore = defineStore('main', {
   state() {
     return {
       master: {} as Master,
+      player: null,
+      showPlayer: false,
     }
   },
   actions: {

@@ -4,7 +4,12 @@ import { useMainStore } from './store'
 const loadding = ref(true)
 const route = useRoute()
 const meta = computed(() => route.meta)
-useMainStore().getMaster()
+const mainStore = useMainStore()
+mainStore.getMaster()
+const showPlayer = computed(() => mainStore.showPlayer)
+onMounted(() => {
+  console.log(showPlayer.value)
+})
 </script>
 
 <template>
@@ -20,6 +25,7 @@ useMainStore().getMaster()
   </div>
   <LoadMask v-model="loadding" @end="loadding = false" />
   <ToolsBar />
+  <Player v-if="showPlayer" />
 </template>
 
 <style scoped>

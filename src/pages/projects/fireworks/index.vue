@@ -3,27 +3,21 @@ import { Fires } from './Fire'
 const canvas = $ref<HTMLCanvasElement>()
 const instances: Fires[] = []
 let ctx: CanvasRenderingContext2D
-const options = reactive({
+const initValue = {
   random: true,
   randomSpeed: 35,
-  speed: 10,
+  speed: 5,
   size: 2,
   color: 60,
   count: 60,
-})
+}
+const options = reactive(initValue)
 const handleClick = (e: MouseEvent) => {
   const f = new Fires(canvas!, ctx, e.x, e.y, options.count, options.size, options.speed)
   instances.push(f)
 }
 const reset = () => {
-  Object.assign(options, {
-    random: true,
-    randomSpeed: 35,
-    speed: 10,
-    size: 2,
-    color: 60,
-    count: 60,
-  })
+  Object.assign(options, initValue)
 }
 const repaint = () => {
 
@@ -36,7 +30,7 @@ onMounted(() => {
   function start() {
     requestAnimationFrame(() => {
       if (options.random && idx % options.randomSpeed === 0) {
-        const f = new Fires(canvas!, ctx, Math.random() * canvas!.width, Math.random() * canvas!.height, options.count, options.size, options.speed)
+        const f = new Fires(canvas!, ctx, Math.random() * canvas!.width, Math.random() * canvas!.height - 80, options.count, options.size, options.speed)
         instances.push(f)
       }
       idx++
