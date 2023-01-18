@@ -43,5 +43,13 @@
     "icon": "carbon:button-centered",
     "color": "#c08eaf",
     "url": "/projects/boardButton"
+  },
+  {
+    "name": "fireworks",
+    "descrption": "云看烟花",
+    "target": "_blank",
+    "icon": "ri-fire-fill",
+    "color": "#ea517f",
+    "url": "/projects/fireworks"
   }
 ]

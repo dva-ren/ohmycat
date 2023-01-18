@@ -20,6 +20,7 @@ import projects from './projects.json'
       <div i-ri:emotion-laugh-fill />
       <div i-ri-snowy-fill />
       <div i-carbon:button-centered />
+      <div i-ri-fire-fill />
     </div>
   </Layout>
 </template>
