@@ -123,7 +123,7 @@ watch(id, () => {
           </div>
         </div>
       </div>
-      <Comment v-if="note.allowComment" :ref-id="id" type="note" />
+      <Comment v-if="note.allowComment" :ref-id="id === 'latest' ? notes[0].id : id" type="note" />
     </div>
   </Layout>
 </template>

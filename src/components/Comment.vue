@@ -15,7 +15,9 @@ const getComments = async () => {
   total.value = res.data.total + 1
   loadding.value = false
 }
-getComments()
+watch(() => refId, () => {
+  getComments()
+}, { immediate: true })
 </script>
 
 <template>

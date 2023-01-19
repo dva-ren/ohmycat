@@ -7,9 +7,6 @@ const meta = computed(() => route.meta)
 const mainStore = useMainStore()
 mainStore.getMaster()
 const showPlayer = computed(() => mainStore.showPlayer)
-onMounted(() => {
-  console.log(showPlayer.value)
-})
 </script>
 
 <template>
