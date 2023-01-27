@@ -94,6 +94,7 @@ declare global {
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const relativeTime: typeof import('./src/composables/time')['relativeTime']
   const requests: typeof import('./src/composables/requests')['default']
+  const resizeImgUrl: typeof import('./src/composables/utils')['resizeImgUrl']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveDirective: typeof import('vue')['resolveDirective']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
@@ -386,6 +387,7 @@ declare module 'vue' {
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly relativeTime: UnwrapRef<typeof import('./src/composables/time')['relativeTime']>
     readonly requests: UnwrapRef<typeof import('./src/composables/requests')['default']>
+    readonly resizeImgUrl: UnwrapRef<typeof import('./src/composables/utils')['resizeImgUrl']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveDirective: UnwrapRef<typeof import('vue')['resolveDirective']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>

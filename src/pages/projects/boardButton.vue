@@ -1,6 +1,6 @@
 <template>
   <div flex items-center justify-center h-120>
-    <a href="#" class="button button--bird">
+    <a class="button button--bird">
       <div class="button__wrapper">
         <span class="button__text">ENTRY</span>
       </div>
@@ -343,4 +343,3 @@ meta:
   hideHeader: true
   hideFooter: true
 </route>
-
