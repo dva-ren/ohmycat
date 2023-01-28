@@ -16,7 +16,7 @@ getPosts()
 
 <template>
   <Layout :loadding="loading">
-    <div v-for="p in posts" :key="p.id" class="post-item " pb-8>
+    <div v-for="p, idx in posts" :key="p.id" v-spring:delay="idx * 100" class="post-item " pb-8>
       <div>
         <div class="left-label" display-none sm:display-block>
           {{ formatTime(p.createTime, 'yyyy-MM-dd') }}

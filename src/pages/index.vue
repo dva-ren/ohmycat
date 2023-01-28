@@ -42,8 +42,8 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
 <template>
   <div>
     <div max-w-1050px m-auto gap-4 px-4 py-20>
-      <div flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6 class="fade_in_up">
-        <img :src="master?.avatar" alt="t-bbi" h-30 w-30 rounded-full object-cover>
+      <div v-spring flex flex-col items-center justify-center sm="flex-row justify-unset" gap-6>
+        <img :src="master?.avatar" alt="t-bbi" h-30 w-30 rounded-full object-cover p-1 bg-gray-2 shadow>
         <div text-center sm:text-left>
           <p text-xl font-bold>
             {{ master?.nickname }}
@@ -51,7 +51,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           <p text="sm gray-6" py-4>
             {{ master?.introduce }}
           </p>
-          <div text-gray-1>
+          <div v-spring:delay="100" text-gray-1>
             <a href="https://github.com/dva-ren" target="_blank" class="circle-icon" bg-blue-400>
               <div i-carbon:logo-github class="v-icon" inline-block />
             </a>
@@ -70,7 +70,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
       <TextAnimation :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
       <!-- <Loadding :loadding="loading" /> -->
       <div v-if="!loading">
-        <div text-white text-sm class="fade_in_up" style="--delay: 0.1s">
+        <div v-spring:delay="100" text-white text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#74759b">
               <div class="icon" bg="#2e317c">
@@ -84,7 +84,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           </div>
           <CardList :data="posts" />
         </div>
-        <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.2s">
+        <div v-spring:delay="200" text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#f17666">
               <div class="icon" bg="#ed3321">
@@ -98,7 +98,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           </div>
           <CardList :data="notes" type="notes" />
         </div>
-        <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.2s">
+        <div v-spring:delay="300" text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#55bb8a">
               <div class="icon" bg="#12a182">
@@ -116,7 +116,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
             <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
           </div>
         </div>
-        <div text-white mt-10 text-sm class="fade_in_up" style="--delay: 0.3s">
+        <div v-spring:delay="400" text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#2376b7">
               <div class="icon" bg="#144a74">

@@ -67,6 +67,9 @@ watch(id, () => {
         <p text-center p-4 text="16.8px">
           {{ note.title }}
         </p>
+        <div v-if="note.musicId" flex justify-center my-4>
+          <MusicCard :id="note.musicId" />
+        </div>
         <MyEditor v-model="note.content" min-h-100 />
         <div class="line" />
         <div text="center sm">

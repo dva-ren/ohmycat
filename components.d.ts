@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     Logo: typeof import('./src/components/Logo.vue')['default']
     Message: typeof import('./src/components/Message/message.vue')['default']
     Modal: typeof import('./src/components/Modal.vue')['default']
+    MusicCard: typeof import('./src/components/MusicCard.vue')['default']
     MyEditor: typeof import('./src/components/MyEditor.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NavItem: typeof import('./src/components/NavItem.vue')['default']

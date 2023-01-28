@@ -21,7 +21,9 @@ export default {
     })
     el.apply = apply
   },
-  mounted(el) {
-    el.apply('show')
+  mounted(el, binding) {
+    setTimeout(() => {
+      el.apply('show')
+    }, binding.value || 0)
   },
 }
