@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import MdEditor from 'md-editor-v3'
 import type { Article } from '~/types'
 import { formateToLocale } from '~/composables'
 import Message from '~/components/Message'
@@ -7,7 +6,6 @@ import { queryArticle } from '~/api'
 import { useMainStore } from '~/store'
 
 const { id } = defineProps<{ id: string }>()
-const MdCatalog = MdEditor.MdCatalog
 const scrollElement = document.documentElement
 const mainStore = useMainStore()
 const loading = ref(true)
@@ -31,7 +29,7 @@ getArticle()
     <div v-if="articleData">
       <div w-full>
         <div flex items-center justify-between mb-4>
-          <div text-2xl>
+          <div text-2xl style="color: var(--light-color)">
             {{ articleData?.title }}
           </div>
         </div>
@@ -65,11 +63,7 @@ getArticle()
     </div>
     <template #sidebar>
       <div sticky top-20 mt-20 text-sm>
-        <MdCatalog
-          editor-id="my-editor"
-          :scroll-element="scrollElement"
-          theme="light"
-        />
+        目录
       </div>
     </template>
   </Layout>
