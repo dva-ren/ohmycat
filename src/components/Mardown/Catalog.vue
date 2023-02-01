@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useCatalog } from './catalog'
+import { useCatalog } from './Catalog'
 
 const { anchor, active } = useCatalog()
 const index = ref(0)
