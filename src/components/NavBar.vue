@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { queryCategoryList } from '~/api'
 import Message from '~/components/Message'
+import { useMainStore } from '~/store'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NavItem } from '~/types'
 
+const mainStore = useMainStore()
 const route = useRoute()
 const token = useLocalStorage('token', null)
 const logout = () => {
@@ -11,8 +13,10 @@ const logout = () => {
   Message.success('登出成功')
 }
 const bgOpacity = ref(0)
+const showInfo = ref(false)
 const scroll = useWindowScroll()
 const navIdx = ref(-1)
+const headerInfo = computed(() => mainStore.headerInfo)
 
 const menus = ref<NavItem[]>([
   {
@@ -48,11 +52,15 @@ const getCategories = async () => {
   }))
 }
 getCategories()
-watch(useThrottle(scroll.y, 100), () => {
+watch(useThrottle(scroll.y, 300), (pre, cur) => {
   if (scroll.y.value > 60)
     bgOpacity.value = 1
   else
     bgOpacity.value = 0
+  if (pre > cur && headerInfo.value.title)
+    showInfo.value = true
+  else
+    showInfo.value = false
 })
 watch(route, () => {
   if (route.path === '/')
@@ -66,30 +74,55 @@ watch(route, () => {
 
 <template>
   <header h-20>
-    <div fixed top-0 w-full z-20>
-      <div class="header" flex justify-between h-14 px-4 lg:px-10 :style="{ '--opacity': bgOpacity }">
-        <router-link to="/" title="home" py-2 flex items-center gap-2>
-          <Logo inline-block />
-          <div display-none sm:display-block>
-            <p>灰色と青</p>
-            <p text="~ 12px gray-5">
-              不虚光阴
-            </p>
-          </div>
-        </router-link>
-        <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
-          <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
-          <!-- <button icon-btn @click="toggleDark()">
+    <div class="header" fixed top-0 w-full z-20 h-14 overflow-hidden>
+      <div transition duration-500 px-4 lg:px-10 :style="{ '--opacity': bgOpacity, 'transform': `translateY(${showInfo ? '-3.5rem' : 0})` }">
+        <div flex justify-between h-14>
+          <router-link to="/" title="home" py-2 flex items-center gap-2>
+            <Logo inline-block />
+            <div display-none sm:display-block>
+              <p>灰色と青</p>
+              <p text="~ 12px gray-5">
+                不虚光阴
+              </p>
+            </div>
+          </router-link>
+          <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
+            <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
+            <!-- <button icon-btn @click="toggleDark()">
             <div dark:i-carbon-moon i-carbon-sun />
           </button> -->
-          <button v-if="token" icon-btn pl-2 @click="logout">
-            <div i-ri-logout-box-r-line />
-          </button>
-        </nav>
+            <button v-if="token" icon-btn pl-2 @click="logout">
+              <div i-ri-logout-box-r-line />
+            </button>
+          </nav>
+        </div>
+        <div max-w-850px m-auto flex items-center justify-between text-sm h-14>
+          <div overflow-ellipsis>
+            <div text="12px gray">
+              {{ headerInfo.type }}
+            </div>
+            <div text-base>
+              {{ headerInfo.title }}
+            </div>
+          </div>
+          <div flex items-center gap-2>
+            <button px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1>
+              <div i-ri-share-forward-fill />
+              <div>分享</div>
+            </button>
+            <button v-if="headerInfo.like !== undefined" px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1>
+              <div text-red i-ri-heart-3-fill />
+              <div>喜欢</div>
+            </button>
+            <div text-end>
+              <div>{{ headerInfo.like }}</div>
+              <div text-gray-3>
+                灰色と青
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- <div max-w-700px m-auto>
-        1111
-      </div> -->
       <div display-none>
         <div i-ri:mastodon-line />
         <div i-ri:quill-pen-line />

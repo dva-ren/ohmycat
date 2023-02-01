@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
+    Catalog: typeof import('./src/components/Mardown/Catalog.vue')['default']
     Comment: typeof import('./src/components/Comment.vue')['default']
     CommentItem: typeof import('./src/components/CommentItem.vue')['default']
     EditComment: typeof import('./src/components/EditComment.vue')['default']
@@ -20,6 +21,7 @@ declare module '@vue/runtime-core' {
     Loadding: typeof import('./src/components/Loadding.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
+    MarkdownViewer: typeof import('./src/components/Mardown/MarkdownViewer.vue')['default']
     Message: typeof import('./src/components/Message/message.vue')['default']
     Modal: typeof import('./src/components/Modal.vue')['default']
     MusicCard: typeof import('./src/components/MusicCard.vue')['default']

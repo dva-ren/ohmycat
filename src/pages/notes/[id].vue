@@ -4,6 +4,7 @@ import { formateToLocaleHasWeek } from '~/composables'
 import { queryNote, queryNoteList } from '~/api'
 import Message from '~/components/Message'
 import { dateFns } from '~/composables/date'
+import { useHeaderInfo } from '~/hooks'
 
 const loading = ref(true)
 const note = ref<Note>()
@@ -14,12 +15,18 @@ const index = computed(() => {
   const idx = notes.value.findIndex(n => n.id === id.value)
   return idx > 0 ? idx : 0
 })
-
+let resetHeaderInfo = () => {}
 const getNote = async (id: string) => {
   loading.value = true
   const res = await queryNote(id)
   note.value = res.data
   loading.value = false
+  resetHeaderInfo = useHeaderInfo({
+    id: res.data.id,
+    title: res.data.title,
+    type: '记录生活',
+    like: 0,
+  })
 }
 const getNotes = async () => {
   const res = await queryNoteList()
@@ -50,7 +57,9 @@ const weather = () => {
     return 'i-carbon-snow-scattered'
   return 'i-carbon-word-cloud'
 }
-
+onBeforeUnmount(() => {
+  resetHeaderInfo()
+})
 watch(id, () => {
   fetchData()
 }, { immediate: true })
@@ -64,13 +73,13 @@ watch(id, () => {
         <p class="left-label">
           {{ formateToLocaleHasWeek(note.createTime) }}
         </p>
-        <p text-center p-4 text="16.8px">
+        <p text-center p-4 text="16.8px" mb-8>
           {{ note.title }}
         </p>
         <div v-if="note.musicId" flex justify-center my-4>
           <MusicCard :id="note.musicId" />
         </div>
-        <MyEditor v-model="note.content" min-h-100 />
+        <MarkdownViewer :value="note.content" min-h-100 />
         <div class="line" />
         <div text="center sm">
           <router-link to="/timeLine?type=notes">

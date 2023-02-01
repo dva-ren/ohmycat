@@ -4,23 +4,30 @@ import { formateToLocale } from '~/composables'
 import Message from '~/components/Message'
 import { queryArticle } from '~/api'
 import { useMainStore } from '~/store'
-
+import { useHeaderInfo } from '~/hooks'
 const { id } = defineProps<{ id: string }>()
 const scrollElement = document.documentElement
 const mainStore = useMainStore()
 const loading = ref(true)
 
 const articleData = ref<Article>()
-
+let resetHeaderInfo = () => {}
 const getArticle = async () => {
   const res = await queryArticle(id)
-  if (res.code === 200)
+  if (res.code === 200) {
     articleData.value = res.data
-  else
-    Message.error(res.msg)
+    resetHeaderInfo = useHeaderInfo({
+      id: res.data.id,
+      title: res.data.title,
+      type: res.data.categoryName,
+    })
+  }
+  else { Message.error(res.msg) }
   loading.value = false
 }
-
+onBeforeUnmount(() => {
+  resetHeaderInfo()
+})
 getArticle()
 </script>
 
@@ -29,12 +36,12 @@ getArticle()
     <div v-if="articleData">
       <div w-full>
         <div flex items-center justify-between mb-4>
-          <div text-2xl style="color: var(--light-color)">
+          <div text-2xl style="color: var(--light-color)" mb-8>
             {{ articleData?.title }}
           </div>
         </div>
         <div min-h-100>
-          <MyEditor v-model="articleData.content" />
+          <MarkdownViewer :value="articleData.content" />
         </div>
         <div mt-10 text="xs gray" md:text-sm>
           <p>文章标题：{{ articleData.title }}</p>
@@ -63,7 +70,7 @@ getArticle()
     </div>
     <template #sidebar>
       <div sticky top-20 mt-20 text-sm>
-        目录
+        <Catalog />
       </div>
     </template>
   </Layout>

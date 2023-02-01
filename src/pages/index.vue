@@ -69,8 +69,8 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
       </div>
       <TextAnimation :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
       <!-- <Loadding :loadding="loading" /> -->
-      <div v-if="!loading">
-        <div v-spring text-white text-sm>
+      <div v-if="!loading" v-spring>
+        <div text-white text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#74759b">
               <div class="icon" bg="#2e317c">
@@ -84,7 +84,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           </div>
           <CardList :data="posts" />
         </div>
-        <div v-spring:delay="100" text-white mt-10 text-sm>
+        <div text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#f17666">
               <div class="icon" bg="#ed3321">
@@ -98,7 +98,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           </div>
           <CardList :data="notes" type="notes" />
         </div>
-        <div v-spring:delay="200" text-white mt-10 text-sm>
+        <div text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#55bb8a">
               <div class="icon" bg="#12a182">
@@ -116,7 +116,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
             <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
           </div>
         </div>
-        <div v-spring:delay="300" text-white mt-10 text-sm>
+        <div text-white mt-10 text-sm>
           <div flex justify-between items-end class="label">
             <div class="title" flex bg="#2376b7">
               <div class="icon" bg="#144a74">

@@ -11,6 +11,6 @@ getHomeInfo()
 
 <template>
   <Layout>
-    <MyEditor v-if="text" v-model="text" mt-4 class="fade_in_up" />
+    <MarkdownViewer v-if="text" :value="text" mt-4 class="fade_in_up" />
   </Layout>
 </template>

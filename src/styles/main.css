@@ -23,12 +23,6 @@ html.dark {
   margin: 0 auto;
 }
 
-@media (max-width: 767px) {
-  .markdown-body {
-    padding: 15px;
-  }
-}
-
 .fade_in_up{
   opacity: 0;
   transform: translateY(3rem);
@@ -54,7 +48,6 @@ html.dark {
   height: 1em;
   vertical-align: -0.15em;
 }
-
 
 .circle-icon{
   border-radius: 50%;

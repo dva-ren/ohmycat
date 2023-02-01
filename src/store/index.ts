@@ -8,6 +8,13 @@ export const useMainStore = defineStore('main', {
       master: {} as Master,
       player: null,
       showPlayer: false,
+      scrollId: '',
+      headerInfo: {
+        id: '',
+        title: '',
+        type: '',
+        like: undefined as undefined | number,
+      },
     }
   },
   actions: {
