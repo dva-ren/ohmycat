@@ -16,7 +16,6 @@ export const useHeaderInfo = (data: HeaderInfo) => {
   mainStore.headerInfo.like = like
 
   return () => {
-    console.log('remove')
     mainStore.headerInfo.id = ''
     mainStore.headerInfo.title = ''
     mainStore.headerInfo.type = ''

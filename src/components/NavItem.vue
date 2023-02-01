@@ -18,7 +18,7 @@ const emits = defineEmits(['onSelect'])
         <span p-l-2>{{ data.name }}</span>
       </router-link>
       <template #content>
-        <div v-for="child in data.children" :key="child.name">
+        <div v-for="child in data.children" :key="child.name" text-sm>
           <router-link :to="child.url" min-w-22 text-center py-2 block hover:text-orange-400 transition>
             {{ child.name }}
           </router-link>

@@ -112,11 +112,13 @@ watch(visible, () => {
   <div ref="popcorn" v-bind="$attrs">
     <slot />
   </div>
-  <Transition>
-    <div v-show="visible" ref="tooltip" z-10 class="content" bg-white dark:bg-gray-800 @mouseenter="inTooltip = true" @mouseleave="handleMouseLeave">
-      <slot name="content" />
-    </div>
-  </Transition>
+  <Teleport to="body">
+    <Transition>
+      <div v-show="visible" ref="tooltip" z-40 class="content" bg-white dark:bg-gray-800 @mouseenter="inTooltip = true" @mouseleave="handleMouseLeave">
+        <slot name="content" />
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>

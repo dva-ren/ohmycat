@@ -51,6 +51,9 @@ const getCategories = async () => {
     url: `/category?id=${item.id}`,
   }))
 }
+const handleLike = () => {
+  Message.success('感谢喜欢')
+}
 getCategories()
 watch(useThrottle(scroll.y, 300), (pre, cur) => {
   if (scroll.y.value > 60)
@@ -74,7 +77,7 @@ watch(route, () => {
 
 <template>
   <header h-20>
-    <div class="header" fixed top-0 w-full z-20 h-14 overflow-hidden>
+    <div class="header" fixed top-0 w-full z-10 h-14 overflow-hidden>
       <div transition duration-500 px-4 lg:px-10 :style="{ '--opacity': bgOpacity, 'transform': `translateY(${showInfo ? '-3.5rem' : 0})` }">
         <div flex justify-between h-14>
           <router-link to="/" title="home" py-2 flex items-center gap-2>
@@ -97,26 +100,27 @@ watch(route, () => {
           </nav>
         </div>
         <div max-w-850px m-auto flex items-center justify-between text-sm h-14>
-          <div overflow-ellipsis>
+          <div max-w-8rem md:max-w-unset>
             <div text="12px gray">
               {{ headerInfo.type }}
             </div>
-            <div text-base>
+            <div class="omit" text-base>
               {{ headerInfo.title }}
             </div>
           </div>
-          <div flex items-center gap-2>
+          <div flex items-center gap-2 flex-shrink-0>
             <button px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1>
               <div i-ri-share-forward-fill />
               <div>分享</div>
             </button>
-            <button v-if="headerInfo.like !== undefined" px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1>
-              <div text-red i-ri-heart-3-fill />
+            <button v-if="headerInfo.like !== undefined" px-2 pr-4 h-9 bg-gray-2 rounded-full flex items-center gap-1 @click="handleLike">
+              <Heart />
+              <!-- <div text-red i-ri-heart-3-fill /> -->
               <div>喜欢</div>
             </button>
-            <div text-end>
+            <div>
               <div>{{ headerInfo.like }}</div>
-              <div text-gray-3>
+              <div text-gray-4>
                 灰色と青
               </div>
             </div>

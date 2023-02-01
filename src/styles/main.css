@@ -90,3 +90,9 @@ html.dark {
   margin-right: .5rem;
   background-color: var(--yellow);
 }
+
+.omit{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
