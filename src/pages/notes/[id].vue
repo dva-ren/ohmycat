@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import type { Note } from '~/types'
-import { formateToLocaleHasWeek } from '~/composables'
 import { queryNote, queryNoteList } from '~/api'
 import Message from '~/components/Message'
-import { dateFns } from '~/composables/date'
+import { dateFns, formateToLocal } from '~/composables/date'
 import { useHeaderInfo } from '~/hooks'
+import { useMainStore } from '~/store'
 
 const loading = ref(true)
 const note = ref<Note>()
 const notes = ref<Array<Note>>([])
 const route = useRoute()
 const id = computed(() => route.params.id as string)
+const mainStore = useMainStore()
 const index = computed(() => {
   const idx = notes.value.findIndex(n => n.id === id.value)
   return idx > 0 ? idx : 0
@@ -39,7 +40,9 @@ const fetchData = async () => {
     Message.error('内容为空')
     return
   }
-  if (id.value && id.value === 'latest')
+  if (!id.value)
+    return
+  if (id.value === 'latest')
     getNote(notes.value[0].id!)
   else
     getNote(id.value)
@@ -59,6 +62,7 @@ const weather = () => {
 }
 onBeforeUnmount(() => {
   resetHeaderInfo()
+  mainStore.catalog = []
 })
 watch(id, () => {
   fetchData()
@@ -67,11 +71,10 @@ watch(id, () => {
 
 <template>
   <Layout :loadding="loading">
-    <!-- <Loadding :loadding="loading" /> -->
     <div v-if="note">
       <div class="info" border p-4 mb-8>
         <p class="left-label">
-          {{ formateToLocaleHasWeek(note.createTime) }}
+          {{ formateToLocal(note.createTime) }}
         </p>
         <p text-center p-4 text="16.8px" mb-8>
           {{ note.title }}
@@ -137,6 +140,11 @@ watch(id, () => {
       </div>
       <Comment v-if="note.allowComment" :ref-id="id === 'latest' ? notes[0].id : id" type="note" />
     </div>
+    <template #sidebar>
+      <div sticky top-20 mt-20 text-sm>
+        <Catalog />
+      </div>
+    </template>
   </Layout>
 </template>
 

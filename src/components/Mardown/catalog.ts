@@ -32,6 +32,5 @@ export const useCatalog = () => {
     if (anchor.value.length)
       document.body.onscroll = addEvent
   })
-
   return { anchor, active }
 }

@@ -1,9 +1,15 @@
 <script lang="ts" setup>
+import { useMainStore } from '~/store'
+const show = ref(false)
+
 const scroll = useWindowScroll()
 const showFlags = reactive({
   main: true,
   scroll: false,
 })
+const mainStore = useMainStore()
+const catalog = computed(() => mainStore.catalog)
+
 function toTop() {
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -14,7 +20,10 @@ const watchMain = useThrottleFn((curr, pre) => {
     showFlags.main = true
 }, 200)
 const showPlayer = () => {
-
+  mainStore.showPlayer = true
+}
+const showCatalog = () => {
+  show.value = true
 }
 watch(useThrottle(scroll.y, 100), (curr, pre) => {
   if (curr > 500)
@@ -27,20 +36,26 @@ watch(useThrottle(scroll.y, 100), (curr, pre) => {
 
 <template>
   <Transition name="main">
-    <div v-show="showFlags.main" fixed right-4 bottom-8>
+    <div v-show="showFlags.main" fixed right-4 bottom-4>
       <div flex flex-col gap-2>
         <Transition>
           <button v-show="showFlags.scroll" class="button" @click="toTop">
             <div i-carbon-up-to-top />
           </button>
         </Transition>
+        <button v-if="catalog.length" class="button" @click="showCatalog">
+          <div i-ri-menu-2-fill />
+        </button>
         <button class="button" @click="toggleDark()">
           <div dark:i-carbon-moon i-carbon-sun />
         </button>
-        <!-- <button class="button" @click="showPlayer">
+        <button class="button" @click="showPlayer">
           <div i-ri-netease-cloud-music-line />
-        </button> -->
+        </button>
       </div>
+      <Drawer v-model="show">
+        <Catalog />
+      </Drawer>
     </div>
   </Transition>
 </template>

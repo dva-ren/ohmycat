@@ -4,14 +4,11 @@ import Message from '~/components/Message'
 import { useMainStore } from '~/store'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NavItem } from '~/types'
+import { useShare } from '~/hooks'
 
 const mainStore = useMainStore()
 const route = useRoute()
-const token = useLocalStorage('token', null)
-const logout = () => {
-  token.value = null
-  Message.success('登出成功')
-}
+
 const bgOpacity = ref(0)
 const showInfo = ref(false)
 const scroll = useWindowScroll()
@@ -52,7 +49,13 @@ const getCategories = async () => {
   }))
 }
 const handleLike = () => {
-  Message.success('感谢喜欢')
+  // Message.success('感谢喜欢')
+}
+const handleShare = () => {
+  useShare({
+    title: headerInfo.value.title,
+    url: location.href,
+  })
 }
 getCategories()
 watch(useThrottle(scroll.y, 300), (pre, cur) => {
@@ -82,22 +85,17 @@ watch(route, () => {
         <div flex justify-between h-14>
           <router-link to="/" title="home" py-2 flex items-center gap-2>
             <Logo inline-block />
-            <div display-none sm:display-block>
+            <div>
               <p>灰色と青</p>
               <p text="~ 12px gray-5">
                 不虚光阴
               </p>
             </div>
           </router-link>
-          <nav flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
+          <nav display-none md-display-flex items-center :class="{ nav: navIdx !== -1 }" :style="`--idx:${navIdx}`">
             <NavItem v-for="nav, idx in menus" :key="idx" :data="nav" />
-            <!-- <button icon-btn @click="toggleDark()">
-            <div dark:i-carbon-moon i-carbon-sun />
-          </button> -->
-            <button v-if="token" icon-btn pl-2 @click="logout">
-              <div i-ri-logout-box-r-line />
-            </button>
           </nav>
+          <HeaderDrawer :active-index="navIdx" display-flex md-display-none :menus="menus" />
         </div>
         <div max-w-850px m-auto flex items-center justify-between text-sm h-14>
           <div max-w-8rem md:max-w-unset>
@@ -109,7 +107,7 @@ watch(route, () => {
             </div>
           </div>
           <div flex items-center gap-2 flex-shrink-0>
-            <button px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1>
+            <button px-4 py-2 bg-gray-2 rounded-full flex items-center gap-1 @click="handleShare">
               <div i-ri-share-forward-fill />
               <div>分享</div>
             </button>
@@ -182,5 +180,9 @@ watch(route, () => {
 }
 .dark .nav::before{
   background-color: rgba(255, 255, 255, 0.54);
+}
+.label{
+  border-left: var(--yellow) 2px solid;
+  padding-left: .5rem;
 }
 </style>

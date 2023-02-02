@@ -5,7 +5,7 @@ const play = ref(false)
 </script>
 
 <template>
-  <div fixed left-0 bottom-0 rounded>
+  <div fixed left-0 bottom-0 rounded w-0>
     <div flex bg-gray-3 w-40 rounded class="player" select-none>
       <div relative min-w-16 class="cover-container" @click="play = !play">
         <img :src="songs[1].al.picUrl" w-16 h-16 rounded>

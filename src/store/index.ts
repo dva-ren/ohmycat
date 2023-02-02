@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { Catelog } from '../components/Mardown/catalog'
 import type { Master } from '~/types'
 import { queryMaster } from '~/api'
 
@@ -15,6 +16,8 @@ export const useMainStore = defineStore('main', {
         type: '',
         like: undefined as undefined | number,
       },
+      showMenuButton: false,
+      catalog: [] as Catelog[],
     }
   },
   actions: {

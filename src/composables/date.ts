@@ -12,3 +12,7 @@ export const dateFns = dayjs
 export function formateDate(date: Date | string) {
   return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
 }
+
+export function formateToLocal(date: Date | string) {
+  return dayjs(date).format('YYYY 年 M 月 D 日 星期dd')
+}

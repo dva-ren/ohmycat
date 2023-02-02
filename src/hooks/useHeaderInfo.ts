@@ -6,9 +6,9 @@ interface HeaderInfo {
   type: string
   like?: number
 }
-const mainStore = useMainStore()
 
 export const useHeaderInfo = (data: HeaderInfo) => {
+  const mainStore = useMainStore()
   const { id, type, title, like } = data
   mainStore.headerInfo.id = id
   mainStore.headerInfo.title = title

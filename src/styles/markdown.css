@@ -12,6 +12,10 @@
   background-size: 50px 50px;
   padding-bottom: 30px;
 }
+.dark .markdown-body{
+  color: rgb(223, 215, 215);
+  background-color: #000;
+}
 .markdown-body ::selection {
   color: #fff;
   background-color: #8076a3;
@@ -196,7 +200,7 @@
   font-style: normal;
   font-weight: normal;
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-  line-height: 18px;
+  line-height: 20px;
   color: #383838;
   border-radius: 2px;
   scroll-behavior: smooth;

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import md5 from 'js-md5' // 引入
+import md5 from 'js-md5'
 import type { Comment } from '~/types'
 import { dateFns } from '~/composables/date'
 const { data, index } = defineProps<{ data: Comment; index: number }>()
@@ -29,7 +29,7 @@ const onReplayed = () => {
         {{ data.content }}
       </div>
       <button mb-2 text="gray-500" @click="visible = !visible">
-        回复
+        {{ visible ? '取消回复' : '回复' }}
       </button>
       <EditComment v-if="visible" text-base :index="index" :ref-id="data.ref" :type="data.refType" :parent-id="data.id" @on-send="onReplayed" />
       <CommentItem v-for="child in data.children" :key="child.id" :data="child" :index="data.children.length" />

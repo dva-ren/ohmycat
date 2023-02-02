@@ -5,8 +5,9 @@ import Message from '~/components/Message'
 import { queryArticle } from '~/api'
 import { useMainStore } from '~/store'
 import { useHeaderInfo } from '~/hooks'
+
 const { id } = defineProps<{ id: string }>()
-const scrollElement = document.documentElement
+
 const mainStore = useMainStore()
 const loading = ref(true)
 
@@ -27,6 +28,7 @@ const getArticle = async () => {
 }
 onBeforeUnmount(() => {
   resetHeaderInfo()
+  mainStore.catalog = []
 })
 getArticle()
 </script>

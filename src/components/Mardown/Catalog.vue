@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 import { useCatalog } from './catalog'
+import { useMainStore } from '~/store'
 
 const { anchor, active } = useCatalog()
 const index = ref(0)
+const mainStore = useMainStore()
+
+onMounted(() => {
+  mainStore.catalog = anchor.value
+})
 
 onBeforeUnmount(() => {
   document.body.onscroll = null
