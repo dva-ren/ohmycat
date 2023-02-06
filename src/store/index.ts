@@ -18,6 +18,7 @@ export const useMainStore = defineStore('main', {
       },
       showMenuButton: false,
       catalog: [] as Catelog[],
+      showCatalog: false,
     }
   },
   actions: {

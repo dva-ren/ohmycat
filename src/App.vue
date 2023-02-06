@@ -11,7 +11,7 @@ const showPlayer = computed(() => mainStore.showPlayer)
 
 <template>
   <NavBar v-if="!meta.hideHeader" />
-  <main font-sans text="dark:gray-200" class="main" w-full>
+  <main text="dark:gray-200" class="main" w-full>
     <router-view v-slot="{ Component }">
       <component :is="Component" />
     </router-view>

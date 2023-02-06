@@ -138,3 +138,23 @@ export interface Comment extends CommentForm {
   createTime: string
   updateTime: string
 }
+export interface SongInfo {
+  id: number
+  artist: string
+  name: string
+  pic: string
+  url: string
+  time: string
+}
+export interface Playlist {
+  coverImgUrl: string
+  data: SongInfo[]
+  id: number
+  name: string
+  playCount: number
+}
+export interface Netease {
+  playlist: Playlist
+  weekdata: Playlist
+  alldata: Playlist
+}

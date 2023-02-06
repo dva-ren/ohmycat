@@ -1,7 +1,7 @@
 import http from '~/composables/requests'
-import type { Article, PageInfo, Response } from '~/types'
+import type { Article, AsyncResponse, PageInfo } from '~/types'
 
-type ArticleListResult = Response<PageInfo<Article>>
+type ArticleListResult = AsyncResponse<PageInfo<Article>>
 
 export const queryArticleList = (categoryId?: string, pageNum = 1, pageSize = 20): ArticleListResult => {
   return http.request({
@@ -9,7 +9,7 @@ export const queryArticleList = (categoryId?: string, pageNum = 1, pageSize = 20
     method: 'GET',
   })
 }
-export const queryArticle = (id: string): Response<Article> => {
+export const queryArticle = (id: string): AsyncResponse<Article> => {
   return http.request({
     url: `/article/${id}`,
     method: 'GET',

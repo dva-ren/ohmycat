@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { queryCategoryList } from '~/api'
-import Message from '~/components/Message'
 import { useMainStore } from '~/store'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NavItem } from '~/types'
@@ -36,6 +35,18 @@ const menus = ref<NavItem[]>([
     name: '项',
     icon: 'i-ri:attachment-line',
     url: '/projects',
+  },
+  {
+    name: '趣',
+    icon: 'i-ri-donut-chart-fill',
+    url: '/music',
+    children: [
+      {
+        name: '听歌',
+        icon: 'i-ri:netease-cloud-music-line',
+        url: '/music',
+      },
+    ],
   },
 ])
 
@@ -129,6 +140,7 @@ watch(route, () => {
         <div i-ri:mastodon-line />
         <div i-ri:quill-pen-line />
         <div i-ri:attachment-line />
+        <div i-ri-donut-chart-fill />
       </div>
     </div>
   </header>

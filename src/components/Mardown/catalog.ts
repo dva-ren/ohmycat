@@ -4,11 +4,12 @@ export interface Catelog {
   text: string
   top: number
 }
-
+const show = ref(false)
 export const useCatalog = () => {
   const anchor = ref<Catelog[]>([])
   const active = ref('')
-  nextTick(() => {
+
+  const parse = () => {
     const article = document.querySelector('.markdown-body')!
     const titleDoms = article.querySelectorAll('h1,h2,h3,h4')
     titleDoms.forEach((item, idx) => {
@@ -31,6 +32,6 @@ export const useCatalog = () => {
     }, 100)
     if (anchor.value.length)
       document.body.onscroll = addEvent
-  })
-  return { anchor, active }
+  }
+  return { anchor, active, show, parse }
 }

@@ -182,12 +182,13 @@
 }
 .markdown-body code {
   color: #8076a3;
-  background-color: #f8f5ff;
+  background-color: #f7f2f4;
   padding: 2px 0.4em;
   overflow-x: auto;
   font-weight: bold;
   word-break: break-word;
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  border-radius: .3em;
 }
 .markdown-body pre {
   margin: 2em 0;
@@ -204,17 +205,22 @@
   color: #383838;
   border-radius: 2px;
   scroll-behavior: smooth;
-  box-shadow: 0 0 10px #e7daff;
+  box-shadow: 0 0 8px #f7f2f4;
+  transition: box-shadow .1s;
+}
+.dark .markdown-body pre > code{
+  color: white;
+  background-color: #333;
 }
 .markdown-body pre > code:hover {
-  box-shadow: 0 0 20px #e7daff;
+  box-shadow: 0 0 12px #e7daff;
 }
 .markdown-body pre > code::-webkit-scrollbar {
   height: 6px;
   background-color: #f8f5ff;
 }
 .markdown-body pre > code::-webkit-scrollbar-thumb {
-  background-color: #e7daff;
+  background-color: #efefef;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }

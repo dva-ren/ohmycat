@@ -5,5 +5,6 @@ export interface NavItem {
   children?: Array<{
     name: string
     url: string
+    icon?: string
   }>
 }

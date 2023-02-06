@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import { useCatalog } from './Mardown/catalog'
 import { useMainStore } from '~/store'
-const show = ref(false)
 
 const scroll = useWindowScroll()
 const showFlags = reactive({
@@ -9,6 +9,7 @@ const showFlags = reactive({
 })
 const mainStore = useMainStore()
 const catalog = computed(() => mainStore.catalog)
+const { show } = useCatalog()
 
 function toTop() {
   document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
@@ -53,9 +54,6 @@ watch(useThrottle(scroll.y, 100), (curr, pre) => {
           <div i-ri-netease-cloud-music-line />
         </button>
       </div>
-      <Drawer v-model="show">
-        <Catalog />
-      </Drawer>
     </div>
   </Transition>
 </template>

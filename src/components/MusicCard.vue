@@ -1,32 +1,44 @@
 <script lang="ts" setup>
-import { useMainStore } from '~/store'
-
+import { querySongInfo } from '~/api'
+import { usePlayer } from '~/hooks'
 const props = defineProps<{ id: string | number }>()
 const songInfo = reactive({
+  id: props.id as number,
+  artist: '',
   name: '',
-  author: 'Taylor Swift',
-  cover: 'https://p2.music.126.net/6CB6Jsmb7k7qiJqfMY5Row==/109951164260234943.jpg',
+  pic: '',
+  url: '',
+  time: '',
 })
+const { player } = usePlayer()
+
 const playState = ref(false)
-const mainStore = useMainStore()
 
 onMounted(() => {
   setTimeout(() => {
     songInfo.name = 'Lover'
   }, 500)
 })
+const getInfo = async () => {
+  const res = await querySongInfo(props.id)
+  console.log(res)
+  songInfo.artist = res.data.artist
+  songInfo.name = res.data.name
+  songInfo.pic = res.data.pic
+}
+getInfo()
 const handleClick = () => {
-  mainStore.showPlayer = true
+  player.play(songInfo)
 }
 </script>
 
 <template>
   <div rounded p-2 border flex gap-4 w-70 items-center relative shadow>
-    <img :src="songInfo.cover" w-12 h-12 object-fit rounded>
+    <img :src="songInfo.pic" w-12 h-12 object-fit rounded>
     <div flex-1 overflow-hidden>
       <div>{{ songInfo.name }}</div>
       <div text-gray-3 text-sm>
-        {{ songInfo.author }}
+        {{ songInfo.artist }}
       </div>
     </div>
     <div>

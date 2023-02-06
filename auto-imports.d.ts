@@ -38,6 +38,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const formatTime: typeof import('./src/composables/time')['formatTime']
   const formateDate: typeof import('./src/composables/date')['formateDate']
+  const formateToLocal: typeof import('./src/composables/date')['formateToLocal']
   const formateToLocale: typeof import('./src/composables/time')['formateToLocale']
   const formateToLocaleHasWeek: typeof import('./src/composables/time')['formateToLocaleHasWeek']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -333,6 +334,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatTime: UnwrapRef<typeof import('./src/composables/time')['formatTime']>
     readonly formateDate: UnwrapRef<typeof import('./src/composables/date')['formateDate']>
+    readonly formateToLocal: UnwrapRef<typeof import('./src/composables/date')['formateToLocal']>
     readonly formateToLocale: UnwrapRef<typeof import('./src/composables/time')['formateToLocale']>
     readonly formateToLocaleHasWeek: UnwrapRef<typeof import('./src/composables/time')['formateToLocaleHasWeek']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>

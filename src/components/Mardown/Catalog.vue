@@ -2,11 +2,13 @@
 import { useCatalog } from './catalog'
 import { useMainStore } from '~/store'
 
-const { anchor, active } = useCatalog()
+const { anchor, active, show, parse } = useCatalog()
 const index = ref(0)
 const mainStore = useMainStore()
+const showCatalog = ref(false)
 
 onMounted(() => {
+  parse()
   mainStore.catalog = anchor.value
 })
 
@@ -25,6 +27,17 @@ watch(active, () => {
         <a :href="i.id" :class="{ active: i.id === active }">{{ i.text }}</a>
       </div>
     </div>
+    <!-- 目录 -->
+    <Drawer v-model="show" direction="bottom">
+      <template #title>
+        目录
+      </template>
+      <div class="items" :style="`--top:${26 * index}px`">
+        <div v-for="i in anchor" :key="i.id" class="catalog-item">
+          <a :href="i.id" :class="{ active: i.id === active }">{{ i.text }}</a>
+        </div>
+      </div>
+    </Drawer>
   </div>
 </template>
 
@@ -33,6 +46,7 @@ watch(active, () => {
   border-left: 1px solid var(--yellow);
   padding-left: 0.8rem;
   position: relative;
+  font-size: 14px;
 }
 .items::before{
   content: '';
