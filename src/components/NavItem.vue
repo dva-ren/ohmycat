@@ -23,7 +23,7 @@ const emits = defineEmits(['onSelect'])
             <div :class="child.icon" />
             <div>{{ child.name }}</div>
           </router-link>
-          <router-link v-else :to="child.url" min-w-22 text-center py-2 block hover:text-orange-400 transition flex>
+          <router-link v-else :to="child.url" min-w-22 text-center py-2 block hover:text-orange-400 transition>
             {{ child.name }}
           </router-link>
         </div>

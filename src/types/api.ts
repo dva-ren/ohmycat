@@ -139,11 +139,12 @@ export interface Comment extends CommentForm {
   updateTime: string
 }
 export interface SongInfo {
-  id: number
+  id: string
   artist: string
   name: string
   pic: string
   url: string
+  lrc: string
   time: string
 }
 export interface Playlist {

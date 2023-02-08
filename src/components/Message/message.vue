@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useMotion } from '@vueuse/motion'
 const props = defineProps({
   msg: {
     type: String,
@@ -16,45 +17,59 @@ const props = defineProps({
   },
 })
 
-defineEmits(['destroy'])
+const emits = defineEmits(['destroy'])
 
-const visible = ref(false)
-
-function close() {
-  visible.value = false
-}
-
-function startTimer() {
-  setTimeout(() => {
-    close()
-  }, 3000)
-}
+const message = ref<HTMLElement>()
 
 onMounted(() => {
-  startTimer()
-  visible.value = true
+  const transition = {
+    type: 'spring',
+    stiffness: 300,
+    damping: 20,
+    mass: 1,
+  }
+  const { apply } = useMotion(message, {
+    initial: {
+      y: 80,
+      scale: 0.2,
+      opacity: 0,
+    },
+    show: {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      transition,
+    },
+    hidden: {
+      y: -80,
+      scale: 0.2,
+      opacity: 0,
+    },
+  })
+  setTimeout(() => {
+    apply('hidden')
+    setTimeout(() => {
+      props.onClose && props.onClose()
+      emits('destroy')
+    }, 100)
+  }, 3000)
+  apply('show')
 })
 
 defineExpose({
-  visible,
   close,
 })
 </script>
 
 <template>
-  <transition
-    @before-leave="onClose"
-    @after-leave="$emit('destroy')"
-  >
-    <div v-show="visible" class="message" :style="{ top: `${props.top}px` }" text-sm>
-      <div v-if="type === 'success'" i-ri-checkbox-circle-fill class="icon" text-green />
-      <div v-if="type === 'warning'" i-ri-error-warning-fill class="icon" text-orange />
-      <div v-if="type === 'error'" i-ri-close-circle-fill class="icon" text-red />
-      <div inline-block>
-        {{ msg }}
-      </div>
+  <div ref="message" class="message" :style="{ top: `${props.top}px` }" text-sm>
+    <div v-if="type === 'success'" i-ri-checkbox-circle-fill class="icon" text-green />
+    <div v-if="type === 'warning'" i-ri-error-warning-fill class="icon" text-orange />
+    <div v-if="type === 'error'" i-ri-close-circle-fill class="icon" text-red />
+    <div inline-block>
+      {{ msg }}
     </div>
-  </transition>
+  </div>
 </template>
 
 <style scoped>
@@ -65,7 +80,7 @@ defineExpose({
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 9999px;
   user-select: none;
   transition: top .2s;
@@ -80,14 +95,5 @@ defineExpose({
   font-size: 1.25rem;
   vertical-align: -0.25rem;
   margin-right: .4rem;
-}
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>

@@ -32,7 +32,7 @@ watch(active, () => {
       <template #title>
         目录
       </template>
-      <div class="items" :style="`--top:${26 * index}px`">
+      <div class="items" :style="`--top:${26 * index}px`" ml-4>
         <div v-for="i in anchor" :key="i.id" class="catalog-item">
           <a :href="i.id" :class="{ active: i.id === active }">{{ i.text }}</a>
         </div>
@@ -42,6 +42,10 @@ watch(active, () => {
 </template>
 
 <style scoped>
+.catalog{
+  max-height: 500px;
+  overflow-y: scroll;
+}
 .items{
   border-left: 1px solid var(--yellow);
   padding-left: 0.8rem;
@@ -65,6 +69,9 @@ watch(active, () => {
   line-height: 26px;
   transition: .2s;
   opacity: 0.75;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .catalog-item a:hover{
   color: #8076a3;

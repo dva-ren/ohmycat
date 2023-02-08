@@ -1,5 +1,6 @@
 import axios from 'axios'
-import type { SongInfo } from '~/types'
+import type { AsyncResponse, SongInfo } from '~/types'
+import http from '~/composables/requests'
 
 interface Song {
   name: string
@@ -22,12 +23,9 @@ export const queryPlaylist = (id: number): Promise<{
   })
 }
 
-export const querySongInfo = (id: number): Promise<{
-  code: number
-  data: Song
-}> => {
-  return server({
+export const querySongInfo = (id: string | number): AsyncResponse<SongInfo> => {
+  return http.request({
+    url: `/music/song?id=${id}`,
     method: 'GET',
-    url: `/meting/?type=song&id=${id}`,
   })
 }
