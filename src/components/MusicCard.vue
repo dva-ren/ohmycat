@@ -46,7 +46,7 @@ const handleClick = () => {
 
 <template>
   <div rounded p-2 border flex gap-4 max-w-80 items-center relative shadow hover:shadow-xl transition>
-    <img :src="songInfo.pic" w-12 h-12 object-fit rounded>
+    <MyImg :src="songInfo.pic" w-12 h-12 object-fit rounded />
     <div flex-1 overflow-hidden>
       <div>{{ songInfo.name }}</div>
       <div text-gray-3 text-sm overflow-hidden text-ellipsis whitespace-nowrap>

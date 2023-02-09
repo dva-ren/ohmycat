@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     Modal: typeof import('./src/components/Modal.vue')['default']
     MusicCard: typeof import('./src/components/MusicCard.vue')['default']
     MusicList: typeof import('./src/components/MusicList.vue')['default']
+    MyImg: typeof import('./src/components/MyImg.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NavItem: typeof import('./src/components/NavItem.vue')['default']
     Notification: typeof import('./src/components/Notification.vue')['default']
