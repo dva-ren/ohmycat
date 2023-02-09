@@ -22,6 +22,8 @@ const emits = defineEmits(['destroy'])
 const message = ref<HTMLElement>()
 
 onMounted(() => {
+  const x = message.value!.clientWidth
+
   const transition = {
     type: 'spring',
     stiffness: 300,
@@ -46,6 +48,7 @@ onMounted(() => {
       opacity: 0,
     },
   })
+  apply('show')
   setTimeout(() => {
     apply('hidden')
     setTimeout(() => {
@@ -53,7 +56,6 @@ onMounted(() => {
       emits('destroy')
     }, 100)
   }, 3000)
-  apply('show')
 })
 
 defineExpose({
@@ -62,30 +64,34 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="message" class="message" :style="{ top: `${props.top}px` }" text-sm>
-    <div v-if="type === 'success'" i-ri-checkbox-circle-fill class="icon" text-green />
-    <div v-if="type === 'warning'" i-ri-error-warning-fill class="icon" text-orange />
-    <div v-if="type === 'error'" i-ri-close-circle-fill class="icon" text-red />
-    <div inline-block>
-      {{ msg }}
+  <div class="message-container" :style="{ top: `${props.top}px` }" text-sm>
+    <div ref="message" class="message">
+      <div v-if="type === 'success'" i-ri-checkbox-circle-fill class="icon" text-green />
+      <div v-if="type === 'warning'" i-ri-error-warning-fill class="icon" text-orange />
+      <div v-if="type === 'error'" i-ri-close-circle-fill class="icon" text-red />
+      <div inline-block>
+        {{ msg }}
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.message{
-  /* border: 1px solid red; */
+.message-container{
   position: fixed;
-  top: 1.2rem;
+  z-index: 100;
   left: 50%;
+  user-select: none;
+  transition: top 0.1s;
   transform: translateX(-50%);
+}
+.message{
+  background-color: white;
+  /* border: 1px solid red; */
+  top: 1.2rem;
   box-shadow: 0 3px 12px rgba(0,0,0,0.2);
   padding: 8px 12px;
   border-radius: 9999px;
-  user-select: none;
-  transition: top .2s;
-  z-index: 100;
-  background-color: white;
 }
 .dark .message{
   background-color: gray;

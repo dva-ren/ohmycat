@@ -6,7 +6,7 @@ const emits = defineEmits(['update:modelValue', 'close'])
 const computedName = computed(() => `${props.direction}Move`)
 
 const computedDrawerPosition = computed(() => {
-  const positionObj = {
+  const positionObj: Record<string, any> = {
     width:
     ((props.direction === 'left') || (props.direction === 'right'))
       ? '70%'

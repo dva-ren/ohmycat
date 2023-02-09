@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { createPopper } from '@popperjs/core'
+import { createPopper } from '@popperjs/core/lib/popper-lite'
 import type { Instance, Placement } from '@popperjs/core'
 import type { PropType } from 'vue'
 
@@ -85,9 +85,9 @@ onMounted(() => {
     placement: props.placement,
     modifiers: [
       {
-        name: 'offset',
+        name: 'eventListeners',
         options: {
-          offset: [0, props.offset],
+          scroll: false,
         },
       },
     ],

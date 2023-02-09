@@ -46,7 +46,7 @@ class HttpRequest {
     }, (error: any) => {
       // eslint-disable-next-line no-console
       console.log('error==>', error)
-      if (error.response.status === 500)
+      if (error.response?.status === 500)
         Message.error('服务器错误')
       else
         Message.error(`未知错误->${error}`)
