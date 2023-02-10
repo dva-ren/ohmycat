@@ -74,7 +74,7 @@ watch(active, () => {
   text-overflow: ellipsis;
 }
 .catalog-item a:hover{
-  color: #8076a3;
+  color: #845EC2;
   opacity: 1;
   margin-left: -0.25rem;
 }
@@ -88,7 +88,7 @@ watch(active, () => {
   padding-left: 3.5rem;
 }
 .active{
-  color: #8076a3;
+  color: #845EC2;
   opacity: 1 !important;
   margin-left: -0.25rem;
 }
