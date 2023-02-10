@@ -39,8 +39,8 @@ const { loadding } = defineProps<{ loadding: boolean }>()
 }
 
 .loading {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
 }
 
 .loading > div {

@@ -90,7 +90,7 @@ html.dark {
   margin-right: .5rem;
   background-color: var(--yellow);
 }
-
+/* 单行文字 超出省略号 */
 .omit{
   overflow: hidden;
   text-overflow: ellipsis;

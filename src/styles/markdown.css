@@ -148,7 +148,6 @@
   color: #8076a3;
 }
 .markdown-body img {
-  min-height: 220px;
   max-width: 100%;
   user-select: none;
   margin: 1em 0;

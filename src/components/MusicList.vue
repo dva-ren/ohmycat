@@ -27,13 +27,13 @@ const handleClick = (song: SongInfo) => {
     </div>
     <ul flex-1 :style="`--process:${process}%`">
       <li v-for="song, idx in playlist?.data" :key="idx" class="song-item" :class="{ playing: song.name === current.name }" @click="handleClick(song)">
-        <div>
-          <div inline-block mr-2>
+        <div class="omit">
+          <span mr-2>
             {{ idx + 1 }}.
-          </div>
-          <div inline-block mr-2>
+          </span>
+          <span mr-2>
             {{ song.name }}
-          </div>
+          </span>
         </div>
         <div>{{ song.time }}</div>
       </li>

@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BaseLayout: typeof import('./src/layout/baseLayout.vue')['default']
     Card: typeof import('./src/components/Card.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
     Catalog: typeof import('./src/components/Mardown/Catalog.vue')['default']

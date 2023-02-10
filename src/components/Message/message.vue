@@ -82,7 +82,7 @@ defineExpose({
   z-index: 100;
   left: 50%;
   user-select: none;
-  transition: top 0.1s;
+  transition: top 0.25s;
   transform: translateX(-50%);
 }
 .message{

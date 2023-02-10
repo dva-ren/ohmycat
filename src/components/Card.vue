@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import imgs from '../utils/images.json'
-import { randomNumber, resizeImgUrl, useUnionNumber } from '~/composables'
+import { randomNumber, resizeImgUrl } from '~/composables'
 
 const props = defineProps<{
   title: string
@@ -30,7 +30,7 @@ function getImageUrl() {
 
 <template>
   <div class="card" h-30 rounded-xl>
-    <img v-lazy="props.bg ? resizeImgUrl(props.bg, 400) : getImageUrl()" loading="../assets/img-bg.webp" w-full alt="" class="bg-img">
+    <img v-lazy="props.bg ? resizeImgUrl(props.bg, 400) : getImageUrl()" loading="../assets/img-bg.webp" w-full class="bg-img">
     <div class="card-title">
       <span rounded-xl>{{ props.title }}</span>
     </div>

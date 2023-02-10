@@ -12,11 +12,11 @@ export class Player {
   public playList = ref<SongInfo[]>([])
   public state = ref<PlayState>('pause')
   public current = ref<SongInfo>({
-    id: '1403250178',
-    url: 'http://m8.music.126.net/20230208154556/ad9f62d41117dade5fdf6b3a8a5b77b8/ymusic/060b/515e/065b/1a7d1265f8f4ce090d38112e7bad3ed8.mp3',
-    pic: 'https://p2.music.126.net/Kn3_QaCQyCXYzrpYZOV70w==/109951164485490984.jpg',
-    artist: 'Taylor Swift,Shawn Mendes',
-    name: 'Lover (Remix)',
+    id: '5243363',
+    url: 'https://api.injahow.cn/meting/?server=netease&type=url&id=1406686876',
+    pic: 'https://api.injahow.cn/meting/?server=netease&type=pic&id=109951164545953099',
+    artist: '太一',
+    name: '负重一万斤长大',
     time: '221335',
     lrc: '',
   })
