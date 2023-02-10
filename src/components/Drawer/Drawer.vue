@@ -125,6 +125,9 @@ const onLeave = () => {
   flex: 1;
   overflow-y: auto;
 }
+:deep(.dark .myDrawerWrap){
+  background-color: #000000c4;
+}
 /* 遮罩层即为背景色 */
 .isShowDrawerMask {
   background-color: rgba(0, 0, 0, 0.3);

@@ -63,7 +63,7 @@ const handleAddComment = useThrottleFn(async () => {
   processing.value = false
 }, 1000)
 
-const handleEmoji = (e: MouseEvent) => {
+const handleEmoji = (e: Event) => {
   if (e.target === e.currentTarget)
     return
   commentForm.content += e.target.innerText
@@ -101,7 +101,7 @@ onMounted(() => {
       </div>
     </div>
     <div mt-8>
-      <textarea v-model="commentForm.content" :style="{ backgroundColor: commentForm.isWhispers ? '#a3a3a329' : '' }" min-h-40 border placeholder="嘿(～￣▽￣)～，留个评论好不好" p-2 />
+      <textarea v-model="commentForm.content" :style="{ backgroundColor: commentForm.isWhispers ? '#a3a3a329' : '' }" min-h-40 border focus:border-yellow placeholder="嘿(～￣▽￣)～，留个评论好不好" p-2 />
     </div>
     <div p-2 flex justify-between text-sm>
       <div>

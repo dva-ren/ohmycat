@@ -5,14 +5,12 @@ import math from '@bytemd/plugin-math'
 import highlight from '@bytemd/plugin-highlight'
 import gemoji from '@bytemd/plugin-gemoji'
 import mediumZoom from '@bytemd/plugin-medium-zoom'
-import mermaid from '@bytemd/plugin-mermaid'
 import 'highlight.js/styles/atom-one-light.css'
 
 const { value } = defineProps<{ value: string }>()
 const plugins = [
   gfm(),
   highlight(),
-  mermaid(),
   mediumZoom(),
   math(),
   gemoji(),
