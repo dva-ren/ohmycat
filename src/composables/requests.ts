@@ -8,7 +8,7 @@ class HttpRequest {
   constructor() {
     this.baseUrl = 'http://localhost:4000/'
     if (import.meta.env.MODE === 'production')
-      this.baseUrl = 'https://api.dvaren.xyz/blog/'
+      this.baseUrl = 'https://api.dvaren.top/blog/'
   }
 
   getInsideConfig() {
