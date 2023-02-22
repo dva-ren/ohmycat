@@ -153,14 +153,26 @@
 .markdown-body a:active, .markdown-body a:link {
   color: var(--color-1);
 }
+/* .medium-zoom-image--opened{
+  opacity: 1;
+} */
 .markdown-body img {
-  max-width: 100%;
+  opacity: 0;
+  transition: all .4s;
+  width: 100%;
   user-select: none;
   margin: 1em 0;
   transition: transform 0.2s ease 0s;
   background-color: #f8f5ff;
   box-shadow: 0 0 10px #2333;
   border-radius: 0.5rem;
+}
+.markdown-body img[lazy="loading"]{
+  opacity: 1;
+  filter: blur(10px);
+}
+.markdown-body img[lazy="loaded"]{
+  opacity: 1;
 }
 .markdown-body img:hover {
   box-shadow: 0 0 20px #2333;
