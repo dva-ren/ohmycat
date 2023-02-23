@@ -8,7 +8,7 @@ class HttpRequest {
   constructor() {
     this.baseUrl = 'http://localhost:4000/'
     if (import.meta.env.MODE === 'production')
-      this.baseUrl = 'https://287j88r083.goho.co'
+      this.baseUrl = 'https://287j88r083.goho.co/blog'
   }
 
   getInsideConfig() {
