@@ -1,10 +1,28 @@
 :root{
   --text-color: #67492e;
-  --color-1: #845EC2;
+  --color-1: #538DA8;
   --color-2: #B39CD0;
-  --color-3: #FBEAFF;
-  --color-4: #00C9A7;
+  --color-3: #F6E2FD;
+  --color-4: #707C9F;
+  --color-5: rgba(40, 97, 184,0.2);
+  --gray: #d1d1d6;
 }
+/* 
+  #184995 #B17AA1 #F5B6A4
+  #E290BD #4D739A #8A4730
+  #FDD19F #C67120 #12246C
+  #FAA563 #105D67 #2C3113
+  #FBE6D8 #6A95B5 #E68742
+  #F6A441 #02368A #351F21
+  #FAB35B #136885 #7AA4B2
+  #FFC8CB #3C7098 #EC9134
+  #E2DCDD #0F86BE #FB9B57
+  #34718D #A90E10 #184B45
+  #1475BC #B44517 #184B45
+  #538DA8 #FBB98F #7F4722
+  #2861B8 #F6E2FD #707C9F
+
+*/
 .markdown-body {
   min-height: 40vh;
   color: var(--text-color);
@@ -153,15 +171,13 @@
 .markdown-body a:active, .markdown-body a:link {
   color: var(--color-1);
 }
-/* .medium-zoom-image--opened{
-  opacity: 1;
-} */
 .markdown-body img {
-  opacity: 0;
-  transition: all .4s;
   width: 100%;
+  display: block;
+  margin: 0 auto;
+  transition: all .5s;
   user-select: none;
-  margin: 1em 0;
+  /* margin: 1em 0; */
   transition: transform 0.2s ease 0s;
   background-color: #f8f5ff;
   box-shadow: 0 0 10px #2333;
@@ -173,6 +189,34 @@
 }
 .markdown-body img[lazy="loaded"]{
   opacity: 1;
+}
+/**
+图片
+**/
+.markdown-body figure{
+  margin: 1em 0;
+}
+.markdown-body figure figcaption{
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  margin: 1em 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.markdown-body figure figcaption::before{
+  content: "⇡ ";
+}
+.markdown-body figure figcaption::after{
+  content: "";
+  display: block;
+  position: absolute;
+  width: 3em;
+  height: 1px;
+  background-color: var(--gray);
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5em;
 }
 .markdown-body img:hover {
   box-shadow: 0 0 20px #2333;
@@ -189,6 +233,9 @@
 .dark .markdown-body blockquote {
   background-color: #c9c9c945;
 }
+.markdown-body > p {
+  margin: 1em 0;
+}
 .markdown-body blockquote > p {
   margin: 0;
 }
@@ -203,7 +250,7 @@
 }
 .markdown-body code {
   color: var(--color-1);
-  background-color: var(--color-3);
+  /* background-color: var(--color-5); */
   padding: 2px 0.4em;
   overflow-x: auto;
   word-break: break-word;
@@ -212,6 +259,7 @@
   font-size: 14px;
 }
 .markdown-body pre {
+  position: relative;
   margin: 2em 0;
 }
 .markdown-body pre > code {
@@ -226,9 +274,9 @@
   color: #383838;
   border-radius: 2px;
   scroll-behavior: smooth;
-  box-shadow: 0 0 8px #f7f2f4;
-  transition: box-shadow .1s;
-  background-color: white;
+  /* box-shadow: 0 0 8px #f7f2f4; */
+  transition: box-shadow .3s;
+  /* background-color: white; */
 }
 
 .markdown-body pre::before,
@@ -243,20 +291,22 @@
 
 .dark .markdown-body pre > code{
   color: white;
-  background-color: #333;
+  /* background-color: #333; */
+  transition: all .3s;
 }
 .markdown-body pre > code:hover {
   box-shadow: 0 4px 12px #2333;
 }
-.markdown-body pre > code::-webkit-scrollbar {
+/* 代码块滚动条样式 */
+/* .markdown-body pre > code::-webkit-scrollbar {
   height: 6px;
   background-color: var(--color-3);
 }
 .markdown-body pre > code::-webkit-scrollbar-thumb {
-  background-color: #efefef;
+  background-color: var(--color-4);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-}
+} */
 .markdown-body hr {
   margin: 2em 0;
   border-top: 1px solid var(--color-1);
@@ -280,7 +330,83 @@
 .markdown-body tr {
   background-color: #f8f5ff;
 }
+.markdown-body .operate-btn{
+  font-size: 14px;
+  position: absolute;
+  right: 1em;
+  top: -14px;
+  cursor: pointer;
+  line-height: 22px;
+  color: var(--text-color);
+  font-weight: 800;
+  text-align: right;
+}
+.markdown-body .operate-btn .lang-btn{
+  display: block;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.markdown-body .operate-btn .copy-btn{
+  user-select: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  background-color: whitesmoke;
+  border-bottom: 1px solid var(--text-color);
+}
+.markdown-body .operate-btn .copy-btn:hover{
+  opacity: 1;
+  font-weight: 800;
+}
 
+/* 图片容器 */
+.markdown-body .rehype-figure-container figcaption{
+  display: none;
+}
+
+.markdown-body .rehype-figure{
+  display: block;
+  scroll-snap-stop: always;
+  min-width:calc(100% - 60px);
+}
+.markdown-body
+.rehype-figure-container
+.rehype-figure{
+  margin: 0;
+}
+
+.markdown-body .rehype-figure-container{
+  position: relative;
+  border-radius: .8em;
+  margin: 1em 0;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  gap: 2em;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+}
+.markdown-body .rehype-figure-container img{
+  object-fit: cover;
+  background-color: gray;
+  border-radius: .8em;
+  width: 100%;
+  max-height: 440px;
+  vertical-align: bottom;
+}
+.markdown-body .rehype-figure-container::before{
+  content: '';
+  display: block;
+  width: 80px;
+  position: absolute;
+  left: 50%;
+  bottom: 1em;
+}
+.medium-zoom-overlay{
+  z-index: 24;
+}
+.medium-zoom-image--opened{
+  z-index: 25;
+}
 @media (max-width: 720px) {
   .markdown-body {
     font-size: 14px;

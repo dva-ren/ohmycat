@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     Layout: typeof import('./src/layout/layout.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
     Loadding: typeof import('./src/components/Loadding.vue')['default']
+    'Loadding copy': typeof import('./src/components/Loadding copy.vue')['default']
     LoadMask: typeof import('./src/components/loadMask.vue')['default']
     Logo: typeof import('./src/components/Logo.vue')['default']
     MarkdownViewer: typeof import('./src/components/Mardown/MarkdownViewer.vue')['default']

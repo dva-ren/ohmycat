@@ -69,7 +69,7 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
         </div>
       </div>
     </div>
-    <TextAnimation :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
+    <TextAnimation min-h-10 :text="words" class="text-sm text-gray-400 px-4 pt-4 pb-8" />
     <!-- <Loadding :loadding="loading" /> -->
     <div v-if="!loading" v-spring>
       <div text-white text-sm>
@@ -113,9 +113,9 @@ Promise.all([getPosts(), getNotes()]).catch((e) => {
           </router-link>
         </div>
         <div class="friends" flex gap-10 px-10 overflow-x-auto w-full>
-          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-veloradio-FGCtVVph7PU.jpg" alt="">
-          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-filipp_roman_photography-lUq5LSBaYtU.jpg" alt="">
-          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-flpschi-s_1ayiZ_rnA.jpg" alt="">
+          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-jon_photos-RM5jjBIh8Hw.jpg" alt="">
+          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/173814.jpg" alt="">
+          <img shrink-0 shadow w-25 h-25 rounded-full object-cover src="https://image.dvaren.xyz/images/unsplash/bulksplash-tomofficials-WODiUmUDWGQ.jpg" alt="">
         </div>
       </div>
       <div text-white mt-10 text-sm>

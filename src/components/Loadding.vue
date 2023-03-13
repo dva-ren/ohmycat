@@ -3,155 +3,41 @@ const { loadding } = defineProps<{ loadding: boolean }>()
 </script>
 
 <template>
-  <div v-if="loadding" h-20 w-full flex justify-center items-center h-full>
-    <div class="loading">
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
+  <div v-if="loadding" class="loading">
+    <div class="ball-container">
+      <div class="ball" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.loading,
-.loading > div {
+.loading{
   position: relative;
-  box-sizing: border-box;
+  width: 100%;
+  height: 200px;
 }
-
-.loading {
-  display: block;
-  font-size: 0;
-  color: var(--yellow);
-}
-
-.loading.la-dark {
-  color: #333;
-}
-
-.loading > div {
-  display: inline-block;
-  float: none;
-  background-color: currentColor;
-  border: 0 solid currentColor;
-}
-
-.loading {
-  width: 12px;
-  height: 12px;
-}
-
-.loading > div {
+.ball-container{
   position: absolute;
-  width: 10px;
-  height: 10px;
-  margin-left: -25px;
-  border-radius: 100%;
-  animation: ball-running-dots-animate 2s linear infinite;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
-.loading > div:nth-child(1) {
-  animation-delay: 0s;
+.ball{
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: #105D67;
+  animation: loading alternate infinite 0.6s ease-in;
+  transform: scale(0.2);
 }
-
-.loading > div:nth-child(2) {
-  animation-delay: -0.4s;
-}
-
-.loading > div:nth-child(3) {
-  animation-delay: -0.8s;
-}
-
-.loading > div:nth-child(4) {
-  animation-delay: -1.2s;
-}
-
-.loading > div:nth-child(5) {
-  animation-delay: -1.6s;
-}
-
-.loading > div:nth-child(6) {
-  animation-delay: -2s;
-}
-
-.loading > div:nth-child(7) {
-  animation-delay: -2.4s;
-}
-
-.loading > div:nth-child(8) {
-  animation-delay: -2.8s;
-}
-
-.loading > div:nth-child(9) {
-  animation-delay: -3.2s;
-}
-
-.loading > div:nth-child(10) {
-  animation-delay: -3.6s;
-}
-
-.loading.la-sm {
-  width: 4px;
-  height: 4px;
-}
-
-.loading.la-sm > div {
-  width: 4px;
-  height: 4px;
-  margin-left: -12px;
-}
-
-.loading.la-2x {
-  width: 20px;
-  height: 20px;
-}
-
-.loading.la-2x > div {
-  width: 20px;
-  height: 20px;
-  margin-left: -50px;
-}
-
-.loading.la-3x {
-  width: 30px;
-  height: 30px;
-}
-
-.loading.la-3x > div {
-  width: 30px;
-  height: 30px;
-  margin-left: -75px;
-}
-
-@keyframes ball-running-dots-animate {
-  0%,
-  100% {
-    width: 100%;
-    height: 100%;
-    transform: translateY(0) translateX(500%);
+@keyframes loading {
+  0%{
+    transform: translateY(0) scale(0.2);
   }
-
-  80% {
-    transform: translateY(0) translateX(0);
+  80%{
+    transform: translateY(60px) scale(0.4);
   }
-
-  85% {
-    width: 100%;
-    height: 100%;
-    transform: translateY(-125%) translateX(0);
-  }
-
-  90% {
-    width: 200%;
-    height: 75%;
-  }
-
-  95% {
-    width: 100%;
-    height: 100%;
-    transform: translateY(-100%) translateX(500%);
+  100%{
+    transform: translateY(80px) scale(1);
   }
 }
 </style>

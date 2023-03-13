@@ -21,6 +21,7 @@
     "@bytemd/vue-next": "^1.20.2",
     "@popperjs/core": "^2.11.6",
     "@types/ali-oss": "^6.16.7",
+    "@uvdream/bytemd-plugin-code-copy": "^0.1.0",
     "@vueuse/core": "^9.12.0",
     "@vueuse/head": "^1.0.25",
     "@vueuse/motion": "2.0.0-beta.12",
@@ -34,6 +35,7 @@
     "laf-client-sdk": "^0.8.13",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.30",
+    "rehype-figure": "^1.0.1",
     "vue": "^3.2.47",
     "vue-lazyload": "3.0.0-rc.2",
     "vue-router": "^4.1.6"

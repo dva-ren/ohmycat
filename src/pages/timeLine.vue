@@ -62,7 +62,7 @@ getNotes()
             <p v-if="isNewYear(item.createTime, idx)" class="left-label" pl-4 py-2>
               {{ new Date(item.createTime).getFullYear() }}
             </p>
-            <li class="item" flex items-center>
+            <li class="item" :class="{ 'new-year': isNewYear(item.createTime, idx) }" flex items-center>
               <span text-sm>{{ formatTime(item.createTime, 'MM/dd') }}</span>
               <router-link :to="`/notes/${item.id}`" class="link" mx-2 text-gray-800 text-sm>
                 {{ item.title }}
@@ -112,7 +112,11 @@ getNotes()
 .posts .item:last-child::after{
   transform: translateY(-90%);
 }
-.link{
+.new-year::after{
+  display: none;
+}
+.dark .posts{
+  color: rgba(255, 255, 255, 0.8)
 }
 .link:hover{
   border-bottom: 1px orange solid;
